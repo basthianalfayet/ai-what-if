@@ -1,10 +1,15 @@
 param(
     [string]$JamPagi = "07:00",
+    [string]$JamSiang = "12:00",
     [string]$JamSore = "18:00",
     [switch]$Hapus
 )
 
-$jadwal = @{ "KerjaPakaiAI Pagi" = @("pagi", $JamPagi); "KerjaPakaiAI Sore" = @("sore", $JamSore) }
+$jadwal = @{
+    "KerjaPakaiAI Pagi" = @("pagi", $JamPagi)
+    "KerjaPakaiAI Siang" = @("siang", $JamSiang)
+    "KerjaPakaiAI Sore" = @("sore", $JamSore)
+}
 
 if ($Hapus) {
     foreach ($nama in $jadwal.Keys) { Unregister-ScheduledTask -TaskName $nama -Confirm:$false -ErrorAction SilentlyContinue }

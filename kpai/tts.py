@@ -31,7 +31,7 @@ async def _sintesis(teks: str, path: Path) -> list[Kata]:
 
 def durasi_audio(path: Path) -> float:
     out = subprocess.run(
-        [config.FFPROBE, "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(path)],
+        [config.ffprobe(), "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(path)],
         capture_output=True, text=True, check=True,
     )
     return float(out.stdout.strip())

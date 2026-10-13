@@ -1,27 +1,27 @@
-# KerjaPakaiAI: 2 video Shorts/TikTok per hari, otomatis
+# KerjaPakaiAI: 3 video Shorts/TikTok per hari, otomatis
 
-Dua kali sehari (07:00 dan 18:00 WIB) sistem ini:
+Tiga kali sehari (07:00, 12:00, dan 18:00 WIB) sistem ini:
 
 1. Menulis naskah 35–50 detik + prompt gambar lewat Gemini (free tier)
 2. Membuat 4 gambar AI untuk latar adegan lewat Cloudflare Workers AI (free tier)
 3. Membuat suara Indonesia dengan Edge TTS (gratis)
 4. Merender animasi 30 fps: latar zoom/geser, transisi kilat + whoosh, kata hook muncul satu per satu, prompt diketik dengan kursor, jawaban AI "sedang mengetik", efek stabilo di trik, subtitle dengan kotak sorot per kata, progress bar
-5. Upload ke YouTube Shorts (opsional)
-6. Mengirim video + caption ke Telegram kamu, tinggal forward ke TikTok
+5. Mengirim video + caption siap tempel ke Telegram. Upload YouTube dan TikTok tetap manual.
+6. Upload ke YouTube Shorts hanya kalau `YT_UPLOAD=1` (biarkan `0` dulu)
 
-Video pagi selalu menyebut topik "nanti sore", video sore menyebut topik "besok", dan topik itu yang benar-benar dibuat berikutnya.
+Ide topik dipilih Gemini. Video pagi menjanjikan topik "nanti siang", siang menjanjikan "nanti sore", sore menjanjikan "besok", dan topik itu yang benar-benar dibuat berikutnya. Tiga video dalam satu hari selalu beda kategori.
 
-| Hari | Pagi | Sore |
-|---|---|---|
-| Senin | Excel & Data | Cari Kerja |
-| Selasa | Email & Chat Kerja | Belajar & Tugas |
-| Rabu | Jualan Online | Produktivitas |
-| Kamis | Rapat & Laporan | Excel & Data |
-| Jumat | Cari Kerja | Email & Chat Kerja |
-| Sabtu | Belajar & Tugas | Jualan Online |
-| Minggu | Produktivitas + rekap minggu | Rapat & Laporan |
+| Hari | Pagi | Siang | Sore |
+|---|---|---|---|
+| Senin | Excel & Data | Jualan Online | Cari Kerja |
+| Selasa | Email & Chat Kerja | Rapat & Laporan | Belajar & Tugas |
+| Rabu | Jualan Online | Cari Kerja | Produktivitas |
+| Kamis | Rapat & Laporan | Belajar & Tugas | Excel & Data |
+| Jumat | Cari Kerja | Produktivitas | Email & Chat Kerja |
+| Sabtu | Belajar & Tugas | Excel & Data | Jualan Online |
+| Minggu | Produktivitas + rekap minggu | Email & Chat Kerja | Rapat & Laporan |
 
-Semua layanan di atas dipakai di dalam batas gratisnya: 2 naskah, 8 gambar, dan ±300 menit GitHub Actions per bulan.
+Semua layanan di atas dipakai di dalam batas gratisnya: 3 naskah, 12 gambar (sekitar 4.000 neuron Cloudflare dari kuota 10.000 per hari), dan ±450 menit GitHub Actions per bulan.
 
 ---
 
@@ -46,7 +46,7 @@ Semua layanan di atas dipakai di dalam batas gratisnya: 2 naskah, 8 gambar, dan 
    CF_API_TOKEN=...
    ```
 
-Kuota gratis 10.000 "neuron" per hari; 8 gambar per hari cuma memakai sebagian kecil.
+Kuota gratis 10.000 "neuron" per hari; 12 gambar per hari memakai sekitar 4.000 neuron.
 
 ## Langkah 3: Bot Telegram
 
@@ -126,7 +126,7 @@ Tab **Variables** (opsional): `YT_UPLOAD` = `1` kalau mau upload YouTube, `YT_PR
 
 Tab **Actions** → **Video harian** → **Run workflow** → centang **Mode uji** → **Run workflow**. Tunggu ±5 menit; video masuk ke Telegram, dan bisa juga diunduh dari bagian **Artifacts** di halaman run.
 
-Setelah itu jadwal berjalan sendiri tiap 07:00 dan 18:00 WIB. GitHub kadang menunda jadwal 5–30 menit, itu normal. Setiap run mencatat riwayat topik ke `data/history.json` di repo.
+Setelah itu jadwal berjalan sendiri tiap 07:00, 12:00, dan 18:00 WIB. GitHub kadang menunda jadwal 5–30 menit, itu normal. Setiap run mencatat riwayat topik ke `data/history.json` di repo. Kalau repo tidak ada aktivitas selama 60 hari, GitHub mematikan jadwal ini; commit riwayat menjaga jadwalnya tetap hidup.
 
 ## Langkah 6: Upload otomatis ke YouTube (opsional)
 
@@ -160,10 +160,12 @@ Kalau tidak mau pakai GitHub, pasang jadwal Windows (laptop harus menyala):
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\pasang_jadwal.ps1
 # jam lain:
-powershell -ExecutionPolicy Bypass -File .\pasang_jadwal.ps1 -JamPagi 06:30 -JamSore 17:00
+powershell -ExecutionPolicy Bypass -File .\pasang_jadwal.ps1 -JamPagi 06:30 -JamSiang 12:30 -JamSore 17:00
 # hapus:
 powershell -ExecutionPolicy Bypass -File .\pasang_jadwal.ps1 -Hapus
 ```
+
+Kalau jadwal lama (pagi dan sore saja) sudah terpasang, jalankan perintah yang sama sekali lagi supaya slot siang ikut terdaftar.
 
 Jangan pakai dua-duanya sekaligus, nanti videonya dobel dan riwayatnya tidak sinkron.
 

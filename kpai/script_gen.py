@@ -66,7 +66,7 @@ def _masalah(n: Naskah, label_berikut: str) -> list[str]:
     masalah = []
     kata = jumlah_kata_narasi(n)
     if not 80 <= kata <= 135:
-        masalah.append(f"total narasi {kata} kata, harus 90-125 kata")
+        masalah.append(f"total narasi {kata} kata, harus 80-135 kata")
     if len(n.prompt) > 450:
         masalah.append(f"prompt {len(n.prompt)} karakter, maksimal 380")
     if len(n.hasil) > 560:
@@ -87,7 +87,7 @@ def _instruksi(kategori, kategori_besok, label_berikut, topik, hindari, rekap_mi
     topik_baris = (
         f"Topik video ini SUDAH DITENTUKAN (sudah dijanjikan di video sebelumnya): {topik}"
         if topik
-        else "Pilih sendiri satu masalah kerja yang spesifik dan sering dialami orang Indonesia."
+        else "Pilih sendiri satu masalah kerja yang sempit, spesifik, dan sering dialami orang Indonesia. Jangan tips umum."
     )
     hindari_baris = "\n".join(f"- {t}" for t in hindari) or "- (belum ada)"
     rekap_baris = ""
@@ -130,7 +130,7 @@ Aturan:
 """
 
 
-def buat_naskah(kategori, kategori_besok, label_berikut, topik=None, hindari=(), rekap_minggu=()) -> Naskah:
+def buat_naskah(kategori, kategori_besok, label_berikut, topik=None, hindari=(), rekap_minggu=()) -> tuple[Naskah, str | None]:
     if not config.GEMINI_API_KEY:
         raise SystemExit("GEMINI_API_KEY belum diisi di file .env (ambil gratis di https://aistudio.google.com/apikey).")
 
@@ -165,7 +165,7 @@ def buat_naskah(kategori, kategori_besok, label_berikut, topik=None, hindari=(),
                 masalah = _masalah(naskah, label_berikut)
                 if not masalah:
                     print(f"  Model: {model}")
-                    return naskah
+                    return naskah, None
                 print(f"  Naskah dari {model} belum pas: {'; '.join(masalah)}")
                 catatan = "\n\nPerbaiki dari percobaan sebelumnya: " + "; ".join(masalah) + "."
                 error_terakhir = "; ".join(masalah)
@@ -179,6 +179,7 @@ def buat_naskah(kategori, kategori_besok, label_berikut, topik=None, hindari=(),
                 time.sleep(5)
 
     if terakhir is not None:
-        print(f"  Memakai naskah terakhir walau belum ideal: {error_terakhir}")
-        return terakhir
+        catatan = f"Naskah dipakai walau belum ideal: {error_terakhir}"
+        print(f"  {catatan}")
+        return terakhir, catatan
     raise RuntimeError(f"Semua model Gemini gagal. Error terakhir: {error_terakhir}")

@@ -1,5 +1,5 @@
 @echo off
-rem Pemakaian: run_daily.bat pagi   atau   run_daily.bat sore
+rem Pemakaian: run_daily.bat pagi   atau   siang   atau   sore
 cd /d "%~dp0"
 set PYTHONIOENCODING=utf-8
 set SLOT=%1

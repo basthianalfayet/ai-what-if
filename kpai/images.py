@@ -57,10 +57,12 @@ def _cadangan(seed: int, warna: tuple[int, int, int]) -> Image.Image:
     return img.filter(ImageFilter.GaussianBlur(140))
 
 
-def buat_gambar(prompts: dict[str, str], folder: Path, seed: int, warna_cadangan) -> dict[str, Image.Image]:
+def buat_gambar(prompts: dict[str, str], folder: Path, seed: int, warna_cadangan) -> tuple[dict[str, Image.Image], list[str]]:
     ada_cf = bool(config.CF_ACCOUNT_ID and config.CF_API_TOKEN)
+    peringatan = []
     if not ada_cf:
         print("  CF_ACCOUNT_ID/CF_API_TOKEN belum diisi, gambar AI hanya dari Pollinations (terbatas)")
+        peringatan.append("Cloudflare belum diisi, gambar mengandalkan cadangan")
 
     def penyedia_untuk(kunci):
         daftar = []
@@ -76,17 +78,21 @@ def buat_gambar(prompts: dict[str, str], folder: Path, seed: int, warna_cadangan
     for i, (kunci, prompt) in enumerate(prompts.items()):
         lengkap = f"{prompt}, {config.IMAGE_STYLE}"
         img = None
+        sumber = ""
         for nama, fungsi, coba in penyedia_untuk(kunci):
             if kuota_cf_habis and nama.startswith("Cloudflare"):
                 continue
             for percobaan in range(coba):
                 try:
                     img = fungsi(lengkap, seed + i).convert("RGB")
+                    sumber = nama
                     print(f"  Gambar {kunci}: {nama} {img.width}x{img.height}")
                     break
                 except Exception as e:
                     print(f"  Gambar {kunci} via {nama} gagal: {str(e)[:100]}")
                     if "daily free allocation" in str(e):
+                        if not kuota_cf_habis:
+                            peringatan.append("Kuota harian Cloudflare habis")
                         kuota_cf_habis = True
                         print("  Kuota harian Cloudflare habis, sisa gambar tidak lewat Cloudflare")
                         break
@@ -95,7 +101,10 @@ def buat_gambar(prompts: dict[str, str], folder: Path, seed: int, warna_cadangan
                 break
         if img is None:
             print(f"  Gambar {kunci}: pakai latar gradien")
+            peringatan.append(f"Gambar {kunci} jatuh ke gradien")
             img = _cadangan(seed + i, warna_cadangan)
+        elif not sumber.startswith("Cloudflare"):
+            peringatan.append(f"Gambar {kunci} dari cadangan ({sumber})")
         img.save(folder / f"gambar_{kunci}.jpg", quality=92)
         hasil[kunci] = img
-    return hasil
+    return hasil, peringatan

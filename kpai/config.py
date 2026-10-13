@@ -1,6 +1,7 @@
 import os
 import shutil
 from datetime import date, datetime, timedelta, timezone
+from functools import lru_cache
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -17,6 +18,7 @@ SECRETS_DIR = ROOT / "secrets"
 WIB = timezone(timedelta(hours=7))
 
 
+@lru_cache(maxsize=None)
 def _cari_program(nama: str) -> str:
     """Cari ffmpeg/ffprobe walau PATH terminal belum diperbarui setelah instal winget."""
     ketemu = shutil.which(nama)
@@ -28,8 +30,12 @@ def _cari_program(nama: str) -> str:
     raise SystemExit(f"{nama} tidak ditemukan. Pasang FFmpeg: winget install --id Gyan.FFmpeg -e --source winget")
 
 
-FFMPEG = _cari_program("ffmpeg")
-FFPROBE = _cari_program("ffprobe")
+def ffmpeg() -> str:
+    return _cari_program("ffmpeg")
+
+
+def ffprobe() -> str:
+    return _cari_program("ffprobe")
 
 
 def _env(nama: str, default: str = "") -> str:
@@ -82,9 +88,10 @@ KATEGORI = [
     ("Produktivitas", "rencana harian, prioritas tugas, template kerja serbaguna, rekap prompt terbaik minggu ini"),
 ]
 
-SLOT = ["pagi", "sore"]
-# Video sore memakai kategori yang digeser 4 hari, jadi tidak sama dengan pagi ini maupun pagi besok.
-_GESER_SLOT = {"pagi": 0, "sore": 4}
+SLOT = ["pagi", "siang", "sore"]
+# Siang digeser 2 hari dan sore 4 hari, jadi tiga video sehari tidak bentrok
+# satu sama lain maupun dengan pagi besok.
+_GESER_SLOT = {"pagi": 0, "siang": 2, "sore": 4}
 
 
 def kategori_untuk(tgl: date, slot: str = "pagi") -> tuple[str, str]:
@@ -92,11 +99,23 @@ def kategori_untuk(tgl: date, slot: str = "pagi") -> tuple[str, str]:
 
 
 def slot_berikut(tgl: date, slot: str) -> tuple[date, str]:
-    return (tgl, "sore") if slot == "pagi" else (tgl + timedelta(days=1), "pagi")
+    if slot == "pagi":
+        return tgl, "siang"
+    if slot == "siang":
+        return tgl, "sore"
+    return tgl + timedelta(days=1), "pagi"
 
 
 def label_berikut(slot: str) -> str:
-    return "nanti sore" if slot == "pagi" else "besok"
+    return {"pagi": "nanti siang", "siang": "nanti sore", "sore": "besok"}[slot]
+
+
+def slot_otomatis(jam: int) -> str:
+    if jam < 12:
+        return "pagi"
+    if jam < 17:
+        return "siang"
+    return "sore"
 
 
 def sekarang_wib() -> datetime:

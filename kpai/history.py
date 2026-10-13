@@ -19,8 +19,21 @@ def kunci(tgl: date, slot: str) -> str:
     return f"{tgl.isoformat()}-{slot}"
 
 
+def _kunci_video(video: dict) -> tuple[str, str]:
+    return video["tanggal"], video.get("slot", "pagi")
+
+
 def sudah_dibuat(data: dict, tgl: date, slot: str) -> bool:
-    return any(v["tanggal"] == tgl.isoformat() and v.get("slot", "pagi") == slot for v in data["video"])
+    return any(_kunci_video(v) == (tgl.isoformat(), slot) for v in data["video"])
+
+
+def catat(data: dict, entri: dict) -> None:
+    """Satu baris per tanggal+slot. Entri baru mengganti yang lama."""
+    terakhir = {}
+    for video in data["video"]:
+        terakhir[_kunci_video(video)] = video
+    terakhir[_kunci_video(entri)] = entri
+    data["video"] = list(terakhir.values())
 
 
 def topik_lama(data: dict) -> list[str]:

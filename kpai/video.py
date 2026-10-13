@@ -59,7 +59,7 @@ def _siapkan_sfx(folder: Path) -> dict[str, Path]:
     for nama, sumber in _SFX.items():
         path = folder / f"sfx_{nama}.wav"
         subprocess.run(
-            [config.FFMPEG, "-y", "-hide_banner", "-loglevel", "error", "-f", "lavfi", "-i", sumber, "-ac", "2", str(path)],
+            [config.ffmpeg(), "-y", "-hide_banner", "-loglevel", "error", "-f", "lavfi", "-i", sumber, "-ac", "2", str(path)],
             check=True,
         )
         hasil[nama] = path
@@ -111,7 +111,7 @@ def render_video(renderer, adegan: list[Adegan], folder: Path, keluaran: Path) -
     sfx = _siapkan_sfx(folder)
     musik = _pilih_musik()
 
-    cmd = [config.FFMPEG, "-y", "-hide_banner", "-loglevel", "error",
+    cmd = [config.ffmpeg(), "-y", "-hide_banner", "-loglevel", "error",
            "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-"]
     for a in adegan:
         cmd += ["-i", str(a.audio)]

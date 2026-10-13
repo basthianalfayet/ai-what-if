@@ -3,13 +3,14 @@ name: Video harian
 on:
   schedule:
     - cron: "0 0 * * *"   # 07:00 WIB, slot pagi
+    - cron: "0 5 * * *"   # 12:00 WIB, slot siang
     - cron: "0 11 * * *"  # 18:00 WIB, slot sore
   workflow_dispatch:
     inputs:
       slot:
         description: "Slot video"
         type: choice
-        options: [auto, pagi, sore]
+        options: [auto, pagi, siang, sore]
         default: auto
       uji:
         description: "Mode uji (tidak upload, tidak dicatat)"
@@ -54,12 +55,18 @@ jobs:
         id: slot
         run: |
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            if [ "${{ github.event.schedule }}" = "0 0 * * *" ]; then echo "slot=pagi" >> "$GITHUB_OUTPUT"; else echo "slot=sore" >> "$GITHUB_OUTPUT"; fi
+            case "${{ github.event.schedule }}" in
+              "0 0 * * *") echo "slot=pagi" >> "$GITHUB_OUTPUT" ;;
+              "0 5 * * *") echo "slot=siang" >> "$GITHUB_OUTPUT" ;;
+              "0 11 * * *") echo "slot=sore" >> "$GITHUB_OUTPUT" ;;
+              *) echo "slot=auto" >> "$GITHUB_OUTPUT" ;;
+            esac
           else
             echo "slot=${{ inputs.slot }}" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Bikin video
+        id: video
         env:
           PYTHONIOENCODING: utf-8
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -73,6 +80,7 @@ jobs:
         run: python main.py --slot "${{ steps.slot.outputs.slot }}" ${{ inputs.uji && '--uji' || '' }}
 
       - name: Simpan riwayat topik
+        id: riwayat
         if: success() && !inputs.uji
         run: |
           git config user.name "kerjapakaiai-bot"
@@ -83,6 +91,13 @@ jobs:
             git pull --rebase
             git push
           fi
+
+      - name: Kabari kalau riwayat gagal disimpan
+        if: steps.video.outcome == 'success' && steps.riwayat.outcome == 'failure'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -c "from kpai import telegram; telegram.kirim_pesan('Video sudah terkirim, tapi riwayat topik gagal disimpan. Janji video berikutnya bisa putus. Cek Actions.')"
 
       - name: Simpan video sebagai artifact
         if: always()
