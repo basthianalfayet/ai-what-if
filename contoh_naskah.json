@@ -1,0 +1,20 @@
+{
+  "kategori": "Rapat & Laporan",
+  "topik": "Laporan mingguan dari catatan berantakan",
+  "judul": "Laporan mingguan rapi dalam 1 menit pakai AI",
+  "deskripsi": "Catatan kerja kamu berantakan tapi laporan harus dikirim sore ini? Pakai prompt ini, tempel catatanmu, dan AI menyusunnya jadi laporan yang enak dibaca atasan.",
+  "tags": ["laporan mingguan", "prompt chatgpt", "tips kerja", "ai untuk kerja", "produktivitas"],
+  "hook": "Disuruh bikin laporan mingguan, padahal catatan kamu berantakan semua?",
+  "narasi_prompt": "Tenang. Contek prompt ini, lalu tempel catatan kamu apa adanya di bagian akhir.",
+  "prompt": "Kamu asisten yang membantu menulis laporan kerja. Ubah catatan berikut jadi laporan mingguan untuk atasan: 3 poin progres, 2 kendala, dan 1 rencana minggu depan. Bahasa formal, singkat, maksimal 150 kata.\n\nCatatan: [tempel catatan kamu di sini]",
+  "narasi_hasil": "Hasilnya langsung rapi. Progres, kendala, dan rencana dipisah jelas, jadi atasan bisa baca dalam setengah menit.",
+  "hasil": "Laporan Mingguan, 6 sampai 10 Oktober\n\nProgres:\n- Data penjualan September selesai direkap\n- Draft proposal klien A dikirim untuk review\n- Template invoice baru mulai dipakai tim\n\nKendala:\n- Data cabang Bandung terlambat masuk\n- Revisi desain menunggu persetujuan\n\nRencana:\n- Finalisasi proposal klien A hari Rabu",
+  "narasi_trik": "Trik kecilnya, tambahin satu kalimat ini biar laporannya kelihatan lebih terukur.",
+  "trik": "Kalau ada angka di catatan, tampilkan sebagai angka dan persentase.",
+  "topik_besok": "Bikin CV ATS-friendly dari pengalaman kerja",
+  "penutup": "Simpan video ini biar nggak lupa. Nanti sore kita bahas cara bikin CV yang lolos ATS.",
+  "gambar_hook": "stressed young Indonesian office worker staring at messy sticky notes on a desk late afternoon",
+  "gambar_kerja": "close-up of hands typing on a laptop in a modern Jakarta office, warm desk lamp, coffee cup",
+  "gambar_trik": "confident smiling Indonesian woman in office attire giving a thumbs up near a bright window",
+  "gambar_penutup": "neatly printed CV resume on a wooden table next to a laptop and a pen, morning light"
+}
