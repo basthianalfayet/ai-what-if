@@ -53,8 +53,9 @@ CHANNEL_NAME = _env("CHANNEL_NAME", "KerjaPakaiAI")
 TTS_VOICE = _env("TTS_VOICE", "id-ID-ArdiNeural")
 TTS_RATE = _env("TTS_RATE", "+8%")
 
-CF_ACCOUNT_ID = _env("CF_ACCOUNT_ID")
-CF_API_TOKEN = _env("CF_API_TOKEN")
+# Nama CF_* tetap yang dipakai proyek. CLOUDFLARE_* hanya alias kalau nama lama kosong.
+CF_ACCOUNT_ID = _env("CF_ACCOUNT_ID") or _env("CLOUDFLARE_ACCOUNT_ID")
+CF_API_TOKEN = _env("CF_API_TOKEN") or _env("CLOUDFLARE_API_TOKEN")
 def _daftar(nama: str, default: str) -> list[str]:
     return [m.strip() for m in _env(nama, default).split(",") if m.strip()]
 
@@ -75,6 +76,18 @@ TELEGRAM_CHAT_ID = _env("TELEGRAM_CHAT_ID")
 YT_UPLOAD = _env("YT_UPLOAD", "0") == "1"
 YT_PRIVACY = _env("YT_PRIVACY", "private")
 
+# llama-3.3-70b-versatile ada di contoh resmi Groq Chat Completions.
+GROQ_API_KEY = _env("GROQ_API_KEY")
+GROQ_MODEL = _env("GROQ_MODEL", "llama-3.3-70b-versatile")
+TEXT_FALLBACK_ENABLED = _env("TEXT_FALLBACK_ENABLED", "true").lower() in ("1", "true", "yes", "ya")
+
+# fal-ai/flux/schnell: $0.003 per megapiksel, dibulatkan ke atas. Hanya model ini yang biayanya diketahui.
+FAL_KEY = _env("FAL_KEY")
+FAL_MODEL = _env("FAL_MODEL", "fal-ai/flux/schnell")
+IMAGE_FALLBACK_ENABLED = _env("IMAGE_FALLBACK_ENABLED", "false").lower() in ("1", "true", "yes", "ya")
+IMAGE_FALLBACK_MAX_COST_USD_PER_JOB = _env("IMAGE_FALLBACK_MAX_COST_USD_PER_JOB")
+FALLBACK_DIR = ROOT / "assets" / "fallback"
+
 HARI = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]
 
 # Index mengikuti date.weekday(): 0 = Senin.
@@ -88,10 +101,9 @@ KATEGORI = [
     ("Produktivitas", "rencana harian, prioritas tugas, template kerja serbaguna, rekap prompt terbaik minggu ini"),
 ]
 
-SLOT = ["pagi", "siang", "sore"]
-# Siang digeser 2 hari dan sore 4 hari, jadi tiga video sehari tidak bentrok
-# satu sama lain maupun dengan pagi besok.
-_GESER_SLOT = {"pagi": 0, "siang": 2, "sore": 4}
+SLOT = ["pagi", "siang", "sore", "malam", "larut"]
+# Lima video sehari memakai lima kategori berurutan, jadi tidak bentrok dalam hari yang sama.
+_GESER_SLOT = {nama: i for i, nama in enumerate(SLOT)}
 
 
 def kategori_untuk(tgl: date, slot: str = "pagi") -> tuple[str, str]:
@@ -99,23 +111,32 @@ def kategori_untuk(tgl: date, slot: str = "pagi") -> tuple[str, str]:
 
 
 def slot_berikut(tgl: date, slot: str) -> tuple[date, str]:
-    if slot == "pagi":
-        return tgl, "siang"
-    if slot == "siang":
-        return tgl, "sore"
-    return tgl + timedelta(days=1), "pagi"
+    indeks = SLOT.index(slot)
+    if indeks + 1 < len(SLOT):
+        return tgl, SLOT[indeks + 1]
+    return tgl + timedelta(days=1), SLOT[0]
 
 
 def label_berikut(slot: str) -> str:
-    return {"pagi": "nanti siang", "siang": "nanti sore", "sore": "besok"}[slot]
+    return {
+        "pagi": "nanti siang",
+        "siang": "nanti sore",
+        "sore": "nanti malam",
+        "malam": "nanti larut",
+        "larut": "besok",
+    }[slot]
 
 
 def slot_otomatis(jam: int) -> str:
-    if jam < 12:
+    if jam < 10:
         return "pagi"
-    if jam < 17:
+    if jam < 14:
         return "siang"
-    return "sore"
+    if jam < 18:
+        return "sore"
+    if jam < 20:
+        return "malam"
+    return "larut"
 
 
 def sekarang_wib() -> datetime:

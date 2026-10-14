@@ -7,16 +7,19 @@ import traceback
 from datetime import date
 
 from kpai import config, history, telegram
+from kpai.caption import caption_menarik
+from kpai.errors import NeedsReview
 from kpai.images import buat_gambar
-from kpai.render import TEMA, Renderer
-from kpai.script_gen import Naskah, buat_naskah, jumlah_kata_narasi, rapikan
+from kpai.laporan import laporan_needs_review, laporan_selesai
+from kpai.render import Renderer
+from kpai.script_gen import HasilNaskah, Naskah, buat_naskah, jumlah_kata_narasi, rapikan
 from kpai.video import buat_suara_adegan, render_video
 
 
 def _args():
     p = argparse.ArgumentParser(description="Bikin 1 video Shorts/TikTok KerjaPakaiAI.")
-    p.add_argument("--slot", choices=["pagi", "siang", "sore", "auto"], default="auto",
-                   help="Slot video. auto = pagi sebelum jam 12, siang sampai jam 17, sore setelahnya (WIB)")
+    p.add_argument("--slot", choices=["pagi", "siang", "sore", "malam", "larut", "auto"], default="auto",
+                   help="Slot video. auto mengikuti jam WIB: pagi <10, siang <14, sore <18, malam <20, selain itu larut")
     p.add_argument("--tanggal", help="YYYY-MM-DD, default hari ini (WIB)")
     p.add_argument("--topik", help="Paksa topik tertentu, selain itu ide dipilih Gemini")
     p.add_argument("--naskah", help="Pakai naskah JSON sendiri, tanpa Gemini")
@@ -32,15 +35,10 @@ def _teks_deskripsi(n: Naskah) -> str:
     return f"{n.deskripsi}\n\nPrompt yang dipakai:\n{n.prompt}\n\nTrik tambahan:\n{n.trik}\n\n{tagar}"
 
 
-def _teks_tiktok(n: Naskah) -> str:
-    return (f"{n.judul}\n\nPrompt lengkap ada di video, pause aja.\n\n"
-            f"#ai #chatgpt #tipskerja #{config.CHANNEL_NAME.lower()} #fyp")
-
-
-def _pesan_siap_tempel(n: Naskah) -> str:
+def _pesan_siap_tempel(n: Naskah, kategori: str) -> str:
     return (
-        "CAPTION TIKTOK (siap tempel)\n"
-        f"{_teks_tiktok(n)}\n\n"
+        "CAPTION SIAP TEMPEL\n"
+        f"{caption_menarik(n, kategori)}\n\n"
         "YOUTUBE — upload manual\n"
         f"{n.judul}\n\n"
         f"{_teks_deskripsi(n)}"
@@ -62,26 +60,25 @@ def _kabari(teks: str) -> None:
         print(f"  Telegram gagal: {e}")
 
 
-def _kirim_hasil(video, caption_video: str, pesan_caption: str, peringatan: list[str], total: float) -> None:
+def _kirim_hasil(video, caption_video: str, pesan_caption: str, laporan: str, peringatan: list[str], total: float) -> None:
     if not telegram.aktif():
         print("  Telegram belum diisi, video hanya tersimpan di folder output")
+        print(laporan)
         return
     try:
-        telegram.kirim_video(video, caption_video, total)
+        telegram.kirim_video(video, caption_video[:1024], total)
         print("  Video terkirim ke Telegram")
     except RuntimeError as e:
         print(f"  Video gagal terkirim: {e}")
         peringatan.append(f"Video gagal terkirim ke Telegram: {e}. File tetap ada: {video}")
     _kabari(pesan_caption)
     if peringatan:
-        teks = "Peringatan:\n" + "\n".join(f"- {p}" for p in peringatan)
-        tautan = _tautan_run()
-        if tautan:
-            teks += f"\n\n{tautan}"
-        _kabari(teks)
-        print("  Caption dan peringatan terkirim ke Telegram")
-    else:
-        print("  Caption terkirim ke Telegram")
+        laporan += "\n\nPeringatan:\n" + "\n".join(f"- {p}" for p in peringatan)
+    tautan = _tautan_run()
+    if tautan:
+        laporan += f"\n\n{tautan}"
+    _kabari(laporan)
+    print("  Caption dan laporan terkirim ke Telegram")
 
 
 def buat_video(a, tgl: date, slot: str):
@@ -103,22 +100,27 @@ def buat_video(a, tgl: date, slot: str):
             data = json.load(f)
         kategori = (data.get("kategori", kategori[0]), "")
         print(f"[1/5] Naskah dari {a.naskah} ({kategori[0]})")
-        naskah = rapikan(Naskah.model_validate(data))
+        hasil_teks = HasilNaskah(rapikan(Naskah.model_validate(data)), "File JSON", "json")
     else:
-        print(f"[1/5] Naskah Gemini ({config.HARI[tgl.weekday()]} {slot}, {kategori[0]})")
+        print(f"[1/5] Naskah ({config.HARI[tgl.weekday()]} {slot}, {kategori[0]})")
         topik = a.topik or riwayat["rencana"].get(history.kunci(tgl, slot))
         if topik and not a.topik:
             print(f"  Ide dari video sebelumnya: {topik}")
         else:
-            print("  Ide dipilih Gemini")
-        naskah, catatan = buat_naskah(
+            print("  Ide dipilih AI")
+        hasil_teks = buat_naskah(
             kategori, kategori_berikut, label_berikut,
             topik=topik,
             hindari=history.topik_lama(riwayat),
             rekap_minggu=history.minggu_ini(riwayat, tgl) if tgl.weekday() == 6 and slot == "pagi" else (),
         )
-        if catatan:
-            peringatan.append(catatan)
+        for pesan in hasil_teks.konfigurasi:
+            print(f"  {pesan}")
+            _kabari(pesan)
+        if hasil_teks.peringatan:
+            peringatan.append(hasil_teks.peringatan)
+    naskah = hasil_teks.naskah
+    print(f"  Provider teks: {hasil_teks.provider}")
     print(f"  Topik: {naskah.topik}")
     print(f"  Judul: {naskah.judul}  ({jumlah_kata_narasi(naskah)} kata narasi)")
 
@@ -133,12 +135,26 @@ def buat_video(a, tgl: date, slot: str):
 
     indeks_tema = tgl.toordinal() * len(config.SLOT) + config.SLOT.index(slot)
     print("[2/5] Gambar AI")
-    gambar, catatan_gambar = buat_gambar(
-        {"hook": naskah.gambar_hook, "kerja": naskah.gambar_kerja,
-         "trik": naskah.gambar_trik, "penutup": naskah.gambar_penutup},
-        folder, seed=indeks_tema * 10, warna_cadangan=TEMA[indeks_tema % len(TEMA)]["bubble"],
-    )
-    peringatan.extend(catatan_gambar)
+    try:
+        hasil_gambar = buat_gambar(
+            {"hook": naskah.gambar_hook, "kerja": naskah.gambar_kerja,
+             "trik": naskah.gambar_trik, "penutup": naskah.gambar_penutup},
+            folder, seed=indeks_tema * 10,
+        )
+    except NeedsReview as e:
+        for pesan in e.konfigurasi:
+            _kabari(pesan)
+        teks = laporan_needs_review(hasil_teks, str(e), peringatan + e.peringatan)
+        tautan = _tautan_run()
+        if tautan:
+            teks += f"\n\n{tautan}"
+        print(teks)
+        _kabari(teks)
+        raise SystemExit(1) from None
+    for pesan in hasil_gambar.konfigurasi:
+        _kabari(pesan)
+    peringatan.extend(hasil_gambar.peringatan)
+    gambar = hasil_gambar.gambar
 
     print("[3/5] Suara")
     adegan = buat_suara_adegan(naskah, folder)
@@ -152,9 +168,9 @@ def buat_video(a, tgl: date, slot: str):
     print(f"  Video jadi: {video}  ({total:.1f} detik)")
 
     deskripsi = _teks_deskripsi(naskah)
-    caption_tiktok = _teks_tiktok(naskah)
+    caption = caption_menarik(naskah, kategori[0])
     (folder / "youtube.txt").write_text(f"{naskah.judul}\n\n{deskripsi}\n", encoding="utf-8")
-    (folder / "caption_tiktok.txt").write_text(caption_tiktok + "\n", encoding="utf-8")
+    (folder / "caption_tiktok.txt").write_text(caption + "\n", encoding="utf-8")
 
     youtube_id = None
     if config.YT_UPLOAD and not a.uji:
@@ -172,13 +188,11 @@ def buat_video(a, tgl: date, slot: str):
     else:
         print("[5/5] YouTube tidak diupload (upload manual dari Telegram)")
 
-    status = "UJI" if a.uji else f"{config.HARI[tgl.weekday()]} {slot}"
-    caption = f"[{status}] {naskah.judul}\n{kategori[0]} | {total:.0f} detik"
+    pesan = _pesan_siap_tempel(naskah, kategori[0])
     if youtube_id:
-        caption += f"\n\nYouTube ({config.YT_PRIVACY}): https://studio.youtube.com/video/{youtube_id}/edit"
-    elif peringatan:
-        caption += "\nAda peringatan, lihat pesan berikutnya."
-    _kirim_hasil(video, caption, _pesan_siap_tempel(naskah), peringatan, total)
+        pesan += f"\n\nYouTube ({config.YT_PRIVACY}): https://studio.youtube.com/video/{youtube_id}/edit"
+    laporan = laporan_selesai(hasil_teks, hasil_gambar.catatan)
+    _kirim_hasil(video, caption, pesan, laporan, peringatan, total)
 
     if not a.uji:
         history.catat(riwayat, {

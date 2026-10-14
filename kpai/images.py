@@ -1,110 +1,283 @@
-import base64
-import random
-import time
-import urllib.parse
+import math
+from dataclasses import dataclass
 from io import BytesIO
 from pathlib import Path
 
 import requests
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image
 
 from . import config
+from .errors import Jenis, NeedsReview, ProviderError, dari_response, klasifikasi_exception
+
+LEBAR_FAL = 768
+TINGGI_FAL = 1344
+# Harga resmi fal.ai untuk fal-ai/flux/schnell: $0.003 per megapiksel, dibulatkan ke atas.
+HARGA_PER_MEGAPIKSEL = {"fal-ai/flux/schnell": 0.003}
+NAMA_CF = "Cloudflare Workers AI"
+NAMA_FAL = "fal.ai"
+NAMA_LOKAL = "Aset lokal"
 
 
-def _cloudflare(model: str):
-    def panggil(prompt: str, seed: int) -> Image.Image:
-        url = f"https://api.cloudflare.com/client/v4/accounts/{config.CF_ACCOUNT_ID}/ai/run/{model}"
-        headers = {"Authorization": f"Bearer {config.CF_API_TOKEN}"}
-        if "flux-2" in model:
-            # FLUX.2 hanya menerima multipart form.
-            form = {"prompt": (None, prompt), "width": (None, "768"), "height": (None, "1344")}
-            r = requests.post(url, headers=headers, files=form, timeout=180)
-        elif "flux-1-schnell" in model:
-            # Model ini menolak parameter selain prompt dan steps, dan hasilnya selalu persegi.
-            r = requests.post(url, headers=headers, json={"prompt": prompt, "steps": 8}, timeout=180)
-        else:
-            r = requests.post(url, headers=headers, json={"prompt": prompt, "width": 768, "height": 1344}, timeout=180)
-        if r.status_code != 200:
-            raise RuntimeError(f"{r.status_code} {r.text[:150]}")
-        if r.headers.get("content-type", "").startswith("image/"):
-            return Image.open(BytesIO(r.content))
-        return Image.open(BytesIO(base64.b64decode(r.json()["result"]["image"])))
-    return panggil
+@dataclass
+class CatatanGambar:
+    scene: str
+    provider: str
+    model: str
+    status: str
+    biaya_usd: float | None = None
 
 
-def _pollinations(prompt: str, seed: int) -> Image.Image:
-    url = "https://image.pollinations.ai/prompt/" + urllib.parse.quote(prompt)
-    r = requests.get(
-        url,
-        params={"width": 1080, "height": 1920, "nologo": "true", "model": "flux", "seed": seed},
+@dataclass
+class HasilGambar:
+    gambar: dict
+    catatan: list
+    peringatan: list
+    konfigurasi: list
+
+
+def estimasi_usd(model: str, lebar: int, tinggi: int, jumlah: int) -> float | None:
+    harga = HARGA_PER_MEGAPIKSEL.get(model)
+    if harga is None or jumlah < 1:
+        return None
+    megapiksel = max(1, math.ceil((lebar * tinggi) / 1_000_000))
+    return round(harga * megapiksel * jumlah, 6)
+
+
+def _batas_biaya() -> float | None:
+    mentah = config.IMAGE_FALLBACK_MAX_COST_USD_PER_JOB.strip()
+    if not mentah:
+        return None
+    try:
+        nilai = float(mentah)
+    except ValueError:
+        return None
+    if nilai < 0:
+        return None
+    return nilai
+
+
+def _validasi(img: Image.Image) -> Image.Image:
+    img = img.convert("RGB")
+    if img.width < 64 or img.height < 64:
+        raise ProviderError(Jenis.BAD_IMAGE, "gambar", "Gambar kosong atau terlalu kecil")
+    buf = BytesIO()
+    img.save(buf, format="JPEG", quality=92)
+    if buf.tell() < 80:
+        raise ProviderError(Jenis.BAD_IMAGE, "gambar", "File gambar rusak atau kosong")
+    buf.seek(0)
+    cek = Image.open(buf)
+    cek.load()
+    return cek.convert("RGB")
+
+
+def _bytes_ke_gambar(data: bytes, provider: str) -> Image.Image:
+    if not data:
+        raise ProviderError(Jenis.BAD_IMAGE, provider, "Respons gambar kosong")
+    try:
+        return _validasi(Image.open(BytesIO(data)))
+    except ProviderError:
+        raise
+    except Exception as e:
+        raise ProviderError(Jenis.BAD_IMAGE, provider, f"Gambar tidak bisa dibaca: {e}") from None
+
+
+def _cloudflare(model: str, prompt: str, pengirim) -> Image.Image:
+    url = f"https://api.cloudflare.com/client/v4/accounts/{config.CF_ACCOUNT_ID}/ai/run/{model}"
+    headers = {"Authorization": f"Bearer {config.CF_API_TOKEN}"}
+    if "flux-2" in model:
+        berkas = {"prompt": (None, prompt), "width": (None, "768"), "height": (None, "1344")}
+        respon = pengirim(url, headers=headers, files=berkas, timeout=180)
+    elif "flux-1-schnell" in model:
+        respon = pengirim(url, headers=headers, json={"prompt": prompt, "steps": 8}, timeout=180)
+    else:
+        respon = pengirim(url, headers=headers, json={"prompt": prompt, "width": 768, "height": 1344}, timeout=180)
+    salah = dari_response(NAMA_CF, respon)
+    if salah:
+        raise salah
+    jenis = (respon.headers.get("content-type") or "") if hasattr(respon, "headers") else ""
+    if jenis.startswith("image/"):
+        return _bytes_ke_gambar(respon.content, NAMA_CF)
+    import base64
+    try:
+        mentah = base64.b64decode(respon.json()["result"]["image"])
+    except Exception as e:
+        raise ProviderError(Jenis.BAD_IMAGE, NAMA_CF, f"Respons gambar tidak lengkap: {e}") from None
+    return _bytes_ke_gambar(mentah, NAMA_CF)
+
+
+def _fal(model: str, prompt: str, pengirim, pengambil) -> Image.Image:
+    respon = pengirim(
+        f"https://fal.run/{model}",
+        headers={"Authorization": f"Key {config.FAL_KEY}", "Content-Type": "application/json"},
+        json={
+            "prompt": prompt,
+            "image_size": {"width": LEBAR_FAL, "height": TINGGI_FAL},
+            "num_images": 1,
+            "num_inference_steps": 4,
+            "output_format": "jpeg",
+            "enable_safety_checker": True,
+        },
         timeout=180,
     )
-    r.raise_for_status()
-    img = Image.open(BytesIO(r.content))
-    # Potong pojok bawah tempat watermark.
-    return img.crop((0, 0, img.width, int(img.height * 0.93)))
+    salah = dari_response(NAMA_FAL, respon)
+    if salah:
+        raise salah
+    try:
+        url = respon.json()["images"][0]["url"]
+    except Exception as e:
+        raise ProviderError(Jenis.BAD_IMAGE, NAMA_FAL, f"Respons fal.ai tidak berisi gambar: {e}") from None
+    if not url:
+        raise ProviderError(Jenis.BAD_IMAGE, NAMA_FAL, "URL gambar fal.ai kosong")
+    unduh = pengambil(url, timeout=180)
+    salah = dari_response(NAMA_FAL, unduh)
+    if salah:
+        raise salah
+    return _bytes_ke_gambar(unduh.content, NAMA_FAL)
 
 
-def _cadangan(seed: int, warna: tuple[int, int, int]) -> Image.Image:
-    rnd = random.Random(seed)
-    img = Image.new("RGB", (1080, 1920), tuple(c // 4 for c in warna))
-    d = ImageDraw.Draw(img)
-    for _ in range(7):
-        r = rnd.randint(220, 520)
-        x, y = rnd.randint(-100, 1180), rnd.randint(-100, 2020)
-        c = tuple(min(255, int(v * rnd.uniform(0.5, 1.1))) for v in warna)
-        d.ellipse((x - r, y - r, x + r, y + r), fill=c)
-    return img.filter(ImageFilter.GaussianBlur(140))
+def _aset_lokal(kunci: str, folder: Path) -> Image.Image | None:
+    if not folder.exists():
+        return None
+    for ekstensi in (".jpg", ".jpeg", ".png", ".webp"):
+        path = folder / f"{kunci}{ekstensi}"
+        if not path.is_file():
+            continue
+        try:
+            return _validasi(Image.open(path))
+        except ProviderError:
+            return None
+    return None
 
 
-def buat_gambar(prompts: dict[str, str], folder: Path, seed: int, warna_cadangan) -> tuple[dict[str, Image.Image], list[str]]:
-    ada_cf = bool(config.CF_ACCOUNT_ID and config.CF_API_TOKEN)
-    peringatan = []
-    if not ada_cf:
-        print("  CF_ACCOUNT_ID/CF_API_TOKEN belum diisi, gambar AI hanya dari Pollinations (terbatas)")
-        peringatan.append("Cloudflare belum diisi, gambar mengandalkan cadangan")
+def _boleh_fal(jumlah: int) -> tuple[bool, str, float | None]:
+    if not config.IMAGE_FALLBACK_ENABLED:
+        return False, "IMAGE_FALLBACK_ENABLED=false", None
+    if not config.FAL_KEY:
+        return False, "FAL_KEY belum dikonfigurasi, fal.ai dinonaktifkan", None
+    estimasi = estimasi_usd(config.FAL_MODEL, LEBAR_FAL, TINGGI_FAL, jumlah)
+    if estimasi is None:
+        return False, f"biaya model {config.FAL_MODEL} tidak diketahui, fallback berbayar dihentikan", None
+    batas = _batas_biaya()
+    if batas is None:
+        return False, "IMAGE_FALLBACK_MAX_COST_USD_PER_JOB belum diisi atau tidak valid, fallback berbayar dihentikan", None
+    if estimasi > batas:
+        return False, f"estimasi ${estimasi:.4f} melewati batas ${batas:.4f}", estimasi
+    return True, "", estimasi
 
-    def penyedia_untuk(kunci):
-        daftar = []
-        if ada_cf and not kuota_cf_habis:
-            for model in config.CF_IMAGE_MODELS if kunci == "hook" else config.CF_IMAGE_MODELS_HEMAT:
-                daftar.append((f"Cloudflare {model.split('/')[-1]}", _cloudflare(model), 2))
-        # Pollinations tanpa key cuma memberi ~1 gambar per beberapa menit, jadi hanya cadangan sekali coba.
-        daftar.append(("Pollinations", _pollinations, 1))
-        return daftar
 
-    kuota_cf_habis = False
-    hasil = {}
-    for i, (kunci, prompt) in enumerate(prompts.items()):
+def _coba(nama: str, fungsi, tidur, boleh_ulang: bool):
+    try:
+        return fungsi(), None
+    except Exception as e:
+        salah = klasifikasi_exception(nama, e)
+        print(f"  {nama} gagal ({salah.jenis.value}): {salah.pesan}")
+        if boleh_ulang and salah.jenis in (Jenis.TIMEOUT, Jenis.SERVER):
+            tidur(2)
+            try:
+                return fungsi(), None
+            except Exception as e2:
+                return None, klasifikasi_exception(nama, e2)
+        return None, salah
+
+
+def buat_gambar(prompts: dict[str, str], folder: Path, seed: int, pengirim=None, pengambil=None, tidur=None, folder_aset=None):
+    del seed  # pemanggilan gambar tidak memakai seed ulang untuk request yang sama
+    pengirim = pengirim or requests.post
+    pengambil = pengambil or requests.get
+    tidur = tidur or __import__("time").sleep
+    folder_aset = config.FALLBACK_DIR if folder_aset is None else folder_aset
+    peringatan, konfigurasi = [], []
+    hasil, catatan = {}, []
+    gagal = []
+    hentikan_cf = not (config.CF_ACCOUNT_ID and config.CF_API_TOKEN)
+    if hentikan_cf:
+        pesan = "Cloudflare dinonaktifkan: CF_ACCOUNT_ID atau CF_API_TOKEN belum dikonfigurasi."
+        print(f"  {pesan}")
+        peringatan.append(pesan)
+
+    for kunci, prompt in prompts.items():
         lengkap = f"{prompt}, {config.IMAGE_STYLE}"
-        img = None
-        sumber = ""
-        for nama, fungsi, coba in penyedia_untuk(kunci):
-            if kuota_cf_habis and nama.startswith("Cloudflare"):
-                continue
-            for percobaan in range(coba):
-                try:
-                    img = fungsi(lengkap, seed + i).convert("RGB")
-                    sumber = nama
-                    print(f"  Gambar {kunci}: {nama} {img.width}x{img.height}")
-                    break
-                except Exception as e:
-                    print(f"  Gambar {kunci} via {nama} gagal: {str(e)[:100]}")
-                    if "daily free allocation" in str(e):
-                        if not kuota_cf_habis:
-                            peringatan.append("Kuota harian Cloudflare habis")
-                        kuota_cf_habis = True
-                        print("  Kuota harian Cloudflare habis, sisa gambar tidak lewat Cloudflare")
-                        break
-                    time.sleep(4)
+        if hentikan_cf:
+            gagal.append((kunci, lengkap))
+            continue
+        model_daftar = config.CF_IMAGE_MODELS if kunci == "hook" else config.CF_IMAGE_MODELS_HEMAT
+        img, meta, salah = None, None, None
+        for model in model_daftar:
+            def panggil(model=model, lengkap=lengkap):
+                return _cloudflare(model, lengkap, pengirim)
+            img, salah = _coba(NAMA_CF, panggil, tidur, boleh_ulang=True)
             if img is not None:
+                meta = CatatanGambar(kunci, NAMA_CF, model, "ok", 0.0)
+                print(f"  Gambar {kunci}: {NAMA_CF} {model} {img.width}x{img.height}")
                 break
-        if img is None:
-            print(f"  Gambar {kunci}: pakai latar gradien")
-            peringatan.append(f"Gambar {kunci} jatuh ke gradien")
-            img = _cadangan(seed + i, warna_cadangan)
-        elif not sumber.startswith("Cloudflare"):
-            peringatan.append(f"Gambar {kunci} dari cadangan ({sumber})")
-        img.save(folder / f"gambar_{kunci}.jpg", quality=92)
-        hasil[kunci] = img
-    return hasil, peringatan
+            if salah and salah.jenis == Jenis.QUOTA:
+                if "Kuota harian Cloudflare habis" not in peringatan:
+                    peringatan.append("Kuota harian Cloudflare habis")
+                hentikan_cf = True
+                break
+            if salah and salah.jenis == Jenis.INVALID_KEY:
+                konfigurasi.append("Konfigurasi Cloudflare tidak valid. Periksa CF_API_TOKEN. Provider ini tidak dicoba lagi.")
+                hentikan_cf = True
+                break
+            if salah and salah.jenis == Jenis.RATE_LIMIT:
+                jeda = min(salah.retry_after or 3, 60)
+                print(f"  Cloudflare rate limit sementara, menunggu {jeda:.0f} detik sekali.")
+                tidur(jeda)
+                img, salah = _coba(NAMA_CF, panggil, tidur, boleh_ulang=False)
+                if img is not None:
+                    meta = CatatanGambar(kunci, NAMA_CF, model, "ok", 0.0)
+                    break
+                hentikan_cf = True
+                break
+        if img is not None:
+            hasil[kunci] = img
+            catatan.append(meta)
+        else:
+            gagal.append((kunci, lengkap))
+
+    if gagal:
+        boleh, alasan, estimasi = _boleh_fal(len(gagal))
+        biaya_scene = (estimasi / len(gagal)) if boleh and estimasi is not None else None
+        if not boleh:
+            print(f"  fal.ai tidak dipanggil: {alasan}")
+            peringatan.append(f"fal.ai tidak dipanggil: {alasan}")
+        sisa = []
+        for kunci, lengkap in gagal:
+            if not boleh:
+                sisa.append((kunci, lengkap))
+                continue
+            def panggil_fal(lengkap=lengkap):
+                return _fal(config.FAL_MODEL, lengkap, pengirim, pengambil)
+            img, salah = _coba(NAMA_FAL, panggil_fal, tidur, boleh_ulang=False)
+            if img is not None:
+                hasil[kunci] = img
+                catatan.append(CatatanGambar(kunci, NAMA_FAL, config.FAL_MODEL, "ok", biaya_scene))
+                print(f"  Gambar {kunci}: {NAMA_FAL} {config.FAL_MODEL} biaya ${biaya_scene:.4f}")
+                continue
+            if salah and salah.jenis == Jenis.INVALID_KEY:
+                konfigurasi.append("Konfigurasi fal.ai tidak valid. Periksa FAL_KEY. Provider ini tidak dicoba lagi.")
+                boleh = False
+            sisa.append((kunci, lengkap))
+        for kunci, _lengkap in sisa:
+            if kunci in hasil:
+                continue
+            lokal = _aset_lokal(kunci, folder_aset)
+            if lokal is not None:
+                hasil[kunci] = lokal
+                catatan.append(CatatanGambar(kunci, NAMA_LOKAL, kunci, "ok", 0.0))
+                print(f"  Gambar {kunci}: {NAMA_LOKAL}")
+                peringatan.append(f"Gambar {kunci} dari aset lokal")
+
+    kurang = [kunci for kunci in prompts if kunci not in hasil]
+    if kurang:
+        alasan = (
+            f"scene {', '.join(kurang)} tidak punya gambar yang lolos pemeriksaan. "
+            "Gradien tidak dipakai sebagai pengganti."
+        )
+        raise NeedsReview(alasan, peringatan, konfigurasi)
+
+    for kunci, img in hasil.items():
+        path = folder / f"gambar_{kunci}.jpg"
+        img.save(path, format="JPEG", quality=92)
+        hasil[kunci] = _validasi(Image.open(path))
+    return HasilGambar(hasil, catatan, peringatan, konfigurasi)

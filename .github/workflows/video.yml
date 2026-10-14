@@ -2,15 +2,17 @@ name: Video harian
 
 on:
   schedule:
-    - cron: "0 0 * * *"   # 07:00 WIB, slot pagi
-    - cron: "0 5 * * *"   # 12:00 WIB, slot siang
-    - cron: "0 11 * * *"  # 18:00 WIB, slot sore
+    - cron: "0 0 * * *"    # 07:00 WIB, slot pagi
+    - cron: "0 5 * * *"    # 12:00 WIB, slot siang
+    - cron: "0 9 * * *"    # 16:00 WIB, slot sore
+    - cron: "0 12 * * *"   # 19:00 WIB, slot malam
+    - cron: "0 14 * * *"   # 21:00 WIB, slot larut
   workflow_dispatch:
     inputs:
       slot:
         description: "Slot video"
         type: choice
-        options: [auto, pagi, siang, sore]
+        options: [auto, pagi, siang, sore, malam, larut]
         default: auto
       uji:
         description: "Mode uji (tidak upload, tidak dicatat)"
@@ -58,7 +60,9 @@ jobs:
             case "${{ github.event.schedule }}" in
               "0 0 * * *") echo "slot=pagi" >> "$GITHUB_OUTPUT" ;;
               "0 5 * * *") echo "slot=siang" >> "$GITHUB_OUTPUT" ;;
-              "0 11 * * *") echo "slot=sore" >> "$GITHUB_OUTPUT" ;;
+              "0 9 * * *") echo "slot=sore" >> "$GITHUB_OUTPUT" ;;
+              "0 12 * * *") echo "slot=malam" >> "$GITHUB_OUTPUT" ;;
+              "0 14 * * *") echo "slot=larut" >> "$GITHUB_OUTPUT" ;;
               *) echo "slot=auto" >> "$GITHUB_OUTPUT" ;;
             esac
           else
@@ -70,8 +74,15 @@ jobs:
         env:
           PYTHONIOENCODING: utf-8
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_MODEL: ${{ vars.GROQ_MODEL || 'llama-3.3-70b-versatile' }}
+          TEXT_FALLBACK_ENABLED: ${{ vars.TEXT_FALLBACK_ENABLED || 'true' }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          FAL_KEY: ${{ secrets.FAL_KEY }}
+          IMAGE_FALLBACK_ENABLED: ${{ vars.IMAGE_FALLBACK_ENABLED || 'false' }}
+          IMAGE_FALLBACK_MAX_COST_USD_PER_JOB: ${{ vars.IMAGE_FALLBACK_MAX_COST_USD_PER_JOB || '' }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           YT_UPLOAD: ${{ vars.YT_UPLOAD || '0' }}

@@ -1,10 +1,14 @@
+import json
 import random
 import re
 import time
+from dataclasses import dataclass, field
 
-from pydantic import BaseModel, ConfigDict, Field
+import requests
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from . import config
+from .errors import Jenis, dari_response, klasifikasi_exception
 
 
 class Naskah(BaseModel):
@@ -130,25 +134,38 @@ Aturan:
 """
 
 
-def buat_naskah(kategori, kategori_besok, label_berikut, topik=None, hindari=(), rekap_minggu=()) -> tuple[Naskah, str | None]:
-    if not config.GEMINI_API_KEY:
-        raise SystemExit("GEMINI_API_KEY belum diisi di file .env (ambil gratis di https://aistudio.google.com/apikey).")
+@dataclass
+class HasilNaskah:
+    naskah: Naskah
+    provider: str
+    model: str
+    fallback_dari: str | None = None
+    alasan: str | None = None
+    peringatan: str | None = None
+    konfigurasi: list[str] = field(default_factory=list)
 
-    from google import genai
+
+def _baca_json(teks: str) -> Naskah:
+    mentah = teks.strip()
+    if mentah.startswith("```"):
+        mentah = re.sub(r"^```(?:json)?", "", mentah).strip()
+        mentah = re.sub(r"```$", "", mentah).strip()
+    return rapikan(Naskah.model_validate_json(mentah))
+
+
+def _gemini(klien, instruksi, catatan, topik, label_berikut, tidur) -> tuple[Naskah | None, str, list[str], str | None]:
     from google.genai import types
 
-    client = genai.Client(api_key=config.GEMINI_API_KEY)
-    instruksi = _instruksi(kategori, kategori_besok, label_berikut, topik, list(hindari)[-40:], list(rekap_minggu))
-    catatan = ""
-    error_terakhir = None
-    terakhir = None
-
     daftar_model = list(dict.fromkeys([config.GEMINI_MODEL, *config.GEMINI_MODEL_CADANGAN]))
+    terakhir, masalah_terakhir = None, ""
+    sudah_menunggu = False
+    notifikasi = []
+    alasan = "gagal"
 
     for model in daftar_model:
-        for percobaan in range(1, 3):
+        for _percobaan in range(2):
             try:
-                resp = client.models.generate_content(
+                resp = klien.models.generate_content(
                     model=model,
                     contents=instruksi + catatan,
                     config=types.GenerateContentConfig(
@@ -157,29 +174,162 @@ def buat_naskah(kategori, kategori_besok, label_berikut, topik=None, hindari=(),
                         temperature=0.9,
                     ),
                 )
-                naskah = resp.parsed if isinstance(resp.parsed, Naskah) else Naskah.model_validate_json(resp.text)
-                naskah = rapikan(naskah)
+                naskah = resp.parsed if isinstance(resp.parsed, Naskah) else _baca_json(resp.text)
                 if topik:
                     naskah.topik = topik
-                terakhir = naskah
                 masalah = _masalah(naskah, label_berikut)
                 if not masalah:
                     print(f"  Model: {model}")
-                    return naskah, None
+                    return naskah, "", notifikasi, None
                 print(f"  Naskah dari {model} belum pas: {'; '.join(masalah)}")
                 catatan = "\n\nPerbaiki dari percobaan sebelumnya: " + "; ".join(masalah) + "."
-                error_terakhir = "; ".join(masalah)
+                terakhir, masalah_terakhir = naskah, "; ".join(masalah)
             except Exception as e:
-                error_terakhir = e
-                kode = getattr(e, "code", None)
-                print(f"  {model} gagal ({kode or type(e).__name__}): {str(e)[:120]}")
-                if kode in (429, 500, 503, 404):
-                    time.sleep(3)
+                salah = klasifikasi_exception("Gemini", e)
+                print(f"  Gemini {model} gagal ({salah.jenis.value}): {salah.pesan}")
+                if salah.jenis == Jenis.INVALID_KEY:
+                    notifikasi.append("Konfigurasi Gemini tidak valid. Periksa GEMINI_API_KEY. Provider ini tidak dicoba lagi.")
+                    return None, "API key invalid", notifikasi, None
+                if salah.jenis == Jenis.QUOTA:
+                    print("  Kuota Gemini habis, pindah tanpa mengulang model Gemini yang lain.")
+                    return None, "quota limit", notifikasi, None
+                if salah.jenis == Jenis.RATE_LIMIT and not sudah_menunggu:
+                    jeda = min(salah.retry_after or 3, 60)
+                    print(f"  Gemini rate limit sementara, menunggu {jeda:.0f} detik.")
+                    tidur(jeda)
+                    sudah_menunggu = True
+                    continue
+                if salah.jenis == Jenis.RATE_LIMIT:
+                    return None, "rate limit", notifikasi, None
+                alasan = salah.jenis.value.replace("_", " ")
+                if salah.jenis == Jenis.MODEL_UNAVAILABLE:
                     break
-                time.sleep(5)
-
+                if salah.jenis in (Jenis.SERVER, Jenis.TIMEOUT):
+                    tidur(2)
+                    break
+                break
     if terakhir is not None:
-        catatan = f"Naskah dipakai walau belum ideal: {error_terakhir}"
-        print(f"  {catatan}")
-        return terakhir, catatan
-    raise RuntimeError(f"Semua model Gemini gagal. Error terakhir: {error_terakhir}")
+        return terakhir, "", notifikasi, f"Naskah Gemini dipakai walau belum ideal: {masalah_terakhir}"
+    return None, alasan, notifikasi, None
+
+
+def _groq(instruksi, topik, label_berikut, pengirim, tidur) -> tuple[Naskah | None, str, list[str]]:
+    if not config.GROQ_API_KEY:
+        print("  Groq dinonaktifkan: GROQ_API_KEY belum dikonfigurasi.")
+        return None, "GROQ_API_KEY belum dikonfigurasi", []
+    if not config.GROQ_MODEL:
+        print("  Groq dinonaktifkan: GROQ_MODEL belum dikonfigurasi.")
+        return None, "GROQ_MODEL belum dikonfigurasi", []
+
+    sudah_menunggu = False
+    notifikasi = []
+    prompt = instruksi + "\n\nBalas hanya JSON dengan kunci: " + ", ".join(Naskah.model_fields) + "."
+    for percobaan in range(2):
+        try:
+            respon = pengirim(
+                "https://api.groq.com/openai/v1/chat/completions",
+                headers={"Authorization": f"Bearer {config.GROQ_API_KEY}", "Content-Type": "application/json"},
+                json={
+                    "model": config.GROQ_MODEL,
+                    "temperature": 0.7,
+                    "messages": [
+                        {"role": "system", "content": "Balas hanya dengan satu objek JSON, tanpa markdown."},
+                        {"role": "user", "content": prompt},
+                    ],
+                    "response_format": {"type": "json_object"},
+                },
+                timeout=90,
+            )
+            salah = dari_response("Groq", respon)
+            if salah:
+                raise salah
+            isi = respon.json()["choices"][0]["message"]["content"]
+            naskah = _baca_json(isi)
+            if topik:
+                naskah.topik = topik
+            masalah = _masalah(naskah, label_berikut)
+            if masalah and percobaan == 0:
+                prompt = instruksi + "\n\nPerbaiki: " + "; ".join(masalah) + ". Balas hanya JSON."
+                continue
+            if masalah:
+                return naskah, "", []
+            print(f"  Model: {config.GROQ_MODEL}")
+            return naskah, "", notifikasi
+        except (ValidationError, KeyError, json.JSONDecodeError, TypeError) as e:
+            print(f"  Groq gagal (permanent): {str(e)[:160]}")
+            return None, "respons tidak valid", notifikasi
+        except Exception as e:
+            salah = klasifikasi_exception("Groq", e)
+            print(f"  Groq gagal ({salah.jenis.value}): {salah.pesan}")
+            if salah.jenis == Jenis.INVALID_KEY:
+                notifikasi.append("Konfigurasi Groq tidak valid. Periksa GROQ_API_KEY. Provider ini tidak dicoba lagi.")
+                return None, "API key invalid", notifikasi
+            if salah.jenis == Jenis.QUOTA:
+                return None, "quota limit", notifikasi
+            if salah.jenis == Jenis.RATE_LIMIT and not sudah_menunggu:
+                jeda = min(salah.retry_after or 3, 60)
+                print(f"  Groq rate limit sementara, menunggu {jeda:.0f} detik.")
+                tidur(jeda)
+                sudah_menunggu = True
+                continue
+            if salah.jenis in (Jenis.SERVER, Jenis.TIMEOUT) and percobaan == 0:
+                tidur(2)
+                continue
+            return None, salah.jenis.value.replace("_", " "), notifikasi
+    return None, "gagal", notifikasi
+
+
+def buat_naskah(kategori, kategori_besok, label_berikut, topik=None, hindari=(), rekap_minggu=(), klien=None, pengirim=None, tidur=None) -> HasilNaskah:
+    from .template_naskah import template_lokal
+
+    pengirim = pengirim or requests.post
+    tidur = tidur or time.sleep
+    instruksi = _instruksi(kategori, kategori_besok, label_berikut, topik, list(hindari)[-40:], list(rekap_minggu))
+    konfigurasi = []
+    alasan_gemini = ""
+    naskah = None
+    peringatan = None
+
+    if klien is not None or config.GEMINI_API_KEY:
+        if klien is None:
+            from google import genai
+            klien = genai.Client(api_key=config.GEMINI_API_KEY)
+        naskah, alasan_gemini, notifikasi, peringatan = _gemini(klien, instruksi, "", topik, label_berikut, tidur)
+        konfigurasi.extend(notifikasi)
+        if naskah is not None and peringatan is None:
+            return HasilNaskah(naskah, "Gemini", config.GEMINI_MODEL, konfigurasi=konfigurasi)
+        if naskah is not None and not config.TEXT_FALLBACK_ENABLED:
+            return HasilNaskah(naskah, "Gemini", config.GEMINI_MODEL, peringatan=peringatan, konfigurasi=konfigurasi)
+    else:
+        alasan_gemini = "GEMINI_API_KEY belum dikonfigurasi"
+        print(f"  Gemini dinonaktifkan: {alasan_gemini}.")
+
+    if not config.TEXT_FALLBACK_ENABLED:
+        if naskah is not None:
+            return HasilNaskah(naskah, "Gemini", config.GEMINI_MODEL, peringatan=peringatan, konfigurasi=konfigurasi)
+        raise RuntimeError(f"Gemini gagal ({alasan_gemini}) dan TEXT_FALLBACK_ENABLED=false.")
+
+    if naskah is not None and peringatan:
+        print(f"  {peringatan}. Mencoba Groq sebelum memakai naskah yang belum ideal.")
+
+    groq_naskah, alasan_groq, notifikasi_groq = _groq(instruksi, topik, label_berikut, pengirim, tidur)
+    konfigurasi.extend(notifikasi_groq)
+    if groq_naskah is not None and not _masalah(groq_naskah, label_berikut):
+        return HasilNaskah(
+            groq_naskah, "Groq", config.GROQ_MODEL,
+            fallback_dari="Gemini", alasan=alasan_gemini or "naskah belum ideal", konfigurasi=konfigurasi,
+        )
+
+    if naskah is not None:
+        catatan = peringatan or f"Naskah Gemini dipakai walau belum ideal: {alasan_groq}"
+        return HasilNaskah(naskah, "Gemini", config.GEMINI_MODEL, peringatan=catatan, konfigurasi=konfigurasi)
+
+    print(f"  Memakai template lokal. Gemini: {alasan_gemini}. Groq: {alasan_groq}.")
+    alasan = alasan_gemini or "gagal"
+    if alasan_groq and alasan_groq not in alasan:
+        alasan = f"{alasan}, lalu Groq karena {alasan_groq}"
+    return HasilNaskah(
+        template_lokal(kategori, kategori_besok, label_berikut, topik),
+        "Template lokal", "template",
+        fallback_dari="Gemini", alasan=alasan, konfigurasi=konfigurasi,
+    )

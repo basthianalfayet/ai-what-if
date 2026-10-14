@@ -1,7 +1,9 @@
 param(
     [string]$JamPagi = "07:00",
     [string]$JamSiang = "12:00",
-    [string]$JamSore = "18:00",
+    [string]$JamSore = "16:00",
+    [string]$JamMalam = "19:00",
+    [string]$JamLarut = "21:00",
     [switch]$Hapus
 )
 
@@ -9,6 +11,8 @@ $jadwal = @{
     "KerjaPakaiAI Pagi" = @("pagi", $JamPagi)
     "KerjaPakaiAI Siang" = @("siang", $JamSiang)
     "KerjaPakaiAI Sore" = @("sore", $JamSore)
+    "KerjaPakaiAI Malam" = @("malam", $JamMalam)
+    "KerjaPakaiAI Larut" = @("larut", $JamLarut)
 }
 
 if ($Hapus) {
