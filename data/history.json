@@ -55,6 +55,14 @@
       "topik": "Menentukan prioritas tugas harian yang menumpuk",
       "judul": "Atur Tugas Menumpuk Jadi Beres Pakai AI",
       "youtube_id": null
+    },
+    {
+      "tanggal": "2026-10-15",
+      "slot": "larut",
+      "kategori": "Excel & Data",
+      "topik": "Cara merapikan data kotor di Excel",
+      "judul": "Trik Bereskan Data Excel Berantakan Pakai AI",
+      "youtube_id": null
     }
   ],
   "rencana": {
@@ -64,6 +72,7 @@
     "2026-10-14-sore": "Menentukan prioritas tugas kerja harian yang menumpuk",
     "2026-10-15-siang": "Trik menjawab pertanyaan jebakan saat wawancara kerja",
     "2026-10-15-malam": "Menentukan prioritas tugas harian yang menumpuk",
-    "2026-10-15-larut": "Cara merapikan data kotor di Excel"
+    "2026-10-15-larut": "Cara merapikan data kotor di Excel",
+    "2026-10-16-pagi": "Simulasi latihan wawancara kerja dengan HRD"
   }
 }
