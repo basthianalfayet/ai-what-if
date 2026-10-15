@@ -1,6 +1,6 @@
 # KerjaPakaiAI: 5 video Shorts/TikTok per hari, otomatis
 
-Lima kali sehari (07:00, 12:00, 16:00, 19:00, dan 21:00 WIB) sistem ini:
+Lima kali sehari (07:00, 12:00, 16:00, 19:00, dan 21:00 WIB, dipicu dari cron-job.org) sistem ini:
 
 1. Menulis naskah 35–50 detik + prompt gambar lewat Gemini (free tier)
 2. Membuat 4 gambar AI untuk latar adegan lewat Cloudflare Workers AI (free tier)
@@ -130,7 +130,56 @@ Tab **Variables** (opsional): `YT_UPLOAD` = `1` kalau mau upload YouTube, `YT_PR
 
 Tab **Actions** → **Video harian** → **Run workflow** → centang **Mode uji** → **Run workflow**. Tunggu ±5 menit; video masuk ke Telegram, dan bisa juga diunduh dari bagian **Artifacts** di halaman run.
 
-Setelah itu jadwal berjalan sendiri tiap 07:00, 12:00, 16:00, 19:00, dan 21:00 WIB. GitHub kadang menunda jadwal 5–30 menit, itu normal. Setiap run mencatat riwayat topik ke `data/history.json` di repo. Kalau repo tidak ada aktivitas selama 60 hari, GitHub mematikan jadwal ini; commit riwayat menjaga jadwalnya tetap hidup.
+Setiap run mencatat riwayat topik ke `data/history.json` di repo.
+
+### 5d. Jadwal tepat waktu lewat cron-job.org
+
+Workflow ini sengaja tidak memakai jadwal bawaan GitHub. Jadwal GitHub terbukti telat 4–5 jam dan kadang dibuang sama sekali, dan karena antreannya cuma muat satu run, slot yang telat ikut membatalkan slot berikutnya. Sebagai gantinya, cron-job.org (gratis) memicu workflow tepat di jam tiap slot.
+
+**1. Buat token GitHub (sekali):**
+
+1. GitHub → foto profil → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens** → **Generate new token**
+2. Nama: `cron-job KerjaPakaiAI`. **Expiration:** pilih yang paling lama, lalu catat tanggalnya di kalender
+3. **Repository access:** **Only select repositories** → pilih repo project ini
+4. **Permissions → Repository permissions → Actions:** **Read and write**
+5. **Generate token**, salin tokennya (cuma ditampilkan sekali)
+
+Tes tokennya dari laptop (pakai mode uji supaya tidak tercatat di riwayat):
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\picu_slot.ps1 -Slot pagi -Uji
+```
+
+Kalau muncul "Berhasil", tab Actions langsung menampilkan run baru dan videonya masuk ke Telegram ±5 menit kemudian.
+
+**2. Pasang 5 cron job:**
+
+1. Daftar di https://cron-job.org, lalu di **Settings** set **Timezone** ke `Asia/Jakarta`
+2. **Create cronjob**:
+   - **URL:** `https://api.github.com/repos/USERNAME/REPO/actions/workflows/video.yml/dispatches` (ganti `USERNAME/REPO`, misalnya `basthianalfayet/SelfProject`)
+   - **Execution schedule:** Every day, jam slotnya (lihat tabel di bawah)
+   - Tab **Advanced**:
+     - **Request method:** `POST`
+     - **Headers** (tambahkan satu per satu):
+       - `Authorization` = `Bearer TOKEN_KAMU`
+       - `Accept` = `application/vnd.github+json`
+       - `X-GitHub-Api-Version` = `2022-11-28`
+       - `Content-Type` = `application/json`
+     - **Request body:** `{"ref":"main","inputs":{"slot":"pagi"}}`
+   - Centang notifikasi email kalau eksekusi gagal
+3. Simpan, lalu pakai **Clone** untuk membuat 4 job lainnya. Yang diganti cuma jam dan nama slot di body:
+
+| Jam (WIB) | Body |
+|---|---|
+| 07:00 | `{"ref":"main","inputs":{"slot":"pagi"}}` |
+| 12:00 | `{"ref":"main","inputs":{"slot":"siang"}}` |
+| 16:00 | `{"ref":"main","inputs":{"slot":"sore"}}` |
+| 19:00 | `{"ref":"main","inputs":{"slot":"malam"}}` |
+| 21:00 | `{"ref":"main","inputs":{"slot":"larut"}}` |
+
+Klik **Test run** di salah satu job. GitHub membalas `204 No Content`, artinya berhasil. Video tiap slot sekarang masuk ke Telegram ±5–8 menit setelah jam slotnya.
+
+Kalau tokennya kedaluwarsa, semua job di cron-job.org gagal dengan kode `401` dan kamu dapat email. Buat token baru dengan langkah yang sama, lalu ganti header `Authorization` di kelima job.
 
 ## Langkah 6: Upload otomatis ke YouTube (opsional)
 
