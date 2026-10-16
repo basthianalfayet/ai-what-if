@@ -79,6 +79,14 @@
       "topik": "Memahami materi kuliah dan riset yang sulit",
       "judul": "Cara Cepat Paham Materi Kuliah dan Riset Rumit Pakai AI",
       "youtube_id": null
+    },
+    {
+      "tanggal": "2026-10-16",
+      "slot": "sore",
+      "kategori": "Produktivitas",
+      "topik": "Menyusun rencana kerja harian yang terstruktur",
+      "judul": "Cara Mudah Menyusun Rencana Kerja Harian Pakai AI",
+      "youtube_id": null
     }
   ],
   "rencana": {
@@ -91,6 +99,7 @@
     "2026-10-15-larut": "Cara merapikan data kotor di Excel",
     "2026-10-16-pagi": "Simulasi latihan wawancara kerja dengan HRD",
     "2026-10-16-siang": "Memahami materi kuliah dan riset yang sulit",
-    "2026-10-16-sore": "Menyusun rencana kerja harian yang terstruktur"
+    "2026-10-16-sore": "Menyusun rencana kerja harian yang terstruktur",
+    "2026-10-16-malam": "Cara cepat merapikan data kotor di Excel"
   }
 }
