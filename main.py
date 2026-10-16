@@ -7,7 +7,7 @@ import traceback
 from datetime import date
 
 from kpai import config, history, telegram
-from kpai.caption import caption_menarik
+from kpai.caption import caption_menarik, deskripsi_youtube, judul_youtube, tag_youtube
 from kpai.errors import NeedsReview
 from kpai.images import buat_gambar
 from kpai.laporan import laporan_needs_review, laporan_selesai
@@ -30,18 +30,14 @@ def _args():
     return p.parse_args()
 
 
-def _teks_deskripsi(n: Naskah) -> str:
-    tagar = f"#Shorts #AI #{config.CHANNEL_NAME} #TipsKerja"
-    return f"{n.deskripsi}\n\nPrompt yang dipakai:\n{n.prompt}\n\nTrik tambahan:\n{n.trik}\n\n{tagar}"
-
-
 def _pesan_siap_tempel(n: Naskah, kategori: str) -> str:
     return (
-        "CAPTION SIAP TEMPEL\n"
+        "CAPTION TIKTOK (siap tempel)\n"
         f"{caption_menarik(n, kategori)}\n\n"
-        "YOUTUBE — upload manual\n"
-        f"{n.judul}\n\n"
-        f"{_teks_deskripsi(n)}"
+        "YOUTUBE — judul\n"
+        f"{judul_youtube(n, kategori)}\n\n"
+        "YOUTUBE — deskripsi\n"
+        f"{deskripsi_youtube(n, kategori)}"
     )
 
 
@@ -167,9 +163,10 @@ def buat_video(a, tgl: date, slot: str):
         p.unlink()
     print(f"  Video jadi: {video}  ({total:.1f} detik)")
 
-    deskripsi = _teks_deskripsi(naskah)
+    judul_yt = judul_youtube(naskah, kategori[0])
+    deskripsi = deskripsi_youtube(naskah, kategori[0])
     caption = caption_menarik(naskah, kategori[0])
-    (folder / "youtube.txt").write_text(f"{naskah.judul}\n\n{deskripsi}\n", encoding="utf-8")
+    (folder / "youtube.txt").write_text(f"{judul_yt}\n\n{deskripsi}\n", encoding="utf-8")
     (folder / "caption_tiktok.txt").write_text(caption + "\n", encoding="utf-8")
 
     youtube_id = None
@@ -177,7 +174,7 @@ def buat_video(a, tgl: date, slot: str):
         print(f"[5/5] Upload YouTube ({config.YT_PRIVACY})")
         from kpai.upload_youtube import upload
         try:
-            youtube_id = upload(video, naskah.judul, deskripsi, naskah.tags)
+            youtube_id = upload(video, judul_yt, deskripsi, tag_youtube(naskah, kategori[0]))
             print(f"  https://youtube.com/shorts/{youtube_id}")
         except SystemExit as e:
             peringatan.append(f"Upload YouTube dilewati: {e}")

@@ -7,7 +7,7 @@ from unittest.mock import patch
 from PIL import Image
 
 from kpai import config
-from kpai.caption import caption_menarik
+from kpai.caption import caption_menarik, deskripsi_youtube, judul_youtube, tagar_youtube
 from kpai.errors import Jenis, klasifikasi_http, redaksi
 from kpai.images import HARGA_PER_MEGAPIKSEL, buat_gambar, estimasi_usd
 from kpai.laporan import laporan_selesai
@@ -145,6 +145,14 @@ class TestTeks(unittest.TestCase):
         self.assertIn(naskah.hook, caption)
         self.assertIn(naskah.trik, caption)
         self.assertIn("📊", caption)
+        judul = judul_youtube(naskah, "Excel & Data")
+        deskripsi = deskripsi_youtube(naskah, "Excel & Data")
+        self.assertLessEqual(len(judul), 100)
+        self.assertTrue(judul.startswith("📊"))
+        self.assertIn(naskah.hook, deskripsi)
+        self.assertIn(naskah.prompt, deskripsi)
+        self.assertIn("#Shorts", tagar_youtube("Excel & Data"))
+        self.assertIn("#Excel", tagar_youtube("Excel & Data"))
 
 
 class TestGambar(unittest.TestCase):

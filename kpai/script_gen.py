@@ -117,7 +117,7 @@ gambar_trik, gambar_penutup): deskripsi visual yang konkret, orang Indonesia di 
 tanpa tulisan atau layar yang bisa dibaca. Jangan sebut merek atau tokoh nyata.
 
 Struktur video (35-50 detik):
-1. hook: masalahnya, langsung, tanpa basa-basi atau sapaan.
+1. hook: kalimat yang berhentiin scroll. Sebut situasi kerja yang spesifik dan menyebalkan, maksimal 14 kata. Boleh pertanyaan. Jangan sapaan, jangan "halo", jangan basa-basi.
 2. narasi_prompt: arahkan penonton ke prompt di layar.
 3. narasi_hasil: jelaskan apa yang didapat dari AI.
 4. narasi_trik: satu trik kecil yang membuat hasilnya lebih bagus.
