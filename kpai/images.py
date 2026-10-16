@@ -1,4 +1,5 @@
 import math
+import time
 from dataclasses import dataclass
 from io import BytesIO
 from pathlib import Path
@@ -15,7 +16,13 @@ TINGGI_FAL = 1344
 HARGA_PER_MEGAPIKSEL = {"fal-ai/flux/schnell": 0.003}
 NAMA_CF = "Cloudflare Workers AI"
 NAMA_FAL = "fal.ai"
+NAMA_HORDE = "AI Horde"
 NAMA_LOKAL = "Aset lokal"
+URL_HORDE = "https://aihorde.net/api/v2"
+# Ukuran potret standar SDXL (~1 MP); di atas 1024x1024 pengguna anonim bisa diminta kudos di muka.
+LEBAR_HORDE = 832
+TINGGI_HORDE = 1216
+NEGATIF_HORDE = "text, letters, watermark, logo, blurry, deformed, extra fingers, bad hands, nsfw"
 
 
 @dataclass
@@ -135,6 +142,114 @@ def _fal(model: str, prompt: str, pengirim, pengambil) -> Image.Image:
     return _bytes_ke_gambar(unduh.content, NAMA_FAL)
 
 
+def _header_horde() -> dict:
+    return {"apikey": config.HORDE_API_KEY, "Client-Agent": "KerjaPakaiAI:1.0:github.com/basthianalfayet"}
+
+
+def _horde_kirim(prompt: str, pengirim) -> str:
+    respon = pengirim(
+        f"{URL_HORDE}/generate/async",
+        headers=_header_horde(),
+        json={
+            "prompt": f"{prompt} ### {NEGATIF_HORDE}",
+            "params": {
+                "width": LEBAR_HORDE,
+                "height": TINGGI_HORDE,
+                "steps": 25,
+                "cfg_scale": 6,
+                "sampler_name": "k_dpmpp_2m",
+                "karras": True,
+                "n": 1,
+            },
+            "models": config.HORDE_MODELS,
+            "nsfw": False,
+            "censor_nsfw": True,
+            "r2": True,
+            "shared": False,
+            "slow_workers": True,
+        },
+        timeout=60,
+    )
+    salah = dari_response(NAMA_HORDE, respon)
+    if salah:
+        raise salah
+    try:
+        return respon.json()["id"]
+    except Exception as e:
+        raise ProviderError(Jenis.PERMANENT, NAMA_HORDE, f"Respons AI Horde tanpa id: {e}") from None
+
+
+def _horde_ambil(id_job: str, pengambil) -> tuple[Image.Image, str]:
+    respon = pengambil(f"{URL_HORDE}/generate/status/{id_job}", headers=_header_horde(), timeout=60)
+    salah = dari_response(NAMA_HORDE, respon)
+    if salah:
+        raise salah
+    try:
+        hasil = respon.json()["generations"][0]
+    except Exception as e:
+        raise ProviderError(Jenis.BAD_IMAGE, NAMA_HORDE, f"Respons AI Horde tanpa gambar: {e}") from None
+    if hasil.get("censored"):
+        raise ProviderError(Jenis.BAD_IMAGE, NAMA_HORDE, "Gambar disensor filter AI Horde")
+    unduh = pengambil(hasil["img"], timeout=120)
+    salah = dari_response(NAMA_HORDE, unduh)
+    if salah:
+        raise salah
+    return _bytes_ke_gambar(unduh.content, NAMA_HORDE), hasil.get("model") or "?"
+
+
+def _horde(gagal: list, pengirim, pengambil, tidur) -> tuple[dict, list[str]]:
+    """Kirim semua scene sekaligus ke antrean, lalu tunggu bersamaan sampai batas waktu."""
+    hasil, masalah = {}, []
+    antre = list(gagal)
+    aktif = {}
+    batas = time.monotonic() + config.HORDE_MAX_WAIT_DETIK
+    while (antre or aktif) and time.monotonic() < batas:
+        while antre:
+            kunci, lengkap = antre[0]
+            try:
+                aktif[_horde_kirim(lengkap, pengirim)] = kunci
+                antre.pop(0)
+            except Exception as e:
+                salah = klasifikasi_exception(NAMA_HORDE, e)
+                if salah.jenis == Jenis.RATE_LIMIT and aktif:
+                    break
+                print(f"  {NAMA_HORDE} gagal untuk {kunci} ({salah.jenis.value}): {salah.pesan}")
+                masalah.append(f"{NAMA_HORDE} gagal untuk {kunci}: {salah.jenis.value}")
+                antre.pop(0)
+        if not aktif:
+            break
+        tidur(8)
+        for id_job, kunci in list(aktif.items()):
+            try:
+                respon = pengambil(f"{URL_HORDE}/generate/check/{id_job}", headers=_header_horde(), timeout=30)
+                salah = dari_response(NAMA_HORDE, respon)
+                if salah:
+                    if salah.jenis in (Jenis.RATE_LIMIT, Jenis.SERVER, Jenis.TIMEOUT):
+                        continue
+                    raise salah
+                status = respon.json()
+                if status.get("faulted") or status.get("is_possible") is False:
+                    raise ProviderError(Jenis.MODEL_UNAVAILABLE, NAMA_HORDE, "tidak ada worker yang sanggup mengerjakan")
+                if not status.get("done"):
+                    continue
+                img, model = _horde_ambil(id_job, pengambil)
+                hasil[kunci] = (img, model)
+                print(f"  Gambar {kunci}: {NAMA_HORDE} {model} {img.width}x{img.height}")
+            except Exception as e:
+                salah = klasifikasi_exception(NAMA_HORDE, e)
+                print(f"  {NAMA_HORDE} gagal untuk {kunci} ({salah.jenis.value}): {salah.pesan}")
+                masalah.append(f"{NAMA_HORDE} gagal untuk {kunci}: {salah.jenis.value}")
+            del aktif[id_job]
+    for kunci in list(aktif.values()) + [k for k, _ in antre]:
+        masalah.append(f"{NAMA_HORDE} melewati batas tunggu {config.HORDE_MAX_WAIT_DETIK} detik untuk {kunci}")
+    for id_job in aktif:
+        try:
+            requests.delete(f"{URL_HORDE}/generate/status/{id_job}", headers=_header_horde(), timeout=15)
+        except requests.RequestException:
+            pass
+    return hasil, masalah
+
+
 def _aset_lokal(kunci: str, folder: Path) -> Image.Image | None:
     if not folder.exists():
         return None
@@ -184,7 +299,7 @@ def buat_gambar(prompts: dict[str, str], folder: Path, seed: int, pengirim=None,
     del seed  # pemanggilan gambar tidak memakai seed ulang untuk request yang sama
     pengirim = pengirim or requests.post
     pengambil = pengambil or requests.get
-    tidur = tidur or __import__("time").sleep
+    tidur = tidur or time.sleep
     folder_aset = config.FALLBACK_DIR if folder_aset is None else folder_aset
     peringatan, konfigurasi = [], []
     hasil, catatan = {}, []
@@ -234,6 +349,15 @@ def buat_gambar(prompts: dict[str, str], folder: Path, seed: int, pengirim=None,
             catatan.append(meta)
         else:
             gagal.append((kunci, lengkap))
+
+    if gagal and config.HORDE_ENABLED:
+        print(f"  {len(gagal)} scene dicoba lewat {NAMA_HORDE} (gratis, bisa antre beberapa menit)...")
+        dari_horde, masalah = _horde(gagal, pengirim, pengambil, tidur)
+        for kunci, (img, model) in dari_horde.items():
+            hasil[kunci] = img
+            catatan.append(CatatanGambar(kunci, NAMA_HORDE, model, "ok", 0.0))
+        peringatan.extend(masalah)
+        gagal = [(kunci, lengkap) for kunci, lengkap in gagal if kunci not in hasil]
 
     if gagal:
         boleh, alasan, estimasi = _boleh_fal(len(gagal))

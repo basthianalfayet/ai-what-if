@@ -60,7 +60,7 @@ def _daftar(nama: str, default: str) -> list[str]:
     return [m.strip() for m in _env(nama, default).split(",") if m.strip()]
 
 
-# FLUX.2 Klein bagus dan vertikal tapi boros kuota (~1.000 neuron/gambar), jadi hanya untuk gambar hook.
+# FLUX.2 Klein bagus dan vertikal tapi boros kuota (~1.550 neuron/gambar), jadi hanya untuk gambar hook.
 # flux-1-schnell ~100 neuron/gambar untuk adegan lain yang sebagian besar tertutup kartu.
 CF_IMAGE_MODELS = _daftar("CF_IMAGE_MODEL", "@cf/black-forest-labs/flux-2-klein-9b,@cf/black-forest-labs/flux-1-schnell")
 CF_IMAGE_MODELS_HEMAT = _daftar("CF_IMAGE_MODEL_HEMAT", "@cf/black-forest-labs/flux-1-schnell")
@@ -86,6 +86,12 @@ FAL_KEY = _env("FAL_KEY")
 FAL_MODEL = _env("FAL_MODEL", "fal-ai/flux/schnell")
 IMAGE_FALLBACK_ENABLED = _env("IMAGE_FALLBACK_ENABLED", "false").lower() in ("1", "true", "yes", "ya")
 IMAGE_FALLBACK_MAX_COST_USD_PER_JOB = _env("IMAGE_FALLBACK_MAX_COST_USD_PER_JOB")
+
+# AI Horde: gratis, worker relawan, antrean bisa beberapa menit. "0000000000" adalah key anonim resmi.
+HORDE_ENABLED = _env("HORDE_ENABLED", "true").lower() in ("1", "true", "yes", "ya")
+HORDE_API_KEY = _env("HORDE_API_KEY", "0000000000")
+HORDE_MODELS = _daftar("HORDE_MODELS", "AlbedoBase XL (SDXL),AlbedoBase XL 3.1,Juggernaut XL")
+HORDE_MAX_WAIT_DETIK = int(_env("HORDE_MAX_WAIT_DETIK", "900"))
 FALLBACK_DIR = ROOT / "assets" / "fallback"
 
 HARI = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]

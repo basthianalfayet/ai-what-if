@@ -224,6 +224,50 @@ class TestGambar(unittest.TestCase):
             self.assertTrue((folder / f"gambar_{kunci}.jpg").is_file())
             self.assertGreater(hasil.gambar[kunci].width, 64)
 
+    def test_kuota_cloudflare_habis_pindah_ke_horde(self):
+        url = []
+
+        def pengirim(alamat, **_k):
+            url.append(alamat)
+            if "aihorde.net" in alamat:
+                return Respon(202, json_body={"id": f"job-{len(url)}"}, teks="{}")
+            return Respon(429, teks="you have used up your daily free allocation of 10,000 neurons")
+
+        def pengambil(alamat, **_k):
+            if "/generate/check/" in alamat:
+                return Respon(200, json_body={"done": True, "is_possible": True, "faulted": False}, teks="{}")
+            if "/generate/status/" in alamat:
+                return Respon(200, json_body={"generations": [{"img": "https://r2.example/a.webp", "model": "AlbedoBase XL (SDXL)", "censored": False}]}, teks="{}")
+            return Respon(200, body=jpeg_bytes(), headers={"content-type": "image/webp"})
+
+        folder = Path(tempfile.mkdtemp())
+        hasil = buat_gambar(self.prompts(), folder, 1, pengirim, pengambil, tidur=lambda _d: None, folder_aset=folder / "kosong")
+        self.assertEqual(sum("api.cloudflare.com" in item for item in url), 1)
+        self.assertEqual(sum("aihorde.net" in item for item in url), 4)
+        self.assertFalse(any("fal.run" in item for item in url))
+        self.assertTrue(all(item.provider == "AI Horde" for item in hasil.catatan))
+        self.assertIn("Kuota harian Cloudflare habis", hasil.peringatan)
+
+    def test_horde_disensor_tidak_dipakai(self):
+        nomor = []
+
+        def pengirim(alamat, **_k):
+            if "aihorde.net" in alamat:
+                nomor.append(1)
+                return Respon(202, json_body={"id": f"job-{len(nomor)}"}, teks="{}")
+            return Respon(429, teks="daily free allocation exceeded")
+
+        def pengambil(alamat, **_k):
+            if "/generate/check/" in alamat:
+                return Respon(200, json_body={"done": True}, teks="{}")
+            return Respon(200, json_body={"generations": [{"img": "x", "censored": True}]}, teks="{}")
+
+        folder = Path(tempfile.mkdtemp())
+        with self.assertRaises(Exception) as ctx:
+            buat_gambar(self.prompts(), folder, 1, pengirim, pengambil, tidur=lambda _d: None, folder_aset=folder / "kosong")
+        self.assertEqual(type(ctx.exception).__name__, "NeedsReview")
+        self.assertIn("AI Horde gagal untuk hook: bad_image", ctx.exception.peringatan)
+
     def test_semua_provider_gagal_tanpa_gradien(self):
         self.assertFalse(hasattr(__import__("kpai.images", fromlist=["images"]), "_cadangan"))
 
