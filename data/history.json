@@ -63,6 +63,14 @@
       "topik": "Cara merapikan data kotor di Excel",
       "judul": "Trik Bereskan Data Excel Berantakan Pakai AI",
       "youtube_id": null
+    },
+    {
+      "tanggal": "2026-10-16",
+      "slot": "pagi",
+      "kategori": "Cari Kerja",
+      "topik": "Simulasi latihan wawancara kerja dengan HRD",
+      "judul": "Latihan Interview Kerja Pakai AI",
+      "youtube_id": null
     }
   ],
   "rencana": {
@@ -73,6 +81,7 @@
     "2026-10-15-siang": "Trik menjawab pertanyaan jebakan saat wawancara kerja",
     "2026-10-15-malam": "Menentukan prioritas tugas harian yang menumpuk",
     "2026-10-15-larut": "Cara merapikan data kotor di Excel",
-    "2026-10-16-pagi": "Simulasi latihan wawancara kerja dengan HRD"
+    "2026-10-16-pagi": "Simulasi latihan wawancara kerja dengan HRD",
+    "2026-10-16-siang": "Memahami materi kuliah dan riset yang sulit"
   }
 }
