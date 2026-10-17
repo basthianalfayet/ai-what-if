@@ -119,6 +119,14 @@
       "topik": "Membuat template kerja serbaguna untuk proyek harian",
       "judul": "Template Kerja Proyek Harian Otomatis Pakai AI",
       "youtube_id": "V1qQnIa7_sU"
+    },
+    {
+      "tanggal": "2026-10-17",
+      "slot": "sore",
+      "kategori": "Excel & Data",
+      "topik": "Mencari rumus Excel otomatis untuk rekap laporan",
+      "judul": "Cara Cepat Cari Rumus Excel Otomatis Buat Rekap",
+      "youtube_id": "tXF9ABBTIww"
     }
   ],
   "rencana": {
@@ -136,6 +144,7 @@
     "2026-10-16-larut": "Cara membalas email atasan yang marah",
     "2026-10-17-pagi": "Memahami materi kuliah atau riset yang sulit",
     "2026-10-17-siang": "Membuat template kerja serbaguna untuk proyek harian",
-    "2026-10-17-sore": "Mencari rumus Excel otomatis untuk rekap laporan"
+    "2026-10-17-sore": "Mencari rumus Excel otomatis untuk rekap laporan",
+    "2026-10-17-malam": "Menolak lembur mendadak dari atasan lewat chat"
   }
 }
