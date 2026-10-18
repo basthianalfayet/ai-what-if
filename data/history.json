@@ -151,6 +151,14 @@
       "topik": "Rekap prompt terbaik minggu ini untuk produktivitas",
       "judul": "Kumpulan Prompt AI Terbaik Minggu Ini Buat Kerja Cepat",
       "youtube_id": "vYQ_Un6zS8I"
+    },
+    {
+      "tanggal": "2026-10-18",
+      "slot": "siang",
+      "kategori": "Excel & Data",
+      "topik": "Membuat rumus XLOOKUP otomatis dari dua tabel Excel",
+      "judul": "Cara Gampang Bikin Rumus XLOOKUP di Excel",
+      "youtube_id": "lquufzvINTI"
     }
   ],
   "rencana": {
@@ -172,6 +180,7 @@
     "2026-10-17-malam": "Menolak lembur mendadak dari atasan lewat chat",
     "2026-10-17-larut": "Menulis deskripsi produk jualan online memikat pembeli",
     "2026-10-18-pagi": "Rekap prompt terbaik minggu ini untuk produktivitas",
-    "2026-10-18-siang": "Membuat rumus XLOOKUP otomatis dari dua tabel Excel"
+    "2026-10-18-siang": "Membuat rumus XLOOKUP otomatis dari dua tabel Excel",
+    "2026-10-18-sore": "Cara membalas email atasan yang marah dengan sopan"
   }
 }
