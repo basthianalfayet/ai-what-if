@@ -10,9 +10,30 @@ def _bersih_judul(teks: str) -> str:
     return potong if potong else judul[:99]
 
 
+_EMOJI = {
+    "luar angkasa": "🪐",
+    "bumi dan alam": "🌍",
+    "tubuh manusia": "🧠",
+    "hewan": "🐾",
+    "fisika": "⚡",
+    "teknologi dan ai": "🤖",
+    "masa depan peradaban": "🏙️",
+}
+
+
+def _emoji(kategori: str) -> str:
+    return _EMOJI.get((kategori or "").casefold().strip(), "🤔")
+
+
 def judul_youtube(naskah: Naskah, kategori: str) -> str:
-    del kategori
-    return _bersih_judul(naskah.judul_youtube or naskah.judul_kerja or naskah.hook)
+    judul = _bersih_judul(naskah.judul_youtube or naskah.judul_kerja or naskah.hook)
+    emoji = _emoji(kategori)
+    if judul.startswith(emoji):
+        return judul
+    gabungan = f"{emoji} {judul}"
+    if len(gabungan) <= 100:
+        return gabungan
+    return judul
 
 
 # Tiga tag pertama yang muncul di atas judul Shorts. Sisanya tetap di deskripsi.
@@ -66,21 +87,22 @@ def tag_youtube(naskah: Naskah, kategori: str) -> list[str]:
 
 
 def deskripsi_youtube(naskah: Naskah, kategori: str) -> str:
+    emoji = _emoji(kategori)
     baris = [
         " ".join(tagar_youtube(kategori, naskah)),
         "",
-        naskah.hook.strip(),
+        f"{emoji} {naskah.hook.strip()}",
         "",
         naskah.deskripsi_youtube.strip(),
         "",
-        "Yang cukup kita ketahui:",
+        "Yang masuk akal:",
         naskah.penjelasan_ilmiah.strip(),
         "",
-        "Yang tidak boleh dianggap pasti:",
+        "Yang jangan dianggap pasti:",
         naskah.batas_ketidakpastian.strip(),
     ]
     if naskah.pertanyaan_komentar.strip():
-        baris += ["", naskah.pertanyaan_komentar.strip()]
+        baris += ["", f"💬 {naskah.pertanyaan_komentar.strip()}", "Tulis jawabanmu di komentar."]
     if naskah.referensi:
         baris += ["", "Catatan sumber:"]
         baris += [f"- {item}" for item in naskah.referensi]
@@ -93,9 +115,10 @@ def deskripsi_youtube(naskah: Naskah, kategori: str) -> str:
 
 
 def caption_menarik(naskah: Naskah, kategori: str) -> str:
+    emoji = _emoji(kategori)
     return (
-        f"{naskah.hook.strip()}\n\n"
-        f"{naskah.pertanyaan_komentar.strip()}\n\n"
+        f"{emoji} {naskah.hook.strip()}\n\n"
+        f"💬 {naskah.pertanyaan_komentar.strip()}\n\n"
         f"{' '.join(tagar_youtube(kategori, naskah))}"
     )
 
