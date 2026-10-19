@@ -1,20 +1,65 @@
 {
-  "kategori": "Rapat & Laporan",
-  "topik": "Laporan mingguan dari catatan berantakan",
-  "judul": "Laporan mingguan rapi dalam 1 menit pakai AI",
-  "deskripsi": "Catatan kerja kamu berantakan tapi laporan harus dikirim sore ini? Pakai prompt ini, tempel catatanmu, dan AI menyusunnya jadi laporan yang enak dibaca atasan.",
-  "tags": ["laporan mingguan", "prompt chatgpt", "tips kerja", "ai untuk kerja", "produktivitas"],
-  "hook": "Disuruh bikin laporan mingguan, padahal catatan kamu berantakan semua?",
-  "narasi_prompt": "Tenang. Contek prompt ini, lalu tempel catatan kamu apa adanya di bagian akhir.",
-  "prompt": "Kamu asisten yang membantu menulis laporan kerja. Ubah catatan berikut jadi laporan mingguan untuk atasan: 3 poin progres, 2 kendala, dan 1 rencana minggu depan. Bahasa formal, singkat, maksimal 150 kata.\n\nCatatan: [tempel catatan kamu di sini]",
-  "narasi_hasil": "Hasilnya langsung rapi. Progres, kendala, dan rencana dipisah jelas, jadi atasan bisa baca dalam setengah menit.",
-  "hasil": "Laporan Mingguan, 6 sampai 10 Oktober\n\nProgres:\n- Data penjualan September selesai direkap\n- Draft proposal klien A dikirim untuk review\n- Template invoice baru mulai dipakai tim\n\nKendala:\n- Data cabang Bandung terlambat masuk\n- Revisi desain menunggu persetujuan\n\nRencana:\n- Finalisasi proposal klien A hari Rabu",
-  "narasi_trik": "Trik kecilnya, tambahin satu kalimat ini biar laporannya kelihatan lebih terukur.",
-  "trik": "Kalau ada angka di catatan, tampilkan sebagai angka dan persentase.",
-  "topik_besok": "Bikin CV ATS-friendly dari pengalaman kerja",
-  "penutup": "Simpan video ini biar nggak lupa. Nanti sore kita bahas cara bikin CV yang lolos ATS.",
-  "gambar_hook": "stressed young Indonesian office worker staring at messy sticky notes on a desk late afternoon",
-  "gambar_kerja": "close-up of hands typing on a laptop in a modern Jakarta office, warm desk lamp, coffee cup",
-  "gambar_trik": "confident smiling Indonesian woman in office attire giving a thumbs up near a bright window",
-  "gambar_penutup": "neatly printed CV resume on a wooden table next to a laptop and a pen, morning light"
+  "id_video": "",
+  "topik": "Matahari tiba-tiba menghilang",
+  "kategori": "Luar Angkasa",
+  "inti": "matahari hilang",
+  "judul_kerja": "Jika Matahari menghilang",
+  "hook": "Bagaimana jika Matahari tiba-tiba menghilang? Cahaya yang kamu lihat sekarang baru tiba sekitar delapan menit kemudian.",
+  "adegan": [
+    {
+      "id": "hook",
+      "narasi": "Bagaimana jika Matahari tiba-tiba menghilang? Cahaya yang kamu lihat sekarang baru tiba sekitar delapan menit kemudian.",
+      "visual": "Langit masih terang sebentar, lalu gelap.",
+      "prompt_gambar": "cinematic earth sky at the last moment of sunlight, vertical, no text",
+      "subtitle": "Bagaimana jika Matahari tiba-tiba menghilang? Cahaya yang kamu lihat sekarang baru tiba sekitar delapan menit kemudian.",
+      "judul_layar": "Bagaimana jika ini terjadi?",
+      "sfx": "whoosh"
+    },
+    {
+      "id": "awal",
+      "narasi": "Dalam skenario fiksi ini, setelah cahaya terakhir sampai, Bumi kehilangan sumber energi utamanya. Suhu tidak runtuh dalam hitungan detik karena lautan dan udara masih menyimpan panas.",
+      "visual": "Bumi yang mulai gelap, laut masih menyimpan panas.",
+      "prompt_gambar": "cinematic darkening earth from space with glowing oceans, vertical, no text",
+      "subtitle": "Dalam skenario fiksi ini, setelah cahaya terakhir sampai, Bumi kehilangan sumber energi utamanya. Suhu tidak runtuh dalam hitungan detik karena lautan dan udara masih menyimpan panas.",
+      "judul_layar": "Akibat pertama",
+      "sfx": "whoosh"
+    },
+    {
+      "id": "puncak",
+      "narasi": "Tanaman lalu kehilangan cahaya untuk fotosintesis, dan rantai makanan ikut goyah. Orbit Bumi tidak serta-merta jatuh ke titik kosong. Yang hilang dalam cerita ini adalah panas dan cahaya, bukan lantai di bawah kakimu.",
+      "visual": "Tanaman meredup dan orbit bumi tetap melengkung.",
+      "prompt_gambar": "cinematic wilted forest under a star filled sky, vertical, no text",
+      "subtitle": "Tanaman lalu kehilangan cahaya untuk fotosintesis, dan rantai makanan ikut goyah. Orbit Bumi tidak serta-merta jatuh ke titik kosong. Yang hilang dalam cerita ini adalah panas dan cahaya, bukan lantai di bawah kakimu.",
+      "judul_layar": "Yang berkembang",
+      "sfx": "pop"
+    },
+    {
+      "id": "penutup",
+      "narasi": "Ini skenario, bukan ramalan. Matahari tidak bisa lenyap begitu saja menurut fisika yang kita pahami. Menurutmu, yang lebih dulu terasa: gelapnya langit atau dingin yang datang pelan?",
+      "visual": "Bumi kecil di langit tanpa matahari.",
+      "prompt_gambar": "cinematic lonely earth in starfield, soft light, vertical, no text",
+      "subtitle": "Ini skenario, bukan ramalan. Matahari tidak bisa lenyap begitu saja menurut fisika yang kita pahami. Menurutmu, yang lebih dulu terasa: gelapnya langit atau dingin yang datang pelan?",
+      "judul_layar": "Batas ceritanya",
+      "sfx": "pop"
+    }
+  ],
+  "penjelasan_ilmiah": "Cahaya Matahari butuh sekitar delapan menit untuk sampai ke Bumi. Lautan menyimpan panas, jadi pendinginan tidak seperti saklar yang dimatikan. Fotosintesis memang bergantung pada cahaya.",
+  "batas_ketidakpastian": "Tidak ada mekanisme yang diketahui yang membuat Matahari lenyap seketika. Angka pendinginan yang beredar di internet sering terlalu cepat dan tidak dipakai di video ini.",
+  "ending": "Ini skenario, bukan ramalan. Matahari tidak bisa lenyap begitu saja menurut fisika yang kita pahami.",
+  "pertanyaan_komentar": "Menurutmu, yang lebih dulu terasa: gelapnya langit atau dingin yang datang pelan?",
+  "judul_youtube": "Bagaimana jika Matahari tiba-tiba menghilang?",
+  "deskripsi_youtube": "Skenario fiksi tentang Bumi yang kehilangan cahaya Matahari. Videonya memisahkan akibat yang masuk akal dari bagian yang tidak mungkin.",
+  "hashtag": [
+    "matahari",
+    "what if",
+    "luar angkasa",
+    "sains",
+    "shorts"
+  ],
+  "referensi": [
+    "Waktu tempuh cahaya Matahari ke Bumi sekitar delapan menit adalah pengetahuan fisika dasar."
+  ],
+  "pengungkapan_sintetis": true,
+  "perlu_tinjauan": false,
+  "topik_berikut": ""
 }

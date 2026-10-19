@@ -2,8 +2,13 @@ param(
     [ValidateSet("pagi", "siang", "sore", "malam", "larut")]
     [string]$Slot = "pagi",
     [switch]$Uji,
-    [string]$Repo = "basthianalfayet/SelfProject"
+    [string]$Repo = ""
 )
+
+if (-not $Repo) {
+    Write-Host "Isi -Repo username/nama-repo untuk kanal AI WHAT IF?. Jangan arahkan ke repo kanal lama."
+    exit 1
+}
 
 # Memicu workflow persis seperti yang dilakukan cron-job.org, untuk mengetes token GitHub.
 $aman = Read-Host "Tempel token GitHub (tidak akan terlihat)" -AsSecureString

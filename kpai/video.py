@@ -36,17 +36,20 @@ class Adegan:
 
 
 def buat_suara_adegan(naskah, folder: Path) -> list[Adegan]:
-    teks = [
-        ("hook", naskah.hook),
-        ("prompt", naskah.narasi_prompt),
-        ("hasil", naskah.narasi_hasil),
-        ("trik", naskah.narasi_trik),
-        ("penutup", naskah.penutup),
-    ]
+    if getattr(naskah, "adegan", None):
+        teks = [(a.id, a.narasi) for a in naskah.adegan]
+    else:
+        teks = [
+            ("hook", naskah.hook),
+            ("prompt", naskah.narasi_prompt),
+            ("hasil", naskah.narasi_hasil),
+            ("trik", naskah.narasi_trik),
+            ("penutup", naskah.penutup),
+        ]
     adegan, t = [], 0.0
     for nama, isi in teks:
         path = folder / f"suara_{nama}.mp3"
-        kata, durasi = buat_suara(isi, path)
+        kata, durasi = buat_suara(isi, path, nama=nama)
         a = Adegan(nama, path, kata, durasi, mulai=t, jeda=JEDA_AKHIR if nama == "penutup" else JEDA)
         adegan.append(a)
         t += a.panjang

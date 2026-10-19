@@ -8,16 +8,16 @@ param(
 )
 
 $jadwal = @{
-    "KerjaPakaiAI Pagi" = @("pagi", $JamPagi)
-    "KerjaPakaiAI Siang" = @("siang", $JamSiang)
-    "KerjaPakaiAI Sore" = @("sore", $JamSore)
-    "KerjaPakaiAI Malam" = @("malam", $JamMalam)
-    "KerjaPakaiAI Larut" = @("larut", $JamLarut)
+    "AI WHAT IF Pagi" = @("pagi", $JamPagi)
+    "AI WHAT IF Siang" = @("siang", $JamSiang)
+    "AI WHAT IF Sore" = @("sore", $JamSore)
+    "AI WHAT IF Malam" = @("malam", $JamMalam)
+    "AI WHAT IF Larut" = @("larut", $JamLarut)
 }
 
 if ($Hapus) {
     foreach ($nama in $jadwal.Keys) { Unregister-ScheduledTask -TaskName $nama -Confirm:$false -ErrorAction SilentlyContinue }
-    Write-Host "Jadwal KerjaPakaiAI dihapus."
+    Write-Host "Jadwal AI WHAT IF dihapus."
     return
 }
 
@@ -30,7 +30,7 @@ foreach ($nama in $jadwal.Keys) {
     $action = New-ScheduledTaskAction -Execute "cmd.exe" -Argument "/c `"`"$dir\run_daily.bat`" $slot`"" -WorkingDirectory $dir
     $trigger = New-ScheduledTaskTrigger -Daily -At $jam
     Register-ScheduledTask -TaskName $nama -Action $action -Trigger $trigger -Settings $settings `
-        -Description "Bikin video KerjaPakaiAI slot $slot" -Force | Out-Null
+        -Description "Bikin video AI WHAT IF slot $slot" -Force | Out-Null
     Write-Host "Jadwal '$nama' terpasang: tiap hari jam $jam."
 }
 Write-Host "Kalau laptop mati di jam itu, video dibuat begitu laptop menyala lagi."

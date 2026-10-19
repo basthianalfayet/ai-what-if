@@ -6,7 +6,7 @@ from . import config
 
 
 def aktif() -> bool:
-    return bool(config.TELEGRAM_BOT_TOKEN and config.TELEGRAM_CHAT_ID)
+    return config.TELEGRAM_ENABLED and bool(config.TELEGRAM_BOT_TOKEN and config.TELEGRAM_CHAT_ID)
 
 
 def _minta(metode: str, **kwargs) -> dict:

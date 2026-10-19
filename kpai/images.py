@@ -1,3 +1,4 @@
+import hashlib
 import math
 import time
 from dataclasses import dataclass
@@ -8,7 +9,16 @@ import requests
 from PIL import Image
 
 from . import config
-from .errors import Jenis, NeedsReview, ProviderError, dari_response, klasifikasi_exception
+from .errors import Jenis, NeedsReview, ProviderError, dari_response, klasifikasi_exception, jeda_sementara
+from .mode import (
+    boleh_berbayar,
+    boleh_gambar_api,
+    boleh_horde,
+    catat_gambar,
+    cooldown_kuota,
+    dalam_cooldown,
+    sisa_gambar,
+)
 
 LEBAR_FAL = 768
 TINGGI_FAL = 1344
@@ -143,7 +153,7 @@ def _fal(model: str, prompt: str, pengirim, pengambil) -> Image.Image:
 
 
 def _header_horde() -> dict:
-    return {"apikey": config.HORDE_API_KEY, "Client-Agent": "KerjaPakaiAI:1.0:github.com/basthianalfayet"}
+    return {"apikey": config.HORDE_API_KEY, "Client-Agent": "AIWhatIf:1.0:local"}
 
 
 def _horde_kirim(prompt: str, pengirim) -> str:
@@ -267,6 +277,8 @@ def _aset_lokal(kunci: str, folder: Path) -> Image.Image | None:
 def _boleh_fal(jumlah: int) -> tuple[bool, str, float | None]:
     if not config.IMAGE_FALLBACK_ENABLED:
         return False, "IMAGE_FALLBACK_ENABLED=false", None
+    if not boleh_berbayar():
+        return False, "mode gratis atau PAID_FALLBACK_ENABLED=false, fal.ai tidak dipanggil", None
     if not config.FAL_KEY:
         return False, "FAL_KEY belum dikonfigurasi, fal.ai dinonaktifkan", None
     estimasi = estimasi_usd(config.FAL_MODEL, LEBAR_FAL, TINGGI_FAL, jumlah)
@@ -280,14 +292,30 @@ def _boleh_fal(jumlah: int) -> tuple[bool, str, float | None]:
     return True, "", estimasi
 
 
+def _cache_path(prompt: str) -> Path:
+    digest = hashlib.sha256(prompt.encode("utf-8")).hexdigest()[:24]
+    return config.CACHE_DIR / f"{digest}.jpg"
+
+
+def _muat_file(path: Path, provider: str) -> Image.Image | None:
+    if not path.is_file():
+        return None
+    try:
+        return _validasi(Image.open(path))
+    except ProviderError:
+        return None
+    except Exception:
+        return None
+
+
 def _coba(nama: str, fungsi, tidur, boleh_ulang: bool):
     try:
         return fungsi(), None
     except Exception as e:
         salah = klasifikasi_exception(nama, e)
         print(f"  {nama} gagal ({salah.jenis.value}): {salah.pesan}")
-        if boleh_ulang and salah.jenis in (Jenis.TIMEOUT, Jenis.SERVER):
-            tidur(2)
+        if boleh_ulang and salah.jenis in (Jenis.TIMEOUT, Jenis.SERVER, Jenis.BAD_RESPONSE):
+            tidur(jeda_sementara(0))
             try:
                 return fungsi(), None
             except Exception as e2:
@@ -304,15 +332,42 @@ def buat_gambar(prompts: dict[str, str], folder: Path, seed: int, pengirim=None,
     peringatan, konfigurasi = [], []
     hasil, catatan = {}, []
     gagal = []
-    hentikan_cf = not (config.CF_ACCOUNT_ID and config.CF_API_TOKEN)
-    if hentikan_cf:
+    hentikan_cf = not (boleh_gambar_api() and config.CF_ACCOUNT_ID and config.CF_API_TOKEN)
+    if not boleh_gambar_api():
+        pesan = "Mode lokal: gambar online tidak dipanggil."
+        print(f"  {pesan}")
+        peringatan.append(pesan)
+    elif dalam_cooldown("cloudflare"):
+        hentikan_cf = True
+        pesan = "Cloudflare sedang cooldown, gambar online dilewati."
+        print(f"  {pesan}")
+        peringatan.append(pesan)
+    elif sisa_gambar() <= 0:
+        hentikan_cf = True
+        pesan = "Batas gambar harian tercapai, Cloudflare tidak dipanggil."
+        print(f"  {pesan}")
+        peringatan.append(pesan)
+    elif not (config.CF_ACCOUNT_ID and config.CF_API_TOKEN):
         pesan = "Cloudflare dinonaktifkan: CF_ACCOUNT_ID atau CF_API_TOKEN belum dikonfigurasi."
         print(f"  {pesan}")
         peringatan.append(pesan)
 
     for kunci, prompt in prompts.items():
         lengkap = f"{prompt}, {config.IMAGE_STYLE}"
+        siap = _muat_file(folder / f"gambar_{kunci}.jpg", NAMA_LOKAL)
+        if siap is None:
+            siap = _muat_file(_cache_path(lengkap), "Cache")
+        if siap is not None:
+            hasil[kunci] = siap
+            catatan.append(CatatanGambar(kunci, "Cache" if not (folder / f"gambar_{kunci}.jpg").is_file() else NAMA_LOKAL, "cache", "ok", 0.0))
+            print(f"  Gambar {kunci}: cache")
+            continue
         if hentikan_cf:
+            gagal.append((kunci, lengkap))
+            continue
+        if sisa_gambar() <= 0:
+            hentikan_cf = True
+            peringatan.append("Batas gambar harian tercapai")
             gagal.append((kunci, lengkap))
             continue
         model_daftar = config.CF_IMAGE_MODELS if kunci == "hook" else config.CF_IMAGE_MODELS_HEMAT
@@ -325,9 +380,10 @@ def buat_gambar(prompts: dict[str, str], folder: Path, seed: int, pengirim=None,
                 meta = CatatanGambar(kunci, NAMA_CF, model, "ok", 0.0)
                 print(f"  Gambar {kunci}: {NAMA_CF} {model} {img.width}x{img.height}")
                 break
-            if salah and salah.jenis == Jenis.QUOTA:
+            if salah and salah.jenis in (Jenis.QUOTA, Jenis.BILLING):
                 if "Kuota harian Cloudflare habis" not in peringatan:
                     peringatan.append("Kuota harian Cloudflare habis")
+                cooldown_kuota("cloudflare")
                 hentikan_cf = True
                 break
             if salah and salah.jenis == Jenis.INVALID_KEY:
@@ -347,15 +403,22 @@ def buat_gambar(prompts: dict[str, str], folder: Path, seed: int, pengirim=None,
         if img is not None:
             hasil[kunci] = img
             catatan.append(meta)
+            catat_gambar(1)
+            try:
+                config.CACHE_DIR.mkdir(parents=True, exist_ok=True)
+                img.save(_cache_path(lengkap), format="JPEG", quality=92)
+            except OSError:
+                pass
         else:
             gagal.append((kunci, lengkap))
 
-    if gagal and config.HORDE_ENABLED:
+    if gagal and boleh_horde():
         print(f"  {len(gagal)} scene dicoba lewat {NAMA_HORDE} (gratis, bisa antre beberapa menit)...")
         dari_horde, masalah = _horde(gagal, pengirim, pengambil, tidur)
         for kunci, (img, model) in dari_horde.items():
             hasil[kunci] = img
             catatan.append(CatatanGambar(kunci, NAMA_HORDE, model, "ok", 0.0))
+            catat_gambar(1)
         peringatan.extend(masalah)
         gagal = [(kunci, lengkap) for kunci, lengkap in gagal if kunci not in hasil]
 
@@ -376,6 +439,7 @@ def buat_gambar(prompts: dict[str, str], folder: Path, seed: int, pengirim=None,
             if img is not None:
                 hasil[kunci] = img
                 catatan.append(CatatanGambar(kunci, NAMA_FAL, config.FAL_MODEL, "ok", biaya_scene))
+                catat_gambar(1)
                 print(f"  Gambar {kunci}: {NAMA_FAL} {config.FAL_MODEL} biaya ${biaya_scene:.4f}")
                 continue
             if salah and salah.jenis == Jenis.INVALID_KEY:
@@ -384,6 +448,9 @@ def buat_gambar(prompts: dict[str, str], folder: Path, seed: int, pengirim=None,
             sisa.append((kunci, lengkap))
         for kunci, _lengkap in sisa:
             if kunci in hasil:
+                continue
+            if not config.IMAGE_LOCAL_FALLBACK:
+                peringatan.append(f"Aset lokal dimatikan untuk {kunci}")
                 continue
             lokal = _aset_lokal(kunci, folder_aset)
             if lokal is not None:
@@ -395,7 +462,7 @@ def buat_gambar(prompts: dict[str, str], folder: Path, seed: int, pengirim=None,
     kurang = [kunci for kunci in prompts if kunci not in hasil]
     if kurang:
         alasan = (
-            f"scene {', '.join(kurang)} tidak punya gambar yang lolos pemeriksaan. "
+            f"scene {', '.join(kurang)} tidak punya gambar yang sesuai. "
             "Gradien tidak dipakai sebagai pengganti."
         )
         raise NeedsReview(alasan, peringatan, konfigurasi)

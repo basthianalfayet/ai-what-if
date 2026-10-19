@@ -1,7 +1,7 @@
 name: Video harian
 
-# Jadwal GitHub (on.schedule) sering telat berjam-jam atau dibuang, jadi tiap slot dipicu tepat waktu
-# dari cron-job.org lewat API workflow_dispatch. Lihat README Langkah 5d.
+# Jadwal GitHub sering telat, jadi tiap slot dipicu dari cron-job.org.
+# Disk runner tidak tersimpan. Riwayat yang bertahan adalah file di data/ yang di-commit kembali.
 on:
   workflow_dispatch:
     inputs:
@@ -19,15 +19,20 @@ permissions:
   contents: write
 
 concurrency:
-  group: video-harian
+  group: ai-what-if
   cancel-in-progress: false
 
 jobs:
   buat-video:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Ambil riwayat terbaru
+        run: git pull --rebase origin "${GITHUB_REF_NAME}"
 
       - uses: actions/setup-python@v5
         with:
@@ -40,13 +45,13 @@ jobs:
       - name: Pasang library
         run: pip install -r requirements.txt
 
-      - name: Siapkan login YouTube
+      - name: Siapkan login YouTube kanal baru
         env:
           YT_TOKEN_JSON: ${{ secrets.YT_TOKEN_JSON }}
         run: |
           if [ -n "$YT_TOKEN_JSON" ]; then
-            mkdir -p secrets
-            printf '%s' "$YT_TOKEN_JSON" > secrets/token.json
+            mkdir -p secrets/youtube_whatif
+            printf '%s' "$YT_TOKEN_JSON" > secrets/youtube_whatif/token.json
           fi
 
       - name: Tentukan slot
@@ -57,33 +62,42 @@ jobs:
         id: video
         env:
           PYTHONIOENCODING: utf-8
+          PLATFORM_MODE: youtube_only
+          PROVIDER_MODE: ${{ vars.PROVIDER_MODE || 'free_safe' }}
+          FREE_ONLY: ${{ vars.FREE_ONLY || 'true' }}
+          PAID_FALLBACK_ENABLED: ${{ vars.PAID_FALLBACK_ENABLED || 'false' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-flash-latest' }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GROQ_MODEL: ${{ vars.GROQ_MODEL || 'llama-3.3-70b-versatile' }}
           TEXT_FALLBACK_ENABLED: ${{ vars.TEXT_FALLBACK_ENABLED || 'true' }}
+          SCRIPT_LOCAL_FALLBACK: ${{ vars.SCRIPT_LOCAL_FALLBACK || 'true' }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          HORDE_ENABLED: ${{ vars.HORDE_ENABLED || 'false' }}
           FAL_KEY: ${{ secrets.FAL_KEY }}
           IMAGE_FALLBACK_ENABLED: ${{ vars.IMAGE_FALLBACK_ENABLED || 'false' }}
           IMAGE_FALLBACK_MAX_COST_USD_PER_JOB: ${{ vars.IMAGE_FALLBACK_MAX_COST_USD_PER_JOB || '' }}
+          IMAGE_DAILY_MAX: ${{ vars.IMAGE_DAILY_MAX || '20' }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_ENABLED: ${{ vars.TELEGRAM_ENABLED || 'true' }}
           YT_UPLOAD: ${{ vars.YT_UPLOAD || '0' }}
           YT_PRIVACY: ${{ vars.YT_PRIVACY || 'private' }}
-          CHANNEL_NAME: ${{ vars.CHANNEL_NAME || 'KerjaPakaiAI' }}
+          YT_CHANNEL_NAME: ${{ vars.YT_CHANNEL_NAME || 'AI WHAT IF?' }}
+          CHANNEL_NAME: ${{ vars.CHANNEL_NAME || 'AI WHAT IF?' }}
         run: python main.py --slot "${{ steps.slot.outputs.slot }}" ${{ inputs.uji && '--uji' || '' }}
 
-      - name: Simpan riwayat topik
+      - name: Simpan riwayat kanal
         id: riwayat
-        if: success() && !inputs.uji
+        if: always() && !inputs.uji
         run: |
-          git config user.name "kerjapakaiai-bot"
+          git config user.name "ai-what-if-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/history.json
+          git add data/history_whatif.json data/upload_ledger.json data/cooldown.json data/kuota_gambar.json
           if ! git diff --cached --quiet; then
-            git commit -m "Riwayat video $(TZ=Asia/Jakarta date +%F) ${{ steps.slot.outputs.slot }}"
-            git pull --rebase
+            git commit -m "Riwayat AI WHAT IF $(TZ=Asia/Jakarta date +%F) ${{ steps.slot.outputs.slot }}"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
             git push
           fi
 
@@ -92,7 +106,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python -c "from kpai import telegram; telegram.kirim_pesan('Video sudah terkirim, tapi riwayat topik gagal disimpan. Janji video berikutnya bisa putus. Cek Actions.')"
+        run: python -c "from kpai import telegram; telegram.kirim_pesan('Video sudah diproses, tapi riwayat gagal disimpan. Cek Actions.')"
 
       - name: Simpan video sebagai artifact
         if: always()
@@ -103,5 +117,6 @@ jobs:
             output/**/*.mp4
             output/**/*.txt
             output/**/naskah.json
+            output/**/laporan.json
           retention-days: 7
           if-no-files-found: ignore

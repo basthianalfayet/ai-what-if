@@ -33,6 +33,33 @@ def laporan_selesai(hasil_naskah, catatan_gambar: list) -> str:
     )
 
 
+def laporan_video(catatan: dict) -> str:
+    naskah = catatan.get("naskah") or {}
+    kualitas = catatan.get("kualitas") or {}
+    unggah = catatan.get("upload") or {}
+    baris = [
+        f"Run {catatan.get('run_id', '-')}",
+        f"Slot: {catatan.get('slot', '-')} {catatan.get('waktu', '')}".strip(),
+        f"Status: {catatan.get('status', '-')}",
+        f"Topik: {catatan.get('topik', '-')}",
+        f"Naskah: {naskah.get('provider', '-')} {naskah.get('model', '')}".strip(),
+    ]
+    if naskah.get("alasan"):
+        baris.append(f"Fallback: {naskah['alasan']}")
+    if catatan.get("retry"):
+        baris.append(f"Retry: {catatan['retry']}")
+    baris.append(f"Gambar: {catatan.get('gambar', '-')}")
+    baris.append(f"Suara: {catatan.get('suara', '-')}")
+    baris.append(f"Render: {catatan.get('render', '-')}")
+    baris.append(f"Kualitas: {'PASS' if kualitas.get('lolos') else 'REVIEW'} {'; '.join(kualitas.get('masalah') or [])}".strip())
+    baris.append(f"Upload: {unggah.get('status', '-')} {unggah.get('video_id', '')}".strip())
+    if catatan.get("folder"):
+        baris.append(f"Output: {catatan['folder']}")
+    if catatan.get("alasan"):
+        baris.append(f"Catatan: {catatan['alasan']}")
+    return "\n".join(baris)
+
+
 def laporan_needs_review(hasil_naskah, alasan: str, peringatan: list[str]) -> str:
     teks = _baris_teks(hasil_naskah) if hasil_naskah is not None else "belum ada"
     ekstra = ""

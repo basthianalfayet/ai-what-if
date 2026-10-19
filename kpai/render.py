@@ -30,16 +30,28 @@ KARTU = (248, 249, 252)
 KUNCI_GAMBAR = {"hook": "hook", "prompt": "kerja", "hasil": "kerja", "trik": "trik", "penutup": "penutup"}
 
 _FONT_WINDOWS = {"ExtraBold": "segoeuib.ttf", "Bold": "segoeuib.ttf", "SemiBold": "seguisb.ttf"}
+_FONT_LINUX = (
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+    "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+)
 
 
 @lru_cache(maxsize=None)
 def font(bobot: str, ukuran: int) -> ImageFont.FreeTypeFont:
     if config.FONT_FILE.exists():
         f = ImageFont.truetype(str(config.FONT_FILE), ukuran)
-        f.set_variation_by_name(bobot)
+        try:
+            f.set_variation_by_name(bobot)
+        except (OSError, AttributeError):
+            pass
         return f
     p = Path(os.environ.get("WINDIR", r"C:\Windows")) / "Fonts" / _FONT_WINDOWS.get(bobot, "segoeui.ttf")
-    return ImageFont.truetype(str(p), ukuran) if p.exists() else ImageFont.load_default(ukuran)
+    if p.exists():
+        return ImageFont.truetype(str(p), ukuran)
+    for cadangan in _FONT_LINUX:
+        if Path(cadangan).exists():
+            return ImageFont.truetype(cadangan, ukuran)
+    return ImageFont.load_default(ukuran)
 
 
 def _klem(x: float) -> float:
@@ -171,6 +183,7 @@ def potong_subtitle(kata) -> list[list[int]]:
 class Renderer:
     def __init__(self, naskah, kategori, channel, gambar, indeks_tema, adegan, label_berikut):
         self.n = naskah
+        self.whatif = bool(getattr(naskah, "adegan", None))
         self.kategori = kategori.upper()
         self.channel = channel
         self.t = TEMA[indeks_tema % len(TEMA)]
@@ -178,6 +191,12 @@ class Renderer:
         self.total = adegan[-1].mulai + adegan[-1].panjang
         self.label_berikut = label_berikut.upper()
         self._putih = Image.new("RGB", (W, H), PUTIH)
+        self.kunci_gambar = {}
+        for a in adegan:
+            if a.nama in gambar:
+                self.kunci_gambar[a.nama] = a.nama
+            else:
+                self.kunci_gambar[a.nama] = KUNCI_GAMBAR.get(a.nama, a.nama)
 
         self.latar = {k: self._siapkan_latar(img) for k, img in gambar.items()}
         rnd = random.Random(indeks_tema)
@@ -188,15 +207,19 @@ class Renderer:
 
         self.span = {}
         for a in adegan:
-            k = KUNCI_GAMBAR[a.nama]
+            k = self.kunci_gambar[a.nama]
             s0, s1 = self.span.get(k, (a.mulai, a.mulai + a.panjang))
             self.span[k] = (min(s0, a.mulai), max(s1, a.mulai + a.panjang))
 
         self.potongan = {a.nama: potong_subtitle(a.kata) for a in adegan}
         self.transisi = []
         for i, a in enumerate(adegan[1:], start=1):
-            ganti_gambar = KUNCI_GAMBAR[a.nama] != KUNCI_GAMBAR[adegan[i - 1].nama]
-            self.transisi.append((a.mulai, "whoosh" if ganti_gambar else "pop"))
+            ganti_gambar = self.kunci_gambar[a.nama] != self.kunci_gambar[adegan[i - 1].nama]
+            if self.whatif:
+                jenis = "whoosh" if i == 1 else "pop"
+            else:
+                jenis = "whoosh" if ganti_gambar else "pop"
+            self.transisi.append((a.mulai, jenis))
 
         self._siapkan_tata_letak()
 
@@ -219,25 +242,39 @@ class Renderer:
 
     def _siapkan_tata_letak(self):
         n = self.n
-        f, baris, tb = pas(n.hook, "ExtraBold", LEBAR_KARTU, 760, 110, 60, spasi=1.12)
+        teks_hook = n.hook
+        if self.whatif:
+            for scene in n.adegan:
+                if scene.id == "hook":
+                    teks_hook = scene.narasi
+                    break
+        self.hook_layout = self._layout_hook(teks_hook)
+        if not self.whatif:
+            self.prompt_layout = pas(n.prompt, "Medium", LEBAR_KARTU - 80, 700, 46, 28, spasi=1.32)
+            self.hasil_layout = pas(n.hasil, "Regular", LEBAR_KARTU - 80, 560, 44, 26, spasi=1.3)
+            self.trik_layout = pas(f"\u201c{n.trik}\u201d", "Bold", LEBAR_KARTU - 120, 380, 56, 32, spasi=1.22)
+            self.besok_layout = pas(n.topik_besok, "ExtraBold", LEBAR_KARTU - 80, 260, 64, 38, spasi=1.15)
+            f_mini = font("Medium", 30)
+            mini = bungkus(n.prompt.replace("\n", " "), f_mini, LEBAR_KARTU - 140 - 56)
+            if len(mini) > 2:
+                mini = [mini[0], mini[1].rstrip(" .,") + "..."]
+            self.prompt_mini = mini
+            return
+        self.layar = {
+            scene.id: pas(scene.judul_layar, "ExtraBold", LEBAR_KARTU - 80, 220, 60, 32, spasi=1.12)
+            for scene in n.adegan
+        }
+        self.tanya_layout = pas(n.pertanyaan_komentar, "Bold", LEBAR_KARTU - 100, 240, 42, 26, spasi=1.18)
+
+    def _layout_hook(self, teks):
+        f, baris, tb = pas(teks, "ExtraBold", LEBAR_KARTU, 640, 92, 42, spasi=1.12)
         posisi = []
         for i, b in enumerate(baris):
             x = M
             for kata in b.split():
                 posisi.append((kata, x, i * tb))
                 x += f.getlength(kata + " ")
-        self.hook_layout = (f, posisi, len(baris) * tb)
-
-        self.prompt_layout = pas(n.prompt, "Medium", LEBAR_KARTU - 80, 700, 46, 28, spasi=1.32)
-        self.hasil_layout = pas(n.hasil, "Regular", LEBAR_KARTU - 80, 560, 44, 26, spasi=1.3)
-        self.trik_layout = pas(f"\u201c{n.trik}\u201d", "Bold", LEBAR_KARTU - 120, 380, 56, 32, spasi=1.22)
-        self.besok_layout = pas(n.topik_besok, "ExtraBold", LEBAR_KARTU - 80, 260, 64, 38, spasi=1.15)
-
-        f_mini = font("Medium", 30)
-        mini = bungkus(n.prompt.replace("\n", " "), f_mini, LEBAR_KARTU - 140 - 56)
-        if len(mini) > 2:
-            mini = [mini[0], mini[1].rstrip(" .,") + "..."]
-        self.prompt_mini = mini
+        return f, posisi, len(baris) * tb
 
     def adegan_pada(self, t):
         for i in range(len(self.adegan) - 1, -1, -1):
@@ -248,15 +285,18 @@ class Renderer:
     def frame(self, t: float) -> Image.Image:
         i, a = self.adegan_pada(t)
         tl = t - a.mulai
-        kunci = KUNCI_GAMBAR[a.nama]
-        gambar_baru = i == 0 or KUNCI_GAMBAR[self.adegan[i - 1].nama] != kunci
+        kunci = self.kunci_gambar[a.nama]
+        gambar_baru = i == 0 or self.kunci_gambar[self.adegan[i - 1].nama] != kunci
         punch = 0.08 * (1 - ease(tl / 0.35)) if gambar_baru and tl < 0.35 else 0.0
-        flash = 0.35 * (1 - tl / 0.16) if gambar_baru and i > 0 and tl < 0.16 else 0.0
+        flash = 0.0 if self.whatif else (0.35 * (1 - tl / 0.16) if gambar_baru and i > 0 and tl < 0.16 else 0.0)
 
         img = self._latar(kunci, t, punch)
         d = ImageDraw.Draw(img)
         self._kepala(d)
-        getattr(self, f"_{a.nama}")(img, d, a, tl)
+        if self.whatif:
+            self._whatif(img, d, a, tl)
+        else:
+            getattr(self, f"_{a.nama}")(img, d, a, tl)
         if a.nama != "hook":
             self._subtitle(d, a, tl)
         d.rectangle((0, 0, int(W * t / self.total), 9), fill=self.t["aksen"])
@@ -278,8 +318,36 @@ class Renderer:
         return src.resize((W, H), Image.BILINEAR, box=(cx - cw / 2, cy - ch / 2, cx + cw / 2, cy + ch / 2))
 
     def _kepala(self, d):
-        d.text((M, 92), self.channel, font=font("ExtraBold", 40), fill=PUTIH)
+        d.text((M, 92), self.channel, font=font("ExtraBold", 36), fill=PUTIH)
         pil(d, M, 148, self.kategori, font("Bold", 24), self.t["aksen"], TINTA, pad_x=20, pad_y=10)
+        if self.whatif:
+            f = font("Bold", 22)
+            teks = "SKENARIO FIKSI"
+            w, _h = ukuran_pil(teks, f, 16, 8)
+            pil(d, W - M - w, 148, teks, f, (20, 24, 33), PUTIH, 16, 8)
+
+    def _whatif(self, img, d, a, tl):
+        if a.nama == "hook":
+            self._hook(img, d, a, tl)
+            return
+        if a.nama == "penutup":
+            self._kartu_singkat(img, tl, self.tanya_layout, "MENURUTMU")
+            return
+        layout = self.layar.get(a.nama)
+        if layout:
+            self._kartu_singkat(img, tl, layout, "YANG TERJADI" if a.nama == "awal" else "KONSEKUENSINYA")
+
+    def _kartu_singkat(self, img, tl, layout, label):
+        e = ease(tl / 0.4)
+        f, baris, tb = layout
+        tinggi = 88 + len(baris) * tb + 36
+        lay = lapisan(LEBAR_KARTU, tinggi)
+        ld = ImageDraw.Draw(lay)
+        ld.rounded_rectangle((0, 0, lay.width - 1, lay.height - 1), radius=28, fill=(12, 15, 24, 214))
+        ld.text((36, 28), label, font=font("Bold", 24), fill=self.t["aksen"])
+        for i, b in enumerate(baris):
+            ld.text((36, 78 + i * tb), b, font=f, fill=PUTIH)
+        self._kartu(img, lay, 430, e)
 
     def _kartu(self, img, lay, y_akhir, e, radius=34):
         y = y_akhir + (1 - e) * 140

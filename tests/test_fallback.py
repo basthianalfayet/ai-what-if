@@ -15,8 +15,8 @@ from kpai.script_gen import _masalah, buat_naskah
 from kpai.template_naskah import TOPIK, template_lokal
 
 
-KAT = ("Excel & Data", "rumus")
-BESOK = ("Email & Chat Kerja", "email")
+KAT = ("Luar Angkasa", "skenario luar angkasa")
+BESOK = ("Fisika", "skenario fisika")
 
 
 class Respon:
@@ -78,6 +78,7 @@ class TestKlasifikasi(unittest.TestCase):
         self.assertEqual(klasifikasi_http("Gemini", 404, "model not found").jenis, Jenis.MODEL_UNAVAILABLE)
         self.assertEqual(klasifikasi_http("Gemini", 408, "request timeout").jenis, Jenis.TIMEOUT)
         self.assertEqual(klasifikasi_http("Cloudflare", 400, "daily free allocation exceeded").jenis, Jenis.QUOTA)
+        self.assertEqual(klasifikasi_http("Gemini", 403, "You must enable billing on this project").jenis, Jenis.BILLING)
 
     def test_redaksi_tidak_menyimpan_kunci(self):
         with patch.object(config, "GROQ_API_KEY", "rahasia-groq-123456"):
@@ -95,6 +96,11 @@ class TestTeks(unittest.TestCase):
             patch.object(config, "TEXT_FALLBACK_ENABLED", True),
             patch.object(config, "GROQ_API_KEY", ""),
             patch.object(config, "GROQ_MODEL", "llama-3.3-70b-versatile"),
+            patch.object(config, "COOLDOWN_FILE", Path(tempfile.mkdtemp()) / "cooldown.json"),
+            patch.object(config, "PROVIDER_MODE", "free_safe"),
+            patch.object(config, "SCRIPT_PROVIDER", "gemini"),
+            patch.object(config, "SCRIPT_FALLBACK_PROVIDER", "groq"),
+            patch.object(config, "SCRIPT_LOCAL_FALLBACK", True),
         ]
         for item in self.patches:
             item.start()
@@ -141,18 +147,17 @@ class TestTeks(unittest.TestCase):
 
     def test_caption_mengikuti_isi_video(self):
         naskah = naskah_valid()
-        caption = caption_menarik(naskah, "Excel & Data")
+        caption = caption_menarik(naskah, "Luar Angkasa")
         self.assertIn(naskah.hook, caption)
-        self.assertIn(naskah.trik, caption)
-        self.assertIn("📊", caption)
-        judul = judul_youtube(naskah, "Excel & Data")
-        deskripsi = deskripsi_youtube(naskah, "Excel & Data")
+        self.assertIn(naskah.pertanyaan_komentar, caption)
+        judul = judul_youtube(naskah, "Luar Angkasa")
+        deskripsi = deskripsi_youtube(naskah, "Luar Angkasa")
         self.assertLessEqual(len(judul), 100)
-        self.assertTrue(judul.startswith("📊"))
         self.assertIn(naskah.hook, deskripsi)
-        self.assertIn(naskah.prompt, deskripsi)
-        self.assertIn("#Shorts", tagar_youtube("Excel & Data"))
-        self.assertIn("#Excel", tagar_youtube("Excel & Data"))
+        self.assertIn(naskah.penjelasan_ilmiah, deskripsi)
+        self.assertIn("bantuan AI", deskripsi)
+        self.assertIn("#Shorts", tagar_youtube("Luar Angkasa"))
+        self.assertNotIn("tiktok", deskripsi.lower())
 
 
 class TestGambar(unittest.TestCase):
@@ -167,6 +172,15 @@ class TestGambar(unittest.TestCase):
             patch.object(config, "FAL_KEY", ""),
             patch.object(config, "FAL_MODEL", "fal-ai/flux/schnell"),
             patch.object(config, "IMAGE_FALLBACK_MAX_COST_USD_PER_JOB", ""),
+            patch.object(config, "PROVIDER_MODE", "free_safe"),
+            patch.object(config, "FREE_ONLY", True),
+            patch.object(config, "PAID_FALLBACK_ENABLED", False),
+            patch.object(config, "HORDE_ENABLED", False),
+            patch.object(config, "IMAGE_LOCAL_FALLBACK", True),
+            patch.object(config, "IMAGE_DAILY_MAX", 20),
+            patch.object(config, "KUOTA_FILE", Path(tempfile.mkdtemp()) / "kuota.json"),
+            patch.object(config, "COOLDOWN_FILE", Path(tempfile.mkdtemp()) / "cooldown.json"),
+            patch.object(config, "CACHE_DIR", Path(tempfile.mkdtemp()) / "cache"),
         ]
         for item in self.patches:
             item.start()
@@ -197,6 +211,10 @@ class TestGambar(unittest.TestCase):
         self.assertIn("IMAGE_FALLBACK_ENABLED=false", str(ctx.exception) + " ".join(ctx.exception.peringatan))
 
     def test_fallback_berbayar_hanya_saat_aktif_dan_biaya_cukup(self):
+        config.FREE_ONLY = False
+        config.PAID_FALLBACK_ENABLED = True
+        config.PROVIDER_MODE = "auto_fallback"
+
         def jalan(aktif, batas):
             config.IMAGE_FALLBACK_ENABLED = aktif
             config.FAL_KEY = "fal-uji"
@@ -233,6 +251,8 @@ class TestGambar(unittest.TestCase):
             self.assertGreater(hasil.gambar[kunci].width, 64)
 
     def test_kuota_cloudflare_habis_pindah_ke_horde(self):
+        config.PROVIDER_MODE = "auto_fallback"
+        config.HORDE_ENABLED = True
         url = []
 
         def pengirim(alamat, **_k):
@@ -257,6 +277,8 @@ class TestGambar(unittest.TestCase):
         self.assertIn("Kuota harian Cloudflare habis", hasil.peringatan)
 
     def test_horde_disensor_tidak_dipakai(self):
+        config.PROVIDER_MODE = "auto_fallback"
+        config.HORDE_ENABLED = True
         nomor = []
 
         def pengirim(alamat, **_k):
@@ -278,6 +300,9 @@ class TestGambar(unittest.TestCase):
 
     def test_semua_provider_gagal_tanpa_gradien(self):
         self.assertFalse(hasattr(__import__("kpai.images", fromlist=["images"]), "_cadangan"))
+        config.FREE_ONLY = False
+        config.PAID_FALLBACK_ENABLED = True
+        config.PROVIDER_MODE = "auto_fallback"
 
         def pengirim(alamat, **_k):
             self.assertNotIn("pollinations", alamat)

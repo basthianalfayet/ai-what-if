@@ -9,127 +9,161 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from . import config
 from .errors import Jenis, dari_response, klasifikasi_exception
+from .mode import cooldown_kuota, dalam_cooldown, fallback_naskah_lokal, boleh_naskah_api, catat_cooldown, mode
+from .topik import mirip_dengan_daftar
+
+
+class AdeganNaskah(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
+    id: str = Field(description="hook, awal, puncak, atau penutup")
+    narasi: str = Field(description="Teks yang dibacakan, bahasa Indonesia")
+    visual: str = Field(description="Deskripsi visual bahasa Indonesia untuk editor")
+    prompt_gambar: str = Field(description="Prompt gambar bahasa Inggris, konkret, tanpa teks")
+    subtitle: str = Field(description="Sama dengan narasi, karena subtitle mengikuti audio")
+    judul_layar: str = Field(description="Teks pendek di layar, maksimal 8 kata")
+    sfx: str = Field(default="whoosh", description="whoosh, pop, atau none")
 
 
 class Naskah(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
-    topik: str = Field(description="Masalah kerja spesifik yang dibahas, maksimal 8 kata")
-    judul: str = Field(description="Judul YouTube Shorts, maksimal 60 karakter, tanpa hashtag dan emoji")
-    deskripsi: str = Field(description="Deskripsi video 2-3 kalimat")
-    tags: list[str] = Field(description="5-8 tag pencarian, huruf kecil")
-    hook: str = Field(description="Kalimat pembuka, maksimal 14 kata, langsung menyebut masalahnya")
-    narasi_prompt: str = Field(description="1-2 kalimat narasi saat prompt ditampilkan, jangan membacakan prompt kata per kata")
-    prompt: str = Field(description="Prompt lengkap yang bisa langsung dicontek, 150-380 karakter, pakai [placeholder] untuk data penonton")
-    narasi_hasil: str = Field(description="1-3 kalimat narasi saat hasil AI ditampilkan")
-    hasil: str = Field(description="Contoh jawaban AI yang realistis, maksimal 450 karakter, boleh baris baru dan '- ' untuk poin, tanpa markdown")
-    narasi_trik: str = Field(description="1-2 kalimat narasi tentang trik tambahan")
-    trik: str = Field(description="Satu kalimat tambahan untuk ditempel di akhir prompt, maksimal 120 karakter")
-    topik_besok: str = Field(description="Topik video berikutnya dalam kategori berikutnya, maksimal 8 kata")
-    penutup: str = Field(description="1-2 kalimat penutup: ajak simpan video dan sebut topik video berikutnya")
-    gambar_hook: str = Field(description="English image prompt for the hook scene: a person in the problem situation, emotional, cinematic")
-    gambar_kerja: str = Field(description="English image prompt for the working scene: close-up of hands, laptop or phone, workspace, no readable screen text")
-    gambar_trik: str = Field(description="English image prompt for the tip scene: a relieved or confident person, bright mood")
-    gambar_penutup: str = Field(description="English image prompt for the closing scene, related to the next video topic")
+    id_video: str = ""
+    topik: str
+    kategori: str = ""
+    inti: str = ""
+    judul_kerja: str
+    hook: str
+    adegan: list[AdeganNaskah]
+    penjelasan_ilmiah: str
+    batas_ketidakpastian: str
+    ending: str
+    pertanyaan_komentar: str
+    judul_youtube: str
+    deskripsi_youtube: str
+    hashtag: list[str] = Field(default_factory=list)
+    referensi: list[str] = Field(default_factory=list)
+    pengungkapan_sintetis: bool = True
+    perlu_tinjauan: bool = False
+    topik_berikut: str = ""
 
 
 GAYA_HOOK = [
-    "pertanyaan tentang situasi kerja yang sangat relatable",
-    "sebut waktu yang bisa dihemat, misalnya 'dari 1 jam jadi 2 menit'",
-    "sebut kesalahan yang sering dilakukan orang",
-    "mulai dengan 'Berhenti ...' lalu tawarkan cara yang lebih cepat",
-    "gambarkan momen panik yang spesifik, misalnya deadline jam 4 sore",
+    "pertanyaan langsung yang selesai dalam satu napas",
+    "akibat yang terasa dalam beberapa detik pertama",
+    "kontras antara yang orang kira terjadi dan yang lebih pelan",
 ]
 
-NARASI_FIELDS = ["hook", "narasi_prompt", "narasi_hasil", "narasi_trik", "penutup"]
-
 _NON_BMP = re.compile(r"[\U00010000-\U0010FFFF\u2600-\u27BF\uFE0F]")
+_URUTAN = config.URUTAN_ADEGAN
 
 
 def _bersihkan(teks: str) -> str:
-    teks = _NON_BMP.sub("", teks)
+    teks = _NON_BMP.sub("", teks or "")
     teks = teks.replace("**", "").replace("__", "")
     teks = re.sub(r"^\s*#+\s*", "", teks, flags=re.M)
-    teks = re.sub(r"^\s*[*•]\s+", "- ", teks, flags=re.M)
     return teks.strip()
 
 
 def rapikan(n: Naskah) -> Naskah:
-    data = {k: (_bersihkan(v) if isinstance(v, str) else v) for k, v in n.model_dump().items()}
-    data["tags"] = [_bersihkan(t).lower() for t in n.tags if t.strip()][:8]
-    data["hasil"] = re.sub(r"\s+-\s+(?=[A-Z0-9])", "\n- ", data["hasil"])
-    data["hasil"] = re.sub(r"\s+(?=\d+\.\s+[A-Z])", "\n", data["hasil"])
+    data = n.model_dump()
+    for kunci, nilai in list(data.items()):
+        if isinstance(nilai, str):
+            data[kunci] = _bersihkan(nilai)
+    adegan = []
+    for urut, item in zip(_URUTAN, data.get("adegan") or []):
+        if len(adegan) >= len(_URUTAN):
+            break
+        item = dict(item)
+        item["id"] = urut
+        for kunci in ("narasi", "visual", "prompt_gambar", "subtitle", "judul_layar", "sfx"):
+            item[kunci] = _bersihkan(str(item.get(kunci) or ""))
+        if not item["subtitle"]:
+            item["subtitle"] = item["narasi"]
+        if not item["judul_layar"]:
+            item["judul_layar"] = " ".join(item["narasi"].split()[:6])
+        if item["sfx"] not in ("whoosh", "pop", "none"):
+            item["sfx"] = "pop"
+        adegan.append(item)
+    data["adegan"] = adegan
+    data["hashtag"] = [_bersihkan(t).lstrip("#").lower() for t in data.get("hashtag") or [] if str(t).strip()][:8]
+    data["referensi"] = [_bersihkan(t) for t in data.get("referensi") or [] if str(t).strip()][:6]
+    if not data.get("inti"):
+        data["inti"] = data.get("topik") or ""
+    if not data.get("pengungkapan_sintetis"):
+        data["pengungkapan_sintetis"] = True
     return Naskah(**data)
 
 
 def jumlah_kata_narasi(n: Naskah) -> int:
-    return sum(len(getattr(n, f).split()) for f in NARASI_FIELDS)
+    return sum(len(a.narasi.split()) for a in n.adegan)
 
 
-def _masalah(n: Naskah, label_berikut: str) -> list[str]:
+def _masalah(n: Naskah, label_berikut: str = "") -> list[str]:
+    del label_berikut
     masalah = []
     kata = jumlah_kata_narasi(n)
-    if not 80 <= kata <= 135:
-        masalah.append(f"total narasi {kata} kata, harus 80-135 kata")
-    if len(n.prompt) > 450:
-        masalah.append(f"prompt {len(n.prompt)} karakter, maksimal 380")
-    if len(n.hasil) > 560:
-        masalah.append(f"hasil {len(n.hasil)} karakter, maksimal 450")
-    if len(n.trik) > 160:
-        masalah.append(f"trik {len(n.trik)} karakter, maksimal 120")
-    if label_berikut.split()[-1] not in n.penutup.lower():
-        masalah.append(f"penutup harus menyebut '{label_berikut}' dan topik video berikutnya")
-    gambar = [n.gambar_hook, n.gambar_kerja, n.gambar_trik, n.gambar_penutup]
-    if any(len(g.split()) < 5 for g in gambar):
-        masalah.append("setiap prompt gambar minimal 5 kata bahasa Inggris")
+    if not 90 <= kata <= 155:
+        masalah.append(f"total narasi {kata} kata, harus 90-155 kata")
+    if [a.id for a in n.adegan] != list(_URUTAN):
+        masalah.append("adegan harus hook, awal, puncak, lalu penutup")
+    if not 8 <= len(n.hook.split()) <= 28:
+        masalah.append("hook 8-28 kata")
+    if len(n.judul_youtube) > 100:
+        masalah.append("judul YouTube maksimal 100 karakter")
+    if len(n.penjelasan_ilmiah.split()) < 12 or len(n.batas_ketidakpastian.split()) < 12:
+        masalah.append("penjelasan ilmiah dan batas ketidakpastian masing-masing minimal 12 kata")
+    if len(n.ending.split()) < 8 or len(n.pertanyaan_komentar.split()) < 6:
+        masalah.append("ending dan pertanyaan komentar terlalu pendek")
+    for adegan in n.adegan:
+        if len(adegan.narasi.split()) < 12:
+            masalah.append(f"narasi {adegan.id} minimal 12 kata")
+        if len(adegan.prompt_gambar.split()) < 5:
+            masalah.append(f"prompt gambar {adegan.id} minimal 5 kata bahasa Inggris")
+        if len(adegan.judul_layar.split()) > 10:
+            masalah.append(f"judul layar {adegan.id} maksimal 10 kata")
     return masalah
 
 
 def _instruksi(kategori, kategori_besok, label_berikut, topik, hindari, rekap_minggu) -> str:
+    del label_berikut, rekap_minggu
     nama_kat, cakupan = kategori
-    nama_besok, cakupan_besok = kategori_besok
+    nama_besok, _cakupan_besok = kategori_besok
     topik_baris = (
-        f"Topik video ini SUDAH DITENTUKAN (sudah dijanjikan di video sebelumnya): {topik}"
+        f"Topik video ini SUDAH DITENTUKAN: {topik}. Jangan mengganti inti ceritanya."
         if topik
-        else "Pilih sendiri satu masalah kerja yang sempit, spesifik, dan sering dialami orang Indonesia. Jangan tips umum."
+        else "Pilih sendiri satu skenario what-if yang sempit, visual, dan belum jenuh. Jangan tips umum."
     )
     hindari_baris = "\n".join(f"- {t}" for t in hindari) or "- (belum ada)"
-    rekap_baris = ""
-    if rekap_minggu:
-        rekap_baris = "Video minggu ini (boleh dirujuk untuk rekap):\n" + "\n".join(f"- {t}" for t in rekap_minggu) + "\n"
+    return f"""Kamu penulis naskah YouTube Shorts untuk channel "{config.CHANNEL_NAME}".
+Bahasa Indonesia yang alami. Setiap video menjawab satu pertanyaan "bagaimana jika" tentang sains, alam, tubuh, hewan, teknologi, atau masa depan.
+Ini skenario fiksi. Bedakan mekanisme yang didukung pengetahuan umum dari bagian yang hanya spekulasi. Jangan menyajikan fiksi sebagai kejadian nyata.
+Jangan menyalin naskah kreator lain. Jangan mengarang statistik, tahun, atau kutipan.
 
-    return f"""Kamu penulis naskah untuk channel YouTube Shorts dan TikTok bernama "{config.CHANNEL_NAME}".
-Channel ini mengajarkan cara memakai AI (ChatGPT, Gemini, atau sejenisnya) untuk pekerjaan sehari-hari orang Indonesia.
-Setiap video membahas SATU masalah kerja dan memberi SATU prompt yang bisa langsung dicontek.
-
-Kategori video ini: {nama_kat} ({cakupan}).
+Kategori: {nama_kat} ({cakupan}).
 {topik_baris}
 Gaya hook: {random.choice(GAYA_HOOK)}.
-
-Jangan ulangi topik yang sudah pernah dibuat:
+Jangan mengulang inti cerita berikut:
 {hindari_baris}
-{rekap_baris}
-Video berikutnya tayang {label_berikut}, kategori {nama_besok} ({cakupan_besok}).
-Isi topik_besok dengan topik spesifik dari kategori itu, dan di penutup sebut "{label_berikut}" beserta topiknya.
+Kategori slot berikutnya hanya sebagai pengingat keragaman, bukan untuk disebut di narasi: {nama_besok}.
 
-Setiap adegan memakai gambar latar buatan AI. Tulis prompt gambarnya dalam bahasa Inggris (gambar_hook, gambar_kerja,
-gambar_trik, gambar_penutup): deskripsi visual yang konkret, orang Indonesia di kantor/rumah/toko sesuai topik,
-tanpa tulisan atau layar yang bisa dibaca. Jangan sebut merek atau tokoh nyata.
-
-Struktur video (35-50 detik):
-1. hook: kalimat yang berhentiin scroll. Sebut situasi kerja yang spesifik dan menyebalkan, maksimal 14 kata. Boleh pertanyaan. Jangan sapaan, jangan "halo", jangan basa-basi.
-2. narasi_prompt: arahkan penonton ke prompt di layar.
-3. narasi_hasil: jelaskan apa yang didapat dari AI.
-4. narasi_trik: satu trik kecil yang membuat hasilnya lebih bagus.
-5. penutup: ajak simpan video dan sebut topik video berikutnya.
+Struktur tepat 4 adegan, id berurutan hook, awal, puncak, penutup:
+1. hook: pertanyaan yang berhentiin scroll dalam 1-2 detik, lalu satu fakta waktu atau skala.
+2. awal: akibat pertama yang masuk akal.
+3. puncak: akibat yang berkembang. Sebut bagian yang tidak pasti.
+4. penutup: payoff yang memuaskan, ingatkan bahwa ini skenario, lalu pertanyaan komentar.
 
 Aturan:
-- Bahasa Indonesia santai tapi jelas, sapa penonton dengan "kamu".
-- Total narasi (hook + narasi_prompt + narasi_hasil + narasi_trik + penutup) 90-125 kata.
-- Narasi akan dibacakan suara AI, jadi tulis angka dan singkatan yang mudah diucapkan.
-- Prompt harus benar-benar berguna dan spesifik: peran, tugas, format keluaran, batasan.
-- Hasil adalah contoh jawaban AI yang realistis dan singkat, bukan janji.
-- Tanpa emoji, tanpa markdown, tanpa hashtag, tanpa klaim statistik yang dikarang.
+- Total narasi 100-140 kata. Tiap narasi minimal 12 kata.
+- subtitle tiap adegan sama dengan narasinya.
+- judul_layar maksimal 8 kata, tanpa emoji.
+- prompt_gambar bahasa Inggris, visual sinematik, tanpa tulisan, tanpa merek, tanpa tokoh nyata.
+- penjelasan_ilmiah hanya memuat hal yang kamu yakini sebagai pengetahuan umum.
+- batas_ketidakpastian menyebut apa yang tidak boleh dianggap pasti.
+- judul_youtube maksimal 90 karakter, tanpa janji yang tidak ada di narasi, tanpa emoji.
+- hashtag 5 sampai 8, huruf kecil, tanpa tanda pagar.
+- pengungkapan_sintetis harus true.
+- inti berisi 2-4 kata kunci unik cerita, misalnya "matahari hilang".
 - Jangan sebut nama channel di hook.
 """
 
@@ -143,27 +177,41 @@ class HasilNaskah:
     alasan: str | None = None
     peringatan: str | None = None
     konfigurasi: list[str] = field(default_factory=list)
+    percobaan: int = 0
+    ditolak: bool = False
 
 
 def _baca_json(teks: str) -> Naskah:
-    mentah = teks.strip()
+    mentah = (teks or "").strip()
+    if not mentah:
+        raise ValueError("respons kosong")
     if mentah.startswith("```"):
         mentah = re.sub(r"^```(?:json)?", "", mentah).strip()
         mentah = re.sub(r"```$", "", mentah).strip()
     return rapikan(Naskah.model_validate_json(mentah))
 
 
-def _gemini(klien, instruksi, catatan, topik, label_berikut, tidur) -> tuple[Naskah | None, str, list[str], str | None]:
+def _mirip(naskah: Naskah, hindari) -> str:
+    return mirip_dengan_daftar(naskah.topik, naskah.inti, list(hindari or []))
+
+
+def _gemini(klien, instruksi, topik, label_berikut, hindari, tidur) -> tuple[Naskah | None, str, list[str], str | None, int]:
     from google.genai import types
 
+    if dalam_cooldown("gemini"):
+        print("  Gemini sedang cooldown, tidak dipanggil.")
+        return None, "cooldown", [], None, 0
     daftar_model = list(dict.fromkeys([config.GEMINI_MODEL, *config.GEMINI_MODEL_CADANGAN]))
     terakhir, masalah_terakhir = None, ""
     sudah_menunggu = False
     notifikasi = []
     alasan = "gagal"
+    percobaan = 0
+    catatan = ""
 
     for model in daftar_model:
-        for _percobaan in range(2):
+        for _giliran in range(config.MAX_RETRY):
+            percobaan += 1
             try:
                 resp = klien.models.generate_content(
                     model=model,
@@ -174,13 +222,19 @@ def _gemini(klien, instruksi, catatan, topik, label_berikut, tidur) -> tuple[Nas
                         temperature=0.9,
                     ),
                 )
-                naskah = resp.parsed if isinstance(resp.parsed, Naskah) else _baca_json(resp.text)
+                if isinstance(resp.parsed, Naskah):
+                    naskah = rapikan(resp.parsed)
+                else:
+                    naskah = _baca_json(getattr(resp, "text", "") or "")
                 if topik:
                     naskah.topik = topik
                 masalah = _masalah(naskah, label_berikut)
+                bentrok = "" if topik else _mirip(naskah, hindari)
+                if bentrok:
+                    masalah.append(f"terlalu mirip dengan {bentrok}")
                 if not masalah:
                     print(f"  Model: {model}")
-                    return naskah, "", notifikasi, None
+                    return naskah, "", notifikasi, None, percobaan
                 print(f"  Naskah dari {model} belum pas: {'; '.join(masalah)}")
                 catatan = "\n\nPerbaiki dari percobaan sebelumnya: " + "; ".join(masalah) + "."
                 terakhir, masalah_terakhir = naskah, "; ".join(masalah)
@@ -189,42 +243,52 @@ def _gemini(klien, instruksi, catatan, topik, label_berikut, tidur) -> tuple[Nas
                 print(f"  Gemini {model} gagal ({salah.jenis.value}): {salah.pesan}")
                 if salah.jenis == Jenis.INVALID_KEY:
                     notifikasi.append("Konfigurasi Gemini tidak valid. Periksa GEMINI_API_KEY. Provider ini tidak dicoba lagi.")
-                    return None, "API key invalid", notifikasi, None
-                if salah.jenis == Jenis.QUOTA:
-                    print("  Kuota Gemini habis, pindah tanpa mengulang model Gemini yang lain.")
-                    return None, "quota limit", notifikasi, None
+                    catat_cooldown("gemini", 24)
+                    return None, "API key invalid", notifikasi, None, percobaan
+                if salah.jenis in (Jenis.QUOTA, Jenis.BILLING):
+                    print("  Kuota atau billing Gemini habis, pindah tanpa mengulang model lain.")
+                    cooldown_kuota("gemini")
+                    alasan = "quota limit" if salah.jenis == Jenis.QUOTA else "billing"
+                    return None, alasan, notifikasi, None, percobaan
                 if salah.jenis == Jenis.RATE_LIMIT and not sudah_menunggu:
-                    jeda = min(salah.retry_after or 3, 60)
+                    from .errors import jeda_sementara
+                    jeda = min(salah.retry_after or jeda_sementara(0), 60)
                     print(f"  Gemini rate limit sementara, menunggu {jeda:.0f} detik.")
                     tidur(jeda)
                     sudah_menunggu = True
                     continue
                 if salah.jenis == Jenis.RATE_LIMIT:
-                    return None, "rate limit", notifikasi, None
+                    catat_cooldown("gemini", 0.25)
+                    return None, "rate limit", notifikasi, None, percobaan
                 alasan = salah.jenis.value.replace("_", " ")
                 if salah.jenis == Jenis.MODEL_UNAVAILABLE:
                     break
-                if salah.jenis in (Jenis.SERVER, Jenis.TIMEOUT):
-                    tidur(2)
-                    break
+                if salah.jenis in (Jenis.SERVER, Jenis.TIMEOUT, Jenis.BAD_RESPONSE) and _giliran + 1 < config.MAX_RETRY:
+                    from .errors import jeda_sementara
+                    tidur(jeda_sementara(_giliran))
+                    continue
                 break
-    if terakhir is not None:
-        return terakhir, "", notifikasi, f"Naskah Gemini dipakai walau belum ideal: {masalah_terakhir}"
-    return None, alasan, notifikasi, None
+    if terakhir is not None and "terlalu mirip" not in masalah_terakhir:
+        return terakhir, "", notifikasi, f"Naskah Gemini dipakai walau belum ideal: {masalah_terakhir}", percobaan
+    return None, alasan, notifikasi, None, percobaan
 
 
-def _groq(instruksi, topik, label_berikut, pengirim, tidur) -> tuple[Naskah | None, str, list[str]]:
+def _groq(instruksi, topik, label_berikut, hindari, pengirim, tidur) -> tuple[Naskah | None, str, list[str], int]:
+    if config.SCRIPT_FALLBACK_PROVIDER not in ("groq", ""):
+        return None, "fallback naskah bukan Groq", [], 0
     if not config.GROQ_API_KEY:
         print("  Groq dinonaktifkan: GROQ_API_KEY belum dikonfigurasi.")
-        return None, "GROQ_API_KEY belum dikonfigurasi", []
-    if not config.GROQ_MODEL:
-        print("  Groq dinonaktifkan: GROQ_MODEL belum dikonfigurasi.")
-        return None, "GROQ_MODEL belum dikonfigurasi", []
+        return None, "GROQ_API_KEY belum dikonfigurasi", [], 0
+    if dalam_cooldown("groq"):
+        print("  Groq sedang cooldown, tidak dipanggil.")
+        return None, "cooldown", [], 0
 
     sudah_menunggu = False
     notifikasi = []
-    prompt = instruksi + "\n\nBalas hanya JSON dengan kunci: " + ", ".join(Naskah.model_fields) + "."
-    for percobaan in range(2):
+    prompt = instruksi + "\n\nBalas hanya JSON yang valid untuk skema naskah, termasuk array adegan."
+    percobaan = 0
+    for giliran in range(config.MAX_RETRY):
+        percobaan += 1
         try:
             respon = pengirim(
                 "https://api.groq.com/openai/v1/chat/completions",
@@ -248,39 +312,54 @@ def _groq(instruksi, topik, label_berikut, pengirim, tidur) -> tuple[Naskah | No
             if topik:
                 naskah.topik = topik
             masalah = _masalah(naskah, label_berikut)
-            if masalah and percobaan == 0:
+            bentrok = "" if topik else _mirip(naskah, hindari)
+            if bentrok:
+                masalah.append(f"terlalu mirip dengan {bentrok}")
+            if masalah and giliran + 1 < config.MAX_RETRY:
                 prompt = instruksi + "\n\nPerbaiki: " + "; ".join(masalah) + ". Balas hanya JSON."
                 continue
+            if masalah and "terlalu mirip" in "; ".join(masalah):
+                return None, "topik terlalu mirip", notifikasi, percobaan
             if masalah:
-                return naskah, "", []
+                return naskah, "", [], percobaan
             print(f"  Model: {config.GROQ_MODEL}")
-            return naskah, "", notifikasi
-        except (ValidationError, KeyError, json.JSONDecodeError, TypeError) as e:
-            print(f"  Groq gagal (permanent): {str(e)[:160]}")
-            return None, "respons tidak valid", notifikasi
+            return naskah, "", notifikasi, percobaan
+        except (ValidationError, KeyError, json.JSONDecodeError, TypeError, ValueError) as e:
+            print(f"  Groq gagal (respons tidak valid): {str(e)[:160]}")
+            if giliran + 1 < config.MAX_RETRY:
+                continue
+            return None, "respons tidak valid", notifikasi, percobaan
         except Exception as e:
             salah = klasifikasi_exception("Groq", e)
             print(f"  Groq gagal ({salah.jenis.value}): {salah.pesan}")
             if salah.jenis == Jenis.INVALID_KEY:
                 notifikasi.append("Konfigurasi Groq tidak valid. Periksa GROQ_API_KEY. Provider ini tidak dicoba lagi.")
-                return None, "API key invalid", notifikasi
-            if salah.jenis == Jenis.QUOTA:
-                return None, "quota limit", notifikasi
+                catat_cooldown("groq", 24)
+                return None, "API key invalid", notifikasi, percobaan
+            if salah.jenis in (Jenis.QUOTA, Jenis.BILLING):
+                cooldown_kuota("groq")
+                alasan = "quota limit" if salah.jenis == Jenis.QUOTA else "billing"
+                return None, alasan, notifikasi, percobaan
             if salah.jenis == Jenis.RATE_LIMIT and not sudah_menunggu:
-                jeda = min(salah.retry_after or 3, 60)
+                from .errors import jeda_sementara
+                jeda = min(salah.retry_after or jeda_sementara(0), 60)
                 print(f"  Groq rate limit sementara, menunggu {jeda:.0f} detik.")
                 tidur(jeda)
                 sudah_menunggu = True
                 continue
-            if salah.jenis in (Jenis.SERVER, Jenis.TIMEOUT) and percobaan == 0:
-                tidur(2)
+            if salah.jenis in (Jenis.SERVER, Jenis.TIMEOUT, Jenis.BAD_RESPONSE) and giliran + 1 < config.MAX_RETRY:
+                from .errors import jeda_sementara
+                tidur(jeda_sementara(giliran))
                 continue
-            return None, salah.jenis.value.replace("_", " "), notifikasi
-    return None, "gagal", notifikasi
+            return None, salah.jenis.value.replace("_", " "), notifikasi, percobaan
+    return None, "gagal", notifikasi, percobaan
 
 
 def buat_naskah(kategori, kategori_besok, label_berikut, topik=None, hindari=(), rekap_minggu=(), klien=None, pengirim=None, tidur=None) -> HasilNaskah:
     from .template_naskah import template_lokal
+
+    if not boleh_naskah_api() or mode() == "local_only":
+        raise RuntimeError("Mode lokal tidak membuat naskah baru. Pakai --naskah pada aset yang sudah tersimpan.")
 
     pengirim = pengirim or requests.post
     tidur = tidur or time.sleep
@@ -289,47 +368,59 @@ def buat_naskah(kategori, kategori_besok, label_berikut, topik=None, hindari=(),
     alasan_gemini = ""
     naskah = None
     peringatan = None
+    percobaan = 0
 
-    if klien is not None or config.GEMINI_API_KEY:
+    if (klien is not None or config.GEMINI_API_KEY) and config.SCRIPT_PROVIDER in ("gemini", ""):
         if klien is None:
             from google import genai
             klien = genai.Client(api_key=config.GEMINI_API_KEY)
-        naskah, alasan_gemini, notifikasi, peringatan = _gemini(klien, instruksi, "", topik, label_berikut, tidur)
+        naskah, alasan_gemini, notifikasi, peringatan, percobaan = _gemini(
+            klien, instruksi, topik, label_berikut, hindari, tidur
+        )
         konfigurasi.extend(notifikasi)
         if naskah is not None and peringatan is None:
-            return HasilNaskah(naskah, "Gemini", config.GEMINI_MODEL, konfigurasi=konfigurasi)
+            return HasilNaskah(naskah, "Gemini", config.GEMINI_MODEL, konfigurasi=konfigurasi, percobaan=percobaan)
         if naskah is not None and not config.TEXT_FALLBACK_ENABLED:
-            return HasilNaskah(naskah, "Gemini", config.GEMINI_MODEL, peringatan=peringatan, konfigurasi=konfigurasi)
+            return HasilNaskah(naskah, "Gemini", config.GEMINI_MODEL, peringatan=peringatan, konfigurasi=konfigurasi, percobaan=percobaan)
     else:
-        alasan_gemini = "GEMINI_API_KEY belum dikonfigurasi"
-        print(f"  Gemini dinonaktifkan: {alasan_gemini}.")
+        alasan_gemini = "GEMINI_API_KEY belum dikonfigurasi" if config.SCRIPT_PROVIDER in ("gemini", "") else "provider naskah bukan Gemini"
+        print(f"  Gemini dilewati: {alasan_gemini}.")
 
     if not config.TEXT_FALLBACK_ENABLED:
         if naskah is not None:
-            return HasilNaskah(naskah, "Gemini", config.GEMINI_MODEL, peringatan=peringatan, konfigurasi=konfigurasi)
+            return HasilNaskah(naskah, "Gemini", config.GEMINI_MODEL, peringatan=peringatan, konfigurasi=konfigurasi, percobaan=percobaan)
         raise RuntimeError(f"Gemini gagal ({alasan_gemini}) dan TEXT_FALLBACK_ENABLED=false.")
 
-    if naskah is not None and peringatan:
-        print(f"  {peringatan}. Mencoba Groq sebelum memakai naskah yang belum ideal.")
-
-    groq_naskah, alasan_groq, notifikasi_groq = _groq(instruksi, topik, label_berikut, pengirim, tidur)
-    konfigurasi.extend(notifikasi_groq)
-    if groq_naskah is not None and not _masalah(groq_naskah, label_berikut):
-        return HasilNaskah(
-            groq_naskah, "Groq", config.GROQ_MODEL,
-            fallback_dari="Gemini", alasan=alasan_gemini or "naskah belum ideal", konfigurasi=konfigurasi,
+    groq_naskah, alasan_groq, notifikasi_groq, percobaan_groq = None, "tidak dicoba", [], 0
+    if config.TEXT_FALLBACK_ENABLED:
+        groq_naskah, alasan_groq, notifikasi_groq, percobaan_groq = _groq(
+            instruksi, topik, label_berikut, hindari, pengirim, tidur
         )
+        konfigurasi.extend(notifikasi_groq)
+        percobaan += percobaan_groq
+        if groq_naskah is not None and not _masalah(groq_naskah, label_berikut) and not ("" if topik else _mirip(groq_naskah, hindari)):
+            return HasilNaskah(
+                groq_naskah, "Groq", config.GROQ_MODEL,
+                fallback_dari="Gemini", alasan=alasan_gemini or "naskah belum ideal",
+                konfigurasi=konfigurasi, percobaan=percobaan,
+            )
 
     if naskah is not None:
         catatan = peringatan or f"Naskah Gemini dipakai walau belum ideal: {alasan_groq}"
-        return HasilNaskah(naskah, "Gemini", config.GEMINI_MODEL, peringatan=catatan, konfigurasi=konfigurasi)
+        return HasilNaskah(naskah, "Gemini", config.GEMINI_MODEL, peringatan=catatan, konfigurasi=konfigurasi, percobaan=percobaan)
+
+    if not fallback_naskah_lokal():
+        raise RuntimeError(f"Gemini gagal ({alasan_gemini}), Groq gagal ({alasan_groq}), dan template lokal dimatikan.")
 
     print(f"  Memakai template lokal. Gemini: {alasan_gemini}. Groq: {alasan_groq}.")
+    lokal = template_lokal(kategori, kategori_besok, label_berikut, topik, hindari=hindari)
     alasan = alasan_gemini or "gagal"
     if alasan_groq and alasan_groq not in alasan:
         alasan = f"{alasan}, lalu Groq karena {alasan_groq}"
+    ditolak = bool(not topik and _mirip(lokal, hindari))
     return HasilNaskah(
-        template_lokal(kategori, kategori_besok, label_berikut, topik),
-        "Template lokal", "template",
-        fallback_dari="Gemini", alasan=alasan, konfigurasi=konfigurasi,
+        lokal, "Template lokal", "template",
+        fallback_dari="Gemini", alasan=alasan, konfigurasi=konfigurasi, percobaan=percobaan,
+        ditolak=ditolak,
+        peringatan="Template lokal terlalu mirip dengan riwayat." if ditolak else None,
     )

@@ -1,3 +1,4 @@
+import random
 import re
 from enum import Enum
 
@@ -7,11 +8,13 @@ from . import config
 class Jenis(str, Enum):
     RATE_LIMIT = "rate_limit"
     QUOTA = "quota"
+    BILLING = "billing"
     TIMEOUT = "timeout"
     SERVER = "server"
     INVALID_KEY = "invalid_key"
     MODEL_UNAVAILABLE = "model_unavailable"
     BAD_IMAGE = "bad_image"
+    BAD_RESPONSE = "bad_response"
     PERMANENT = "permanent"
 
 
@@ -43,7 +46,15 @@ def redaksi(teks: str) -> str:
         if rahasia and len(rahasia) > 4:
             hasil = hasil.replace(rahasia, "<redacted>")
     hasil = re.sub(r"Bearer\s+\S+", "Bearer <redacted>", hasil, flags=re.I)
+    hasil = re.sub(r"ya29\.[0-9A-Za-z\-_]+", "<redacted>", hasil)
+    hasil = re.sub(r"(?i)(api[_-]?key|token|refresh_token)(['\"=: ]+)[^'\"\s,}&]+", r"\1\2<redacted>", hasil)
     return hasil[:400]
+
+
+def jeda_sementara(percobaan: int, dasar: float = 1.5, maksimum: float = 20.0) -> float:
+    """Backoff untuk kesalahan sementara. Kuota dan billing tidak lewat sini."""
+    tunggu = min(maksimum, dasar * (2 ** max(percobaan, 0)))
+    return tunggu + random.uniform(0, tunggu * 0.25)
 
 
 def _kode(nilai) -> int:
@@ -72,6 +83,19 @@ def retry_after(headers) -> float | None:
         return None
 
 
+def _billing(pesan: str) -> bool:
+    teks = pesan.lower()
+    kunci = (
+        "enable billing",
+        "billing account",
+        "requires billing",
+        "payment required",
+        "must enable billing",
+        "billing to be enabled",
+    )
+    return any(k in teks for k in kunci)
+
+
 def _kuota(pesan: str) -> bool:
     teks = pesan.lower()
     kunci = (
@@ -91,6 +115,8 @@ def klasifikasi_http(provider: str, kode: int, pesan: str, headers=None) -> Prov
     teks = redaksi(pesan)
     rendah = teks.lower()
     jeda = retry_after(headers)
+    if _billing(teks):
+        return ProviderError(Jenis.BILLING, provider, teks)
     if _kuota(teks) and kode in (0, 400, 402, 403, 429):
         return ProviderError(Jenis.QUOTA, provider, teks)
     if kode == 401 or (kode == 403 and any(k in rendah for k in ("api key", "api_key", "unauthorized", "authentication"))):
