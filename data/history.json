@@ -175,6 +175,14 @@
       "topik": "Membuat ringkasan dokumen panjang dan rapat penting",
       "judul": "Cara Cepat Ringkas Rapat Penting dan Dokumen",
       "youtube_id": "wFNhjbVv57c"
+    },
+    {
+      "tanggal": "2026-10-19",
+      "slot": "pagi",
+      "kategori": "Excel & Data",
+      "topik": "Memisahkan data teks berantakan di Excel",
+      "judul": "Cara Cepat Pisah Data Teks Berantakan di Excel",
+      "youtube_id": "LN8r-IAnMnQ"
     }
   ],
   "rencana": {
@@ -199,6 +207,7 @@
     "2026-10-18-siang": "Membuat rumus XLOOKUP otomatis dari dua tabel Excel",
     "2026-10-18-sore": "Cara membalas email atasan yang marah dengan sopan",
     "2026-10-18-larut": "Membuat ringkasan dokumen panjang dan rapat penting",
-    "2026-10-19-pagi": "Memisahkan data teks berantakan di Excel"
+    "2026-10-19-pagi": "Memisahkan data teks berantakan di Excel",
+    "2026-10-19-siang": "Follow up klien yang belum membalas penawaran"
   }
 }
