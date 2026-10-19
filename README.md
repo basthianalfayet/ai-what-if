@@ -88,8 +88,8 @@ Salin `.env.example` menjadi `.env`. Jangan commit `.env`, `secrets/`, atau toke
 | `TTS_VOICE` / `TTS_RATE` | `id-ID-ArdiNeural` / `+5%` | Suara dan kecepatan |
 | `MAX_VIDEO_HARIAN` | `5` | Batas video tercatat per hari |
 | `MAX_RETRY` | `2` | Percobaan untuk kesalahan sementara |
-| `YT_UPLOAD` | `0` | `1` baru mengizinkan upload |
-| `YT_PRIVACY` | `private` | `private`, `unlisted`, atau `public` |
+| `YT_UPLOAD` | `1` | `0` mematikan upload. Mode uji tetap tidak mengunggah |
+| `YT_PRIVACY` | `private` | Biarkan private. Ubah ke public dari YouTube Studio kalau video sudah layak |
 | `YT_CHANNEL_NAME` | `AI WHAT IF?` | Nama kanal yang harus cocok dengan token |
 | `TELEGRAM_ENABLED` | `true` | Notifikasi. Butuh token dan chat id |
 
@@ -187,8 +187,8 @@ Disk runner kosong lagi di run berikutnya. Yang bertahan adalah commit ke:
 Workflow menarik commit itu di awal, lalu mendorong perubahan di akhir. Cache Actions atau database luar tidak dipakai. Kalau commit riwayat gagal, video berikutnya bisa mengulang topik; ada pesan Telegram untuk kejadian itu.
 
 1. Repo private. Jangan ikutkan `.env` dan `secrets/`.
-2. Secrets: `GEMINI_API_KEY`, `CF_ACCOUNT_ID`, `CF_API_TOKEN`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. `GROQ_API_KEY` dan `YT_TOKEN_JSON` opsional.
-3. Variables: biarkan `YT_UPLOAD` kosong atau `0`. `YT_PRIVACY=private`. `FREE_ONLY=true`.
+2. Secrets: `GEMINI_API_KEY`, `CF_ACCOUNT_ID`, `CF_API_TOKEN`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, dan `YT_TOKEN_JSON`. `GROQ_API_KEY` opsional.
+3. Variables: biarkan `YT_PRIVACY` kosong atau `private`. `FREE_ONLY=true`. Jangan set `YT_UPLOAD=0` kalau upload otomatis harus jalan.
 4. Tes dari tab Actions → **Video harian** → **Run workflow** → centang mode uji.
 5. Di cron-job.org, zona waktu `Asia/Jakarta`. Lima job POST ke  
    `https://api.github.com/repos/USERNAME/REPO/actions/workflows/video.yml/dispatches`  
@@ -223,7 +223,7 @@ Nama tugasnya `AI WHAT IF Pagi` dan seterusnya, terpisah dari jadwal kanal lama.
 
 ## YouTube
 
-Upload **mati** sampai kamu menyalakannya. Token kanal lama di `secrets/token.json` diabaikan.
+Upload otomatis menyala dan masuk sebagai **private**. Token kanal lama di `secrets/token.json` diabaikan. Kamu mengubah privasinya ke publik nanti dari YouTube Studio.
 
 1. Buat proyek Google Cloud untuk kanal ini. Aktifkan YouTube Data API v3.
 2. OAuth consent: tambahkan akun pengelola kanal sebagai test user, lalu publish agar tidak kedaluwarsa tiap 7 hari.
@@ -237,8 +237,8 @@ Upload **mati** sampai kamu menyalakannya. Token kanal lama di `secrets/token.js
 Perintah itu mencetak nama kanal dari token. Kalau bukan `AI WHAT IF?`, upload ditolak. Samakan nama kanal atau isi `YT_CHANNEL_NAME` hanya jika kamu memang yakin itu kanal yang benar.
 
 5. Untuk Actions, salin isi `secrets\youtube_whatif\token.json` ke secret `YT_TOKEN_JSON`. Jangan menempel token kanal lama.
-6. Biarkan `YT_UPLOAD=0` sampai satu video uji private kamu periksa sendiri.
-7. Untuk menyalakan upload: `YT_UPLOAD=1` dan `YT_PRIVACY=private`. Baru ubah ke `public` setelah kamu puas dan, kalau perlu, setelah audit aplikasi YouTube.
+6. `YT_UPLOAD=1` dan `YT_PRIVACY=private` sudah cukup. Video lolos cek masuk ke YouTube sebagai private, lengkap dengan hashtag di baris pertama deskripsi.
+7. Kalau videonya sudah layak, ubah privasinya ke public dari YouTube Studio. Jangan mengganti token kanal lain.
 
 Video ditandai `containsSyntheticMedia`, dan deskripsinya menyebut narasi serta gambar bantuan AI. Ledger di `data/upload_ledger.json` menolak unggahan kedua untuk file yang sama. Kalau koneksi putus di tengah, statusnya `tidak_pasti` dan tidak diulang otomatis; cek YouTube Studio dulu, lalu hapus entri ledger itu hanya jika videonya memang tidak ada.
 

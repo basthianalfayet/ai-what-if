@@ -15,15 +15,44 @@ def judul_youtube(naskah: Naskah, kategori: str) -> str:
     return _bersih_judul(naskah.judul_youtube or naskah.judul_kerja or naskah.hook)
 
 
-def tagar_youtube(kategori: str) -> list[str]:
-    dasar = ["#Shorts", "#WhatIf", "#AIWhatIf", "#Sains", "#FiksiIlmiah"]
+# Tiga tag pertama yang muncul di atas judul Shorts. Sisanya tetap di deskripsi.
+_TAGAR_TETAP = (
+    "#Shorts",
+    "#WhatIf",
+    "#FaktaUnik",
+    "#Viral",
+    "#TahukahKamu",
+    "#Sains",
+    "#Edukasi",
+    "#AIWhatIf",
+    "#FiksiIlmiah",
+)
+
+
+def _jadi_tagar(teks: str) -> str:
+    potongan = [bagian for bagian in str(teks).replace("#", " ").split() if bagian]
+    if not potongan:
+        return ""
+    return "#" + "".join(bagian[:1].upper() + bagian[1:] for bagian in potongan)
+
+
+def tagar_youtube(kategori: str, naskah: Naskah | None = None) -> list[str]:
+    dasar = list(_TAGAR_TETAP)
     if kategori:
-        dasar.append("#" + "".join(kategori.split()))
+        dasar.append(_jadi_tagar(kategori))
+    if naskah is not None:
+        for item in naskah.hashtag or []:
+            tag = _jadi_tagar(item)
+            if tag:
+                dasar.append(tag)
     hasil = []
+    sudah = set()
     for item in dasar:
-        if item not in hasil:
+        kunci = item.casefold()
+        if item and kunci not in sudah:
+            sudah.add(kunci)
             hasil.append(item)
-    return hasil[:8]
+    return hasil[:15]
 
 
 def tag_youtube(naskah: Naskah, kategori: str) -> list[str]:
@@ -38,6 +67,8 @@ def tag_youtube(naskah: Naskah, kategori: str) -> list[str]:
 
 def deskripsi_youtube(naskah: Naskah, kategori: str) -> str:
     baris = [
+        " ".join(tagar_youtube(kategori, naskah)),
+        "",
         naskah.hook.strip(),
         "",
         naskah.deskripsi_youtube.strip(),
@@ -58,7 +89,6 @@ def deskripsi_youtube(naskah: Naskah, kategori: str) -> str:
             "",
             "Video ini memakai narasi dan gambar bantuan AI untuk skenario fiksi. Ini bukan rekaman kejadian nyata.",
         ]
-    baris += ["", " ".join(tagar_youtube(kategori))]
     return "\n".join(baris)
 
 
@@ -66,7 +96,7 @@ def caption_menarik(naskah: Naskah, kategori: str) -> str:
     return (
         f"{naskah.hook.strip()}\n\n"
         f"{naskah.pertanyaan_komentar.strip()}\n\n"
-        f"{judul_youtube(naskah, kategori)}"
+        f"{' '.join(tagar_youtube(kategori, naskah))}"
     )
 
 

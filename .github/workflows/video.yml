@@ -82,7 +82,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_ENABLED: ${{ vars.TELEGRAM_ENABLED || 'true' }}
-          YT_UPLOAD: ${{ vars.YT_UPLOAD || '0' }}
+          YT_UPLOAD: ${{ vars.YT_UPLOAD || '1' }}
           YT_PRIVACY: ${{ vars.YT_PRIVACY || 'private' }}
           YT_CHANNEL_NAME: ${{ vars.YT_CHANNEL_NAME || 'AI WHAT IF?' }}
           CHANNEL_NAME: ${{ vars.CHANNEL_NAME || 'AI WHAT IF?' }}

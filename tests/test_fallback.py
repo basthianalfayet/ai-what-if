@@ -156,7 +156,11 @@ class TestTeks(unittest.TestCase):
         self.assertIn(naskah.hook, deskripsi)
         self.assertIn(naskah.penjelasan_ilmiah, deskripsi)
         self.assertIn("bantuan AI", deskripsi)
-        self.assertIn("#Shorts", tagar_youtube("Luar Angkasa"))
+        tagar = tagar_youtube("Luar Angkasa", naskah)
+        self.assertEqual(tagar[:3], ["#Shorts", "#WhatIf", "#FaktaUnik"])
+        self.assertIn("#Viral", tagar)
+        self.assertLessEqual(len(tagar), 15)
+        self.assertTrue(deskripsi.startswith("#Shorts #WhatIf #FaktaUnik"))
         self.assertNotIn("tiktok", deskripsi.lower())
 
 
