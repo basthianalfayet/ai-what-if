@@ -199,6 +199,14 @@
       "topik": "Membalas chat komplain pembeli barang rusak",
       "judul": "Cara Cepat Balas Komplain Barang Rusak Pakai AI",
       "youtube_id": "8ByCJjdMd8M"
+    },
+    {
+      "tanggal": "2026-10-19",
+      "slot": "malam",
+      "kategori": "Rapat & Laporan",
+      "topik": "Menyusun notulen rapat kilat dari rekaman suara",
+      "judul": "Bikin Notulen Rapat Kilat dari Rekaman Suara",
+      "youtube_id": "drox5WZwDjU"
     }
   ],
   "rencana": {
@@ -226,6 +234,7 @@
     "2026-10-19-pagi": "Memisahkan data teks berantakan di Excel",
     "2026-10-19-siang": "Follow up klien yang belum membalas penawaran",
     "2026-10-19-sore": "Membalas chat komplain pembeli barang rusak",
-    "2026-10-19-malam": "Menyusun notulen rapat kilat dari rekaman suara"
+    "2026-10-19-malam": "Menyusun notulen rapat kilat dari rekaman suara",
+    "2026-10-19-larut": "Menjawab kelemahan terbesar saat interview kerja"
   }
 }
