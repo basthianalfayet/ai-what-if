@@ -1,4 +1,17 @@
 {
-  "video": [],
+  "video": [
+    {
+      "tanggal": "2026-10-20",
+      "slot": "pagi",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika semua angin di Bumi mendadak berhenti bertiup?",
+      "judul": "Ketika Angin Berhenti Berhembus",
+      "inti": "angin bumi berhenti",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "030778-a4c343fa",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-20-pagi-030778-a4c343fa"
+    }
+  ],
   "rencana": {}
 }
