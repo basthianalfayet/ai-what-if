@@ -72,7 +72,7 @@ Salin `.env.example` menjadi `.env`. Jangan commit `.env`, `secrets/`, atau toke
 | Variabel | Default | Fungsi |
 |---|---|---|
 | `PLATFORM_MODE` | `youtube_only` | Hanya YouTube yang boleh menerima upload. TikTok tidak ditulis. |
-| `PROVIDER_MODE` | `free_safe` | `free_safe`, `auto_fallback`, atau `local_only` |
+| `PROVIDER_MODE` | `auto_fallback` | Cloudflare dulu. Kalau neuron habis, gambar pindah ke AI Horde. fal.ai tetap mati |
 | `FREE_ONLY` | `true` | Menutup setiap panggilan berbayar |
 | `PAID_FALLBACK_ENABLED` | `false` | Izin eksplisit untuk fal.ai |
 | `SCRIPT_PROVIDER` | `gemini` | Provider naskah utama |
@@ -82,7 +82,7 @@ Salin `.env.example` menjadi `.env`. Jangan commit `.env`, `secrets/`, atau toke
 | `IMAGE_LOCAL_FALLBACK` | `true` | Aset di `assets/fallback/{adegan}.jpg` |
 | `IMAGE_PER_VIDEO` | `4` | Versi ini merender 4 adegan |
 | `IMAGE_DAILY_MAX` | `20` | Batas permintaan gambar API per hari WIB |
-| `HORDE_ENABLED` | `false` | AI Horde, hanya di mode `auto_fallback` |
+| `HORDE_ENABLED` | `true` | Cadangan gambar gratis saat Cloudflare menolak. Antreannya bisa beberapa menit |
 | `IMAGE_FALLBACK_ENABLED` | `false` | Saklar fal.ai. Tidak cukup sendirian |
 | `TTS_PROVIDER` | `edge_tts` | Suara |
 | `TTS_VOICE` / `TTS_RATE` | `id-ID-ArdiNeural` / `+5%` | Suara dan kecepatan |

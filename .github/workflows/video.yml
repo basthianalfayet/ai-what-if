@@ -63,7 +63,7 @@ jobs:
         env:
           PYTHONIOENCODING: utf-8
           PLATFORM_MODE: youtube_only
-          PROVIDER_MODE: ${{ vars.PROVIDER_MODE || 'free_safe' }}
+          PROVIDER_MODE: ${{ vars.PROVIDER_MODE || 'auto_fallback' }}
           FREE_ONLY: ${{ vars.FREE_ONLY || 'true' }}
           PAID_FALLBACK_ENABLED: ${{ vars.PAID_FALLBACK_ENABLED || 'false' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -74,7 +74,7 @@ jobs:
           SCRIPT_LOCAL_FALLBACK: ${{ vars.SCRIPT_LOCAL_FALLBACK || 'true' }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          HORDE_ENABLED: ${{ vars.HORDE_ENABLED || 'false' }}
+          HORDE_ENABLED: ${{ vars.HORDE_ENABLED || 'true' }}
           FAL_KEY: ${{ secrets.FAL_KEY }}
           IMAGE_FALLBACK_ENABLED: ${{ vars.IMAGE_FALLBACK_ENABLED || 'false' }}
           IMAGE_FALLBACK_MAX_COST_USD_PER_JOB: ${{ vars.IMAGE_FALLBACK_MAX_COST_USD_PER_JOB || '' }}
