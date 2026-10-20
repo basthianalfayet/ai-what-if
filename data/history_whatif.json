@@ -23,9 +23,33 @@
       "status": "terunggah",
       "run_id": "564692-4c1fadc3",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-20-siang-564692-4c1fadc3"
+    },
+    {
+      "tanggal": "2026-10-20",
+      "slot": "sore",
+      "kategori": "Hewan",
+      "topik": "Hewan",
+      "judul": "Bagaimana jika Semua semut di Bumi tiba-tiba lenyap?",
+      "inti": "semua semut lenyap",
+      "youtube_id": "FLCJ8mEMq-M",
+      "status": "terunggah",
+      "run_id": "520917-2c2fec30",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-20-sore-520917-2c2fec30"
     }
   ],
   "rencana": {
-    "2026-10-20-sore": "Hewan"
+    "2026-10-20-sore": "Hewan",
+    "2026-10-20-malam": "Bagaimana jika Bangkai dan sisa organik menumpuk tanpa semut?"
+  },
+  "seri": {
+    "nama": "Dampak Lenyapnya Semut di Bumi",
+    "kategori": "Hewan",
+    "cakupan": "serangga, laut, rantai makanan, dan perilaku hewan",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Semua semut di Bumi tiba-tiba lenyap?",
+      "Bagaimana jika Bangkai dan sisa organik menumpuk tanpa semut?",
+      "Bagaimana jika Tanah mengeras dan hutan dunia mulai mati?"
+    ]
   }
 }
