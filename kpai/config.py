@@ -71,7 +71,7 @@ def _daftar(nama: str, default: str) -> list[str]:
 
 # FLUX.2 Klein bagus dan vertikal tapi boros kuota (~1.550 neuron/gambar), jadi hanya untuk gambar hook.
 # flux-1-schnell ~100 neuron/gambar untuk adegan lain yang sebagian besar tertutup kartu.
-CF_IMAGE_MODELS = _daftar("CF_IMAGE_MODEL", "@cf/black-forest-labs/flux-2-klein-9b,@cf/black-forest-labs/flux-1-schnell")
+CF_IMAGE_MODELS = _daftar("CF_IMAGE_MODEL", "@cf/black-forest-labs/flux-2-klein-4b,@cf/black-forest-labs/flux-1-schnell")
 CF_IMAGE_MODELS_HEMAT = _daftar("CF_IMAGE_MODEL_HEMAT", "@cf/black-forest-labs/flux-1-schnell")
 IMAGE_STYLE = _env(
     "IMAGE_STYLE",
