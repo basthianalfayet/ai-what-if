@@ -11,7 +11,21 @@
       "status": "review",
       "run_id": "030778-a4c343fa",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-20-pagi-030778-a4c343fa"
+    },
+    {
+      "tanggal": "2026-10-20",
+      "slot": "siang",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika manusia berhenti memproduksi air liur",
+      "judul": "Apa Jadinya Jika Air Liur Manusia Berhenti Diproduksi",
+      "inti": "air liur berhenti",
+      "youtube_id": "V8LVtJzWjvU",
+      "status": "terunggah",
+      "run_id": "564692-4c1fadc3",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-20-siang-564692-4c1fadc3"
     }
   ],
-  "rencana": {}
+  "rencana": {
+    "2026-10-20-sore": "Hewan"
+  }
 }
