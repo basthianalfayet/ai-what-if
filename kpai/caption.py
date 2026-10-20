@@ -1,5 +1,5 @@
 from . import config
-from .script_gen import Naskah
+from .script_gen import Naskah, pertanyaan
 
 
 def _bersih_judul(teks: str) -> str:
@@ -26,7 +26,7 @@ def _emoji(kategori: str) -> str:
 
 
 def judul_youtube(naskah: Naskah, kategori: str) -> str:
-    judul = _bersih_judul(naskah.judul_youtube or naskah.judul_kerja or naskah.hook)
+    judul = _bersih_judul(pertanyaan(naskah.judul_youtube or naskah.judul_kerja or naskah.hook))
     emoji = _emoji(kategori)
     if judul.startswith(emoji):
         return judul

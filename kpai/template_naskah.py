@@ -2,6 +2,74 @@
 
 from .topik import mirip_dengan_daftar
 
+SERI = {
+    "Luar Angkasa": {
+        "nama": "Tata surya yang goyah",
+        "bagian": [
+            "Bagaimana jika Matahari tiba-tiba menghilang?",
+            "Bagaimana jika Bulan pergi menjauh?",
+            "Bagaimana jika Bumi tidak lagi mengalami malam?",
+        ],
+    },
+    "Bumi dan Alam": {
+        "nama": "Bumi kehilangan penopangnya",
+        "bagian": [
+            "Bagaimana jika Bumi berhenti berputar lima detik?",
+            "Bagaimana jika oksigen di udara berlipat dua?",
+            "Bagaimana jika laut di Bumi mengering?",
+        ],
+    },
+    "Tubuh Manusia": {
+        "nama": "Batas tubuh manusia",
+        "bagian": [
+            "Bagaimana jika manusia bisa bernapas di dalam air?",
+            "Bagaimana jika manusia tidak perlu tidur?",
+            "Bagaimana jika darah berhenti mengalir semenit?",
+        ],
+    },
+    "Hewan": {
+        "nama": "Rantai yang putus",
+        "bagian": [
+            "Bagaimana jika lebah menghilang dari Bumi?",
+            "Bagaimana jika paus biru menghilang?",
+            "Bagaimana jika nyamuk menghilang dari Bumi?",
+        ],
+    },
+    "Fisika": {
+        "nama": "Aturan yang berubah",
+        "bagian": [
+            "Bagaimana jika gravitasi menjadi dua kali lebih kuat?",
+            "Bagaimana jika kecepatan cahaya menjadi setengah?",
+            "Bagaimana jika gesekan tiba-tiba menghilang?",
+        ],
+    },
+    "Teknologi dan AI": {
+        "nama": "Sistem yang mati",
+        "bagian": [
+            "Bagaimana jika AI mengatur semua lampu lalu lintas?",
+            "Bagaimana jika internet mati sehari?",
+            "Bagaimana jika semua baterai habis bersamaan?",
+        ],
+    },
+    "Masa Depan Peradaban": {
+        "nama": "Kota yang kehilangan",
+        "bagian": [
+            "Bagaimana jika semua satelit mati bersamaan?",
+            "Bagaimana jika kota tanpa sampah sebulan?",
+            "Bagaimana jika listrik kota mati seminggu?",
+        ],
+    },
+}
+
+
+def _seri_lokal(nama_kategori: str, judul_ini: str) -> tuple[str, str, str]:
+    dasar = SERI.get(nama_kategori) or SERI["Fisika"]
+    sisa = [bagian for bagian in dasar["bagian"] if bagian.casefold() != (judul_ini or "").casefold()]
+    berikut = sisa[0] if sisa else dasar["bagian"][1]
+    ketiga = sisa[1] if len(sisa) > 1 else dasar["bagian"][-1]
+    return dasar["nama"], berikut, ketiga
+
+
 BANK = {
     "Luar Angkasa": [
         {
@@ -330,6 +398,7 @@ def _dari_data(nama_kategori: str, data: dict, topik_paksa: str | None):
     if topik_paksa and topik_paksa.strip().lower() != topik.lower():
         topik = topik_paksa.strip()
         perlu = True
+    nama_seri, berikut, ketiga = _seri_lokal(nama_kategori, data["judul"])
     return rapikan(Naskah(
         topik=topik,
         kategori=nama_kategori,
@@ -347,6 +416,10 @@ def _dari_data(nama_kategori: str, data: dict, topik_paksa: str | None):
         referensi=data["sumber"],
         pengungkapan_sintetis=True,
         perlu_tinjauan=perlu,
+        judul_seri=nama_seri,
+        urutan_seri=1,
+        topik_berikut=berikut,
+        topik_ketiga=ketiga,
     ))
 
 

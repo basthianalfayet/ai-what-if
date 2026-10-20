@@ -7,6 +7,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 
 from . import config
+from .script_gen import AJAKAN_SUBSCRIBE
 
 W, H = 1080, 1920
 M = 80
@@ -164,6 +165,17 @@ def tempel(dst, lay, x, y, alpha=1.0):
     dst.paste(lay, (int(x), int(y)), lay)
 
 
+def mulai_ajakan(kata, durasi: float) -> float:
+    for item in kata or []:
+        if str(item.teks).casefold().startswith("subscribe"):
+            return float(item.mulai)
+    return max(0.0, float(durasi) - 2.0)
+
+
+def saat_ajakan(kata, durasi: float, tl: float) -> bool:
+    return tl >= mulai_ajakan(kata, durasi) - 1e-9
+
+
 def potong_subtitle(kata) -> list[list[int]]:
     """Kelompokkan kata jadi potongan subtitle pendek (maks 3 kata / 20 huruf)."""
     potongan, sekarang = [], []
@@ -264,7 +276,13 @@ class Renderer:
             scene.id: pas(scene.judul_layar, "ExtraBold", LEBAR_KARTU - 80, 220, 60, 32, spasi=1.12)
             for scene in n.adegan
         }
+        self.urutan = int(getattr(n, "urutan_seri", 1) or 1)
+        self.berikut = (getattr(n, "topik_berikut", "") or "").strip() if self.urutan < 3 else ""
         self.tanya_layout = pas(n.pertanyaan_komentar, "Bold", LEBAR_KARTU - 100, 240, 42, 26, spasi=1.18)
+        self.ajakan_layout = pas(AJAKAN_SUBSCRIBE, "Bold", LEBAR_KARTU - 100, 160, 40, 26, spasi=1.15)
+        self.berikut_layout = (
+            pas(self.berikut, "Medium", LEBAR_KARTU - 100, 140, 32, 22, spasi=1.15) if self.berikut else None
+        )
 
     def _layout_hook(self, teks):
         f, baris, tb = pas(teks, "ExtraBold", LEBAR_KARTU, 640, 92, 42, spasi=1.12)
@@ -319,7 +337,12 @@ class Renderer:
 
     def _kepala(self, d):
         d.text((M, 92), self.channel, font=font("ExtraBold", 36), fill=PUTIH)
-        pil(d, M, 148, self.kategori, font("Bold", 24), self.t["aksen"], TINTA, pad_x=20, pad_y=10)
+        lebar_pil, _tinggi_pil = pil(d, M, 148, self.kategori, font("Bold", 24), self.t["aksen"], TINTA, pad_x=20, pad_y=10)
+        if self.whatif and getattr(self, "urutan", 0) in (1, 2, 3):
+            pil(
+                d, M + lebar_pil + 12, 148, f"BAGIAN {self.urutan}/3",
+                font("Bold", 24), self.t["bubble"], PUTIH, pad_x=16, pad_y=10,
+            )
         if self.whatif:
             f = font("Bold", 22)
             teks = "SKENARIO FIKSI"
@@ -331,7 +354,10 @@ class Renderer:
             self._hook(img, d, a, tl)
             return
         if a.nama == "penutup":
-            self._kartu_singkat(img, tl, self.tanya_layout, "MENURUTMU")
+            if saat_ajakan(a.kata, a.durasi, tl):
+                self._kartu_subscribe(img, tl, mulai_ajakan(a.kata, a.durasi))
+            else:
+                self._kartu_singkat(img, tl, self.tanya_layout, "MENURUTMU")
             return
         layout = self.layar.get(a.nama)
         if layout:
@@ -347,6 +373,30 @@ class Renderer:
         ld.text((36, 28), label, font=font("Bold", 24), fill=self.t["aksen"])
         for i, b in enumerate(baris):
             ld.text((36, 78 + i * tb), b, font=f, fill=PUTIH)
+        self._kartu(img, lay, 430, e)
+
+    def _kartu_subscribe(self, img, tl, mulai):
+        e = ease((tl - mulai) / 0.3)
+        f, baris, tb = self.ajakan_layout
+        tinggi = 88 + len(baris) * tb + 28
+        if self.berikut_layout:
+            _fb, baris_b, tb_b = self.berikut_layout
+            tinggi += 36 + len(baris_b) * tb_b
+        tinggi += 20
+        lay = lapisan(LEBAR_KARTU, tinggi)
+        ld = ImageDraw.Draw(lay)
+        ld.rounded_rectangle((0, 0, lay.width - 1, lay.height - 1), radius=28, fill=(12, 15, 24, 214))
+        ld.text((36, 28), "SUBSCRIBE", font=font("Bold", 24), fill=self.t["aksen"])
+        y = 78
+        for i, b in enumerate(baris):
+            ld.text((36, y + i * tb), b, font=f, fill=PUTIH)
+        y += len(baris) * tb + 16
+        if self.berikut_layout:
+            fb, baris_b, tb_b = self.berikut_layout
+            ld.text((36, y), "Berikutnya", font=font("Bold", 22), fill=self.t["aksen"])
+            y += 34
+            for i, b in enumerate(baris_b):
+                ld.text((36, y + i * tb_b), b, font=fb, fill=PUTIH)
         self._kartu(img, lay, 430, e)
 
     def _kartu(self, img, lay, y_akhir, e, radius=34):

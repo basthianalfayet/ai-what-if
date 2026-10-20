@@ -18,7 +18,7 @@ from kpai.kunci import KunciSlot, SlotTerkunci
 from kpai.laporan import laporan_needs_review, laporan_selesai, laporan_video
 from kpai.mode import mode
 from kpai.render import Renderer
-from kpai.script_gen import HasilNaskah, Naskah, buat_naskah, jumlah_kata_narasi, rapikan
+from kpai.script_gen import HasilNaskah, Naskah, buat_naskah, jumlah_kata_narasi, rapikan, terapkan_seri
 from kpai.video import buat_suara_adegan, render_video
 
 
@@ -189,26 +189,44 @@ def _produksi(a, tgl, slot, run_id, tanpa_catat, kategori, kategori_berikut, lab
         _catat(riwayat, tanpa_catat, tgl, slot, kategori[0], catatan, None, None)
         return "review"
 
+    seri = None
+    kategori_naskah = kategori
     if a.naskah:
         hasil_teks = _muat_naskah(a.naskah, kategori[0])
         _salin_aset(Path(a.naskah).parent, folder)
         print(f"[1/5] Naskah dari {a.naskah}")
     else:
-        print(f"[1/5] Naskah ({config.HARI[tgl.weekday()]} {slot}, {kategori[0]})")
+        if not a.topik:
+            seri = history.seri_berjalan(riwayat)
+        topik = a.topik or riwayat["rencana"].get(history.kunci(tgl, slot))
+        if seri:
+            topik = seri["bagian"][seri["selesai"]]
+            if seri.get("kategori"):
+                kategori_naskah = (seri["kategori"], seri.get("cakupan") or kategori[1])
+            print(f"  Seri: {seri['nama']} bagian {seri['selesai'] + 1} dari 3")
+        print(f"[1/5] Naskah ({config.HARI[tgl.weekday()]} {slot}, {kategori_naskah[0]})")
         hasil_teks = buat_naskah(
-            kategori, kategori_berikut, label_berikut,
-            topik=a.topik or riwayat["rencana"].get(history.kunci(tgl, slot)),
+            kategori_naskah, kategori_berikut, label_berikut,
+            topik=topik,
             hindari=history.topik_lama(riwayat),
+            seri=seri,
         )
         for pesan in hasil_teks.konfigurasi:
             print(f"  {pesan}")
             _kabari(pesan)
         if hasil_teks.peringatan:
             peringatan.append(hasil_teks.peringatan)
+    catatan["seri_masuk"] = seri
+    catatan["kategori_naskah"] = [kategori_naskah[0], kategori_naskah[1]]
     naskah = hasil_teks.naskah
     naskah.id_video = f"{tgl.isoformat()}-{slot}-{run_id}"
-    if not naskah.kategori:
-        naskah.kategori = kategori[0]
+    if seri:
+        terapkan_seri(naskah, seri)
+    else:
+        if not naskah.kategori:
+            naskah.kategori = kategori_naskah[0]
+        if not a.naskah:
+            naskah.urutan_seri = 1
     catatan["topik"] = naskah.topik
     catatan["retry"] = hasil_teks.percobaan
     catatan["naskah"] = {
@@ -293,7 +311,7 @@ def _produksi(a, tgl, slot, run_id, tanpa_catat, kategori, kategori_berikut, lab
     simpan_metadata(folder, naskah, naskah.kategori)
 
     masalah = masalah_naskah(naskah) + periksa_berkas(video)
-    if not a.topik and not a.paksa:
+    if not a.topik and not a.paksa and not seri:
         masalah += masalah_duplikat(naskah, history.topik_lama(riwayat))
     catatan["kualitas"] = {"lolos": not masalah, "masalah": masalah}
 
@@ -342,6 +360,9 @@ def _produksi(a, tgl, slot, run_id, tanpa_catat, kategori, kategori_berikut, lab
 def _catat(riwayat, tanpa_catat, tgl, slot, kategori, catatan, naskah, youtube_id, tgl_berikut=None, slot_berikut=None) -> None:
     if tanpa_catat or catatan["status"] not in ("selesai", "review", "terunggah"):
         return
+    if str(catatan.get("render") or "").startswith("siap") and naskah is not None:
+        pasangan = catatan.get("kategori_naskah") or [kategori, ""]
+        history.lanjutkan_seri(riwayat, naskah, pasangan[0], pasangan[1], catatan.get("seri_masuk"))
     history.catat(riwayat, {
         "tanggal": tgl.isoformat(),
         "slot": slot,

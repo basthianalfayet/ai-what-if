@@ -64,6 +64,51 @@ def catat(data: dict, entri: dict) -> None:
     data["video"] = list(terakhir.values())
 
 
+def seri_berjalan(data: dict) -> dict | None:
+    """Seri yang belum selesai. Episode berikutnya memakai bagian[selesai]."""
+    seri = data.get("seri") or {}
+    bagian = [str(item).strip() for item in (seri.get("bagian") or []) if str(item).strip()]
+    try:
+        selesai = int(seri.get("selesai") or 0)
+    except (TypeError, ValueError):
+        selesai = 0
+    if selesai < 0 or selesai >= 3 or len(bagian) < 3:
+        return None
+    return {
+        "nama": str(seri.get("nama") or "").strip(),
+        "kategori": str(seri.get("kategori") or "").strip(),
+        "cakupan": str(seri.get("cakupan") or "").strip(),
+        "selesai": selesai,
+        "bagian": bagian[:3],
+    }
+
+
+def lanjutkan_seri(data: dict, naskah, kategori: str, cakupan: str, sedang: dict | None) -> None:
+    if sedang:
+        selesai = int(sedang["selesai"]) + 1
+        if selesai >= 3:
+            data["seri"] = {}
+            return
+        berikut = dict(sedang)
+        berikut["selesai"] = selesai
+        data["seri"] = berikut
+        return
+    bagian = [
+        str(getattr(naskah, "judul_youtube", "") or getattr(naskah, "topik", "")).strip(),
+        str(getattr(naskah, "topik_berikut", "")).strip(),
+        str(getattr(naskah, "topik_ketiga", "")).strip(),
+    ]
+    if not all(bagian):
+        return
+    data["seri"] = {
+        "nama": str(getattr(naskah, "judul_seri", "") or bagian[0]).strip(),
+        "kategori": kategori,
+        "cakupan": cakupan,
+        "selesai": 1,
+        "bagian": bagian,
+    }
+
+
 def topik_lama(data: dict) -> list[str]:
     hasil = []
     for video in data["video"]:

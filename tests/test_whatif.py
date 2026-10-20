@@ -15,7 +15,8 @@ from kpai.kualitas import masalah_naskah, nilai_probe, unggah_diizinkan
 from kpai.kunci import KunciSlot, SlotTerkunci
 from kpai.ledger import boleh_ulang, cari, catat, kunci_berkas, simpan
 from kpai.mode import boleh_berbayar, boleh_horde, platform_aktif
-from kpai.render import Renderer
+from kpai.render import Renderer, saat_ajakan
+from kpai.script_gen import AJAKAN_SUBSCRIBE, pertanyaan
 from kpai.template_naskah import template_lokal
 from kpai.topik import mirip
 from kpai.tts import Kata
@@ -96,6 +97,39 @@ class TestBatasDanTopik(unittest.TestCase):
         from kpai.kualitas import masalah_duplikat
         self.assertTrue(masalah_duplikat(naskah, ["matahari hilang"]))
         self.assertFalse(masalah_duplikat(naskah, ["paus biru hilang"]))
+
+    def test_judul_pertanyaan_dan_ajakan_di_penutup(self):
+        self.assertEqual(pertanyaan("Jika Matahari menghilang"), "Bagaimana jika Matahari menghilang?")
+        self.assertEqual(
+            pertanyaan("Bagaimana jika Bulan pergi menjauh?"),
+            "Bagaimana jika Bulan pergi menjauh?",
+        )
+        naskah = template_lokal(("Luar Angkasa", "x"), ("Fisika", "y"), "besok")
+        self.assertTrue(naskah.judul_youtube.startswith("Bagaimana jika "))
+        self.assertTrue(naskah.judul_youtube.endswith("?"))
+        self.assertTrue(naskah.judul_seri)
+        self.assertNotEqual(naskah.topik_berikut.casefold(), naskah.topik_ketiga.casefold())
+        penutup = next(adegan.narasi for adegan in naskah.adegan if adegan.id == "penutup")
+        self.assertTrue(penutup.endswith(AJAKAN_SUBSCRIBE))
+
+    def test_seri_berjalan_tiga_episode(self):
+        naskah = template_lokal(("Bumi dan Alam", "x"), ("Fisika", "y"), "besok")
+        data = {"video": [], "rencana": {}}
+        history.lanjutkan_seri(data, naskah, "Bumi dan Alam", "cuaca", None)
+        self.assertEqual(data["seri"]["selesai"], 1)
+        self.assertEqual(len(data["seri"]["bagian"]), 3)
+        jalan = history.seri_berjalan(data)
+        history.lanjutkan_seri(data, naskah, "Bumi dan Alam", "cuaca", jalan)
+        self.assertEqual(history.seri_berjalan(data)["selesai"], 2)
+        history.lanjutkan_seri(data, naskah, "Bumi dan Alam", "cuaca", history.seri_berjalan(data))
+        self.assertIsNone(history.seri_berjalan(data))
+
+    def test_ajakan_muncul_di_dua_detik_terakhir(self):
+        kata = [Kata("Subscribe", 6.2, 6.7), Kata("kalau", 6.7, 7.0)]
+        self.assertFalse(saat_ajakan(kata, 8.0, 6.0))
+        self.assertTrue(saat_ajakan(kata, 8.0, 6.2))
+        self.assertFalse(saat_ajakan([], 8.0, 5.9))
+        self.assertTrue(saat_ajakan([], 8.0, 6.0))
 
     def test_kegagalan_satu_slot_tidak_menghentikan_berikutnya(self):
         def fungsi(slot):
@@ -254,6 +288,9 @@ class TestUploadDanRender(unittest.TestCase):
         frame = renderer.frame(0.4)
         self.assertEqual(frame.size, (1080, 1920))
         self.assertEqual(frame.mode, "RGB")
+        penutup = adegan[-1]
+        akhir = renderer.frame(penutup.mulai + penutup.durasi - 0.2)
+        self.assertEqual(akhir.size, (1080, 1920))
 
     def test_klaim_berlebihan_ditahan(self):
         naskah = template_lokal(("Fisika", "x"), ("Hewan", "y"), "besok")

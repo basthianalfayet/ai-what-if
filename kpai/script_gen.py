@@ -1,5 +1,4 @@
 import json
-import random
 import re
 import time
 from dataclasses import dataclass, field
@@ -46,13 +45,12 @@ class Naskah(BaseModel):
     pengungkapan_sintetis: bool = True
     perlu_tinjauan: bool = False
     topik_berikut: str = ""
+    topik_ketiga: str = ""
+    judul_seri: str = ""
+    urutan_seri: int = 1
 
 
-GAYA_HOOK = [
-    "pertanyaan langsung yang selesai dalam satu napas",
-    "akibat yang terasa dalam beberapa detik pertama",
-    "kontras antara yang orang kira terjadi dan yang lebih pelan",
-]
+AJAKAN_SUBSCRIBE = "Subscribe kalau mau skenario berikutnya."
 
 _NON_BMP = re.compile(r"[\U00010000-\U0010FFFF\u2600-\u27BF\uFE0F]")
 _URUTAN = config.URUTAN_ADEGAN
@@ -63,6 +61,52 @@ def _bersihkan(teks: str) -> str:
     teks = teks.replace("**", "").replace("__", "")
     teks = re.sub(r"^\s*#+\s*", "", teks, flags=re.M)
     return teks.strip()
+
+
+def pertanyaan(teks: str, batas: int = 90) -> str:
+    """Judul yang langsung bertanya, bukan judul puitis."""
+    t = " ".join((teks or "").split()).strip(" \"'")
+    if not t:
+        return ""
+    rendah = t.casefold()
+    if rendah.startswith("bagaimana jika "):
+        isi = t[15:].strip()
+    elif rendah.startswith("jika "):
+        isi = t[5:].strip()
+    else:
+        isi = t
+    isi = isi.strip(" ?.!")
+    if not isi:
+        return ""
+    hasil = "Bagaimana jika " + isi[0].upper() + isi[1:]
+    if not hasil.endswith("?"):
+        hasil += "?"
+    if len(hasil) > batas:
+        hasil = hasil[: batas - 1].rstrip(" ?.!,;:") + "?"
+    return hasil
+
+
+def adalah_pertanyaan(teks: str) -> bool:
+    t = " ".join((teks or "").split())
+    return t.casefold().startswith("bagaimana jika ") and t.endswith("?")
+
+
+def _tanpa_ajakan(teks: str) -> str:
+    return re.sub(
+        r"\s*Subscribe kalau mau skenario berikutnya\.?\s*$",
+        "",
+        teks or "",
+        flags=re.IGNORECASE,
+    ).strip()
+
+
+def _akhiri_ajakan(narasi: str) -> str:
+    dasar = _tanpa_ajakan(narasi).rstrip()
+    if not dasar:
+        return AJAKAN_SUBSCRIBE
+    if dasar[-1] not in ".?!":
+        dasar += "."
+    return f"{dasar} {AJAKAN_SUBSCRIBE}"
 
 
 def rapikan(n: Naskah) -> Naskah:
@@ -84,6 +128,9 @@ def rapikan(n: Naskah) -> Naskah:
             item["judul_layar"] = " ".join(item["narasi"].split()[:6])
         if item["sfx"] not in ("whoosh", "pop", "none"):
             item["sfx"] = "pop"
+        if urut == "penutup":
+            item["narasi"] = _akhiri_ajakan(item["narasi"])
+            item["subtitle"] = item["narasi"]
         adegan.append(item)
     data["adegan"] = adegan
     data["hashtag"] = [_bersihkan(t).lstrip("#").lower() for t in data.get("hashtag") or [] if str(t).strip()][:8]
@@ -92,14 +139,27 @@ def rapikan(n: Naskah) -> Naskah:
         data["inti"] = data.get("topik") or ""
     if not data.get("pengungkapan_sintetis"):
         data["pengungkapan_sintetis"] = True
+    judul = pertanyaan(data.get("judul_youtube") or data.get("judul_kerja") or data.get("topik") or "")
+    if judul:
+        data["judul_youtube"] = judul
+        data["judul_kerja"] = judul
+    for kunci in ("topik_berikut", "topik_ketiga"):
+        if str(data.get(kunci) or "").strip():
+            data[kunci] = pertanyaan(data[kunci])
+    try:
+        urutan = int(data.get("urutan_seri") or 1)
+    except (TypeError, ValueError):
+        urutan = 1
+    data["urutan_seri"] = urutan if urutan in (1, 2, 3) else 1
+    data["judul_seri"] = _bersihkan(str(data.get("judul_seri") or ""))
     return Naskah(**data)
 
 
 def jumlah_kata_narasi(n: Naskah) -> int:
-    return sum(len(a.narasi.split()) for a in n.adegan)
+    return sum(len(_tanpa_ajakan(a.narasi).split()) for a in n.adegan)
 
 
-def _masalah(n: Naskah, label_berikut: str = "") -> list[str]:
+def _masalah(n: Naskah, label_berikut: str = "", lanjutan: bool = False) -> list[str]:
     del label_berikut
     masalah = []
     kata = jumlah_kata_narasi(n)
@@ -109,8 +169,17 @@ def _masalah(n: Naskah, label_berikut: str = "") -> list[str]:
         masalah.append("adegan harus hook, awal, puncak, lalu penutup")
     if not 8 <= len(n.hook.split()) <= 28:
         masalah.append("hook 8-28 kata")
+    if not adalah_pertanyaan(n.judul_youtube):
+        masalah.append("judul YouTube harus pertanyaan Bagaimana jika")
     if len(n.judul_youtube) > 100:
         masalah.append("judul YouTube maksimal 100 karakter")
+    if not lanjutan and n.urutan_seri <= 1:
+        if not (n.judul_seri or "").strip():
+            masalah.append("judul seri kosong")
+        if not adalah_pertanyaan(n.topik_berikut) or not adalah_pertanyaan(n.topik_ketiga):
+            masalah.append("bagian 2 dan 3 harus pertanyaan Bagaimana jika")
+        if n.topik_berikut.casefold() == n.topik_ketiga.casefold():
+            masalah.append("bagian 2 dan 3 tidak boleh sama")
     if len(n.penjelasan_ilmiah.split()) < 12 or len(n.batas_ketidakpastian.split()) < 12:
         masalah.append("penjelasan ilmiah dan batas ketidakpastian masing-masing minimal 12 kata")
     if len(n.ending.split()) < 8 or len(n.pertanyaan_komentar.split()) < 6:
@@ -125,7 +194,31 @@ def _masalah(n: Naskah, label_berikut: str = "") -> list[str]:
     return masalah
 
 
-def _instruksi(kategori, kategori_besok, label_berikut, topik, hindari, rekap_minggu) -> str:
+def _baris_seri(seri) -> str:
+    if not seri:
+        return (
+            "Mulai seri baru yang terdiri dari 3 video satu benang, bukan tiga topik acak.\n"
+            "judul_seri maksimal 6 kata.\n"
+            "Video ini bagian 1. Di adegan penutup, sebut sekali bahwa ini bagian 1 dari 3.\n"
+            "topik_berikut adalah bagian 2, topik_ketiga adalah bagian 3. "
+            "Keduanya pertanyaan yang diawali Bagaimana jika dan masih akibat dari cerita ini.\n"
+            "urutan_seri harus 1."
+        )
+    nomor = int(seri["selesai"]) + 1
+    if nomor >= 3:
+        return (
+            f'Ini bagian 3 dari 3 dalam seri "{seri["nama"]}". '
+            "Jangan mengarang bagian keempat. Di adegan penutup, sebut sekali bahwa seri ini selesai."
+        )
+    berikut = seri["bagian"][nomor] if nomor < len(seri["bagian"]) else ""
+    return (
+        f'Ini bagian {nomor} dari 3 dalam seri "{seri["nama"]}".\n'
+        f"Bagian berikutnya sudah ditentukan: {berikut}. Jangan mengganti benangnya.\n"
+        f"Di adegan penutup, sebut sekali bahwa ini bagian {nomor} dari 3."
+    )
+
+
+def _instruksi(kategori, kategori_besok, label_berikut, topik, hindari, rekap_minggu, seri=None) -> str:
     del label_berikut, rekap_minggu
     nama_kat, cakupan = kategori
     nama_besok, _cakupan_besok = kategori_besok
@@ -142,7 +235,8 @@ Jangan menyalin naskah kreator lain. Jangan mengarang statistik, tahun, atau kut
 
 Kategori: {nama_kat} ({cakupan}).
 {topik_baris}
-Gaya hook: {random.choice(GAYA_HOOK)}.
+{_baris_seri(seri)}
+Gaya hook: pertanyaan langsung yang selesai dalam satu napas.
 Jangan mengulang inti cerita berikut:
 {hindari_baris}
 Kategori slot berikutnya hanya sebagai pengingat keragaman, bukan untuk disebut di narasi: {nama_besok}.
@@ -151,21 +245,36 @@ Struktur tepat 4 adegan, id berurutan hook, awal, puncak, penutup:
 1. hook: pertanyaan yang berhentiin scroll dalam 1-2 detik, lalu satu fakta waktu atau skala.
 2. awal: akibat pertama yang masuk akal.
 3. puncak: akibat yang berkembang. Sebut bagian yang tidak pasti.
-4. penutup: payoff yang memuaskan, ingatkan bahwa ini skenario, lalu pertanyaan komentar.
+4. penutup: payoff yang memuaskan, ingatkan bahwa ini skenario, lalu pertanyaan komentar. Jangan menulis kata subscribe.
 
 Aturan:
-- Total narasi 100-140 kata. Tiap narasi minimal 12 kata.
+- Total narasi 100-140 kata. Tiap narasi minimal 12 kata. Jangan menghitung kalimat subscribe; sistem yang menambahkan.
 - subtitle tiap adegan sama dengan narasinya.
 - judul_layar maksimal 8 kata, tanpa emoji.
 - prompt_gambar bahasa Inggris, visual sinematik, tanpa tulisan, tanpa merek, tanpa tokoh nyata.
 - penjelasan_ilmiah hanya memuat hal yang kamu yakini sebagai pengetahuan umum.
 - batas_ketidakpastian menyebut apa yang tidak boleh dianggap pasti.
-- judul_youtube maksimal 90 karakter, tanpa janji yang tidak ada di narasi, tanpa emoji.
+- judul_kerja dan judul_youtube wajib sama, diawali "Bagaimana jika", diakhiri tanda tanya, maksimal 90 karakter, tanpa emoji, tanpa judul puitis.
 - hashtag 5 sampai 8, huruf kecil, tanpa tanda pagar.
 - pengungkapan_sintetis harus true.
 - inti berisi 2-4 kata kunci unik cerita, misalnya "matahari hilang".
 - Jangan sebut nama channel di hook.
 """
+
+
+def terapkan_seri(naskah: Naskah, seri: dict) -> Naskah:
+    """Kunci episode yang sudah direncanakan supaya model tidak membelokkan benangnya."""
+    nomor = int(seri["selesai"]) + 1
+    naskah.urutan_seri = nomor if nomor in (1, 2, 3) else 1
+    naskah.judul_seri = str(seri.get("nama") or naskah.judul_seri)
+    naskah.topik = seri["bagian"][nomor - 1]
+    naskah.judul_youtube = pertanyaan(naskah.topik)
+    naskah.judul_kerja = naskah.judul_youtube
+    naskah.topik_berikut = seri["bagian"][nomor] if nomor < 3 else ""
+    naskah.topik_ketiga = ""
+    if seri.get("kategori"):
+        naskah.kategori = seri["kategori"]
+    return naskah
 
 
 @dataclass
@@ -195,7 +304,7 @@ def _mirip(naskah: Naskah, hindari) -> str:
     return mirip_dengan_daftar(naskah.topik, naskah.inti, list(hindari or []))
 
 
-def _gemini(klien, instruksi, topik, label_berikut, hindari, tidur) -> tuple[Naskah | None, str, list[str], str | None, int]:
+def _gemini(klien, instruksi, topik, label_berikut, hindari, tidur, lanjutan=False) -> tuple[Naskah | None, str, list[str], str | None, int]:
     from google.genai import types
 
     if dalam_cooldown("gemini"):
@@ -228,7 +337,7 @@ def _gemini(klien, instruksi, topik, label_berikut, hindari, tidur) -> tuple[Nas
                     naskah = _baca_json(getattr(resp, "text", "") or "")
                 if topik:
                     naskah.topik = topik
-                masalah = _masalah(naskah, label_berikut)
+                masalah = _masalah(naskah, label_berikut, lanjutan)
                 bentrok = "" if topik else _mirip(naskah, hindari)
                 if bentrok:
                     masalah.append(f"terlalu mirip dengan {bentrok}")
@@ -273,7 +382,7 @@ def _gemini(klien, instruksi, topik, label_berikut, hindari, tidur) -> tuple[Nas
     return None, alasan, notifikasi, None, percobaan
 
 
-def _groq(instruksi, topik, label_berikut, hindari, pengirim, tidur) -> tuple[Naskah | None, str, list[str], int]:
+def _groq(instruksi, topik, label_berikut, hindari, pengirim, tidur, lanjutan=False) -> tuple[Naskah | None, str, list[str], int]:
     if config.SCRIPT_FALLBACK_PROVIDER not in ("groq", ""):
         return None, "fallback naskah bukan Groq", [], 0
     if not config.GROQ_API_KEY:
@@ -311,7 +420,7 @@ def _groq(instruksi, topik, label_berikut, hindari, pengirim, tidur) -> tuple[Na
             naskah = _baca_json(isi)
             if topik:
                 naskah.topik = topik
-            masalah = _masalah(naskah, label_berikut)
+            masalah = _masalah(naskah, label_berikut, lanjutan)
             bentrok = "" if topik else _mirip(naskah, hindari)
             if bentrok:
                 masalah.append(f"terlalu mirip dengan {bentrok}")
@@ -355,7 +464,7 @@ def _groq(instruksi, topik, label_berikut, hindari, pengirim, tidur) -> tuple[Na
     return None, "gagal", notifikasi, percobaan
 
 
-def buat_naskah(kategori, kategori_besok, label_berikut, topik=None, hindari=(), rekap_minggu=(), klien=None, pengirim=None, tidur=None) -> HasilNaskah:
+def buat_naskah(kategori, kategori_besok, label_berikut, topik=None, hindari=(), rekap_minggu=(), klien=None, pengirim=None, tidur=None, seri=None) -> HasilNaskah:
     from .template_naskah import template_lokal
 
     if not boleh_naskah_api() or mode() == "local_only":
@@ -363,7 +472,8 @@ def buat_naskah(kategori, kategori_besok, label_berikut, topik=None, hindari=(),
 
     pengirim = pengirim or requests.post
     tidur = tidur or time.sleep
-    instruksi = _instruksi(kategori, kategori_besok, label_berikut, topik, list(hindari)[-40:], list(rekap_minggu))
+    lanjutan = bool(seri)
+    instruksi = _instruksi(kategori, kategori_besok, label_berikut, topik, list(hindari)[-40:], list(rekap_minggu), seri)
     konfigurasi = []
     alasan_gemini = ""
     naskah = None
@@ -375,7 +485,7 @@ def buat_naskah(kategori, kategori_besok, label_berikut, topik=None, hindari=(),
             from google import genai
             klien = genai.Client(api_key=config.GEMINI_API_KEY)
         naskah, alasan_gemini, notifikasi, peringatan, percobaan = _gemini(
-            klien, instruksi, topik, label_berikut, hindari, tidur
+            klien, instruksi, topik, label_berikut, hindari, tidur, lanjutan
         )
         konfigurasi.extend(notifikasi)
         if naskah is not None and peringatan is None:
@@ -394,11 +504,11 @@ def buat_naskah(kategori, kategori_besok, label_berikut, topik=None, hindari=(),
     groq_naskah, alasan_groq, notifikasi_groq, percobaan_groq = None, "tidak dicoba", [], 0
     if config.TEXT_FALLBACK_ENABLED:
         groq_naskah, alasan_groq, notifikasi_groq, percobaan_groq = _groq(
-            instruksi, topik, label_berikut, hindari, pengirim, tidur
+            instruksi, topik, label_berikut, hindari, pengirim, tidur, lanjutan
         )
         konfigurasi.extend(notifikasi_groq)
         percobaan += percobaan_groq
-        if groq_naskah is not None and not _masalah(groq_naskah, label_berikut) and not ("" if topik else _mirip(groq_naskah, hindari)):
+        if groq_naskah is not None and not _masalah(groq_naskah, label_berikut, lanjutan) and not ("" if topik else _mirip(groq_naskah, hindari)):
             return HasilNaskah(
                 groq_naskah, "Groq", config.GROQ_MODEL,
                 fallback_dari="Gemini", alasan=alasan_gemini or "naskah belum ideal",
