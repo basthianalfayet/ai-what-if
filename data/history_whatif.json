@@ -59,6 +59,18 @@
       "status": "review",
       "run_id": "368446-de51a91f",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-20-larut-368446-de51a91f"
+    },
+    {
+      "tanggal": "2026-10-21",
+      "slot": "pagi",
+      "kategori": "Hewan",
+      "topik": "Bagaimana jika Tanah mengeras dan hutan dunia mulai mati?",
+      "judul": "Bagaimana jika Tanah mengeras dan hutan dunia mulai mati?",
+      "inti": "aerasi tanah terhenti",
+      "youtube_id": "HYBe3tXtPxk",
+      "status": "terunggah",
+      "run_id": "628700-84b33ae5",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-21-pagi-628700-84b33ae5"
     }
   ],
   "rencana": {
@@ -66,15 +78,5 @@
     "2026-10-20-malam": "Bagaimana jika Bangkai dan sisa organik menumpuk tanpa semut?",
     "2026-10-20-larut": "Bagaimana jika Tanah mengeras dan hutan dunia mulai mati?"
   },
-  "seri": {
-    "nama": "Dampak Lenyapnya Semut di Bumi",
-    "kategori": "Hewan",
-    "cakupan": "serangga, laut, rantai makanan, dan perilaku hewan",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Semua semut di Bumi tiba-tiba lenyap?",
-      "Bagaimana jika Bangkai dan sisa organik menumpuk tanpa semut?",
-      "Bagaimana jika Tanah mengeras dan hutan dunia mulai mati?"
-    ]
-  }
+  "seri": {}
 }
