@@ -71,12 +71,35 @@
       "status": "terunggah",
       "run_id": "628700-84b33ae5",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-21-pagi-628700-84b33ae5"
+    },
+    {
+      "tanggal": "2026-10-21",
+      "slot": "siang",
+      "kategori": "Hewan",
+      "topik": "Semua kril di samudra mendadak lenyap",
+      "judul": "Bagaimana jika Semua kril di samudra mendadak lenyap?",
+      "inti": "kril samudra lenyap",
+      "youtube_id": "JvEZgVIsYxY",
+      "status": "terunggah",
+      "run_id": "124594-bf7e88f6",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-21-siang-124594-bf7e88f6"
     }
   ],
   "rencana": {
     "2026-10-20-sore": "Hewan",
     "2026-10-20-malam": "Bagaimana jika Bangkai dan sisa organik menumpuk tanpa semut?",
-    "2026-10-20-larut": "Bagaimana jika Tanah mengeras dan hutan dunia mulai mati?"
+    "2026-10-20-larut": "Bagaimana jika Tanah mengeras dan hutan dunia mulai mati?",
+    "2026-10-21-sore": "Bagaimana jika Paus balin punah dari seluruh samudra?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Rantai Makanan Samudra Runtuh",
+    "kategori": "Hewan",
+    "cakupan": "serangga, laut, rantai makanan, dan perilaku hewan",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Semua kril di samudra mendadak lenyap?",
+      "Bagaimana jika Paus balin punah dari seluruh samudra?",
+      "Bagaimana jika Pompa karbon laut berhenti berfungsi selamanya?"
+    ]
+  }
 }
