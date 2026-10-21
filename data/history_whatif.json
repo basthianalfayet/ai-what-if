@@ -95,6 +95,18 @@
       "status": "terunggah",
       "run_id": "604706-c996e886",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-21-sore-604706-c996e886"
+    },
+    {
+      "tanggal": "2026-10-21",
+      "slot": "malam",
+      "kategori": "Hewan",
+      "topik": "Bagaimana jika Pompa karbon laut berhenti berfungsi selamanya?",
+      "judul": "Bagaimana jika Pompa karbon laut berhenti berfungsi selamanya?",
+      "inti": "pompa karbon laut berhenti",
+      "youtube_id": "wJ-FBujal_o",
+      "status": "terunggah",
+      "run_id": "208531-29eb5a6e",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-21-malam-208531-29eb5a6e"
     }
   ],
   "rencana": {
@@ -104,15 +116,5 @@
     "2026-10-21-sore": "Bagaimana jika Paus balin punah dari seluruh samudra?",
     "2026-10-21-malam": "Bagaimana jika Pompa karbon laut berhenti berfungsi selamanya?"
   },
-  "seri": {
-    "nama": "Rantai Makanan Samudra Runtuh",
-    "kategori": "Hewan",
-    "cakupan": "serangga, laut, rantai makanan, dan perilaku hewan",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Semua kril di samudra mendadak lenyap?",
-      "Bagaimana jika Paus balin punah dari seluruh samudra?",
-      "Bagaimana jika Pompa karbon laut berhenti berfungsi selamanya?"
-    ]
-  }
+  "seri": {}
 }
