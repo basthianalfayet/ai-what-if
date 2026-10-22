@@ -131,6 +131,18 @@
       "status": "terunggah",
       "run_id": "011593-85afd568",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-22-pagi-011593-85afd568"
+    },
+    {
+      "tanggal": "2026-10-22",
+      "slot": "sore",
+      "kategori": "Masa Depan Peradaban",
+      "topik": "Bagaimana jika Manusia terpaksa bermigrasi massal ke wilayah kutub?",
+      "judul": "Bagaimana jika Manusia terpaksa bermigrasi massal ke wilayah kutub?",
+      "inti": "migrasi massal kutub",
+      "youtube_id": "t685SuE6TJg",
+      "status": "terunggah",
+      "run_id": "064823-bf136c02",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-22-sore-064823-bf136c02"
     }
   ],
   "rencana": {
@@ -142,15 +154,5 @@
     "2026-10-22-pagi": "Bagaimana jika Kota megapolitan kehabisan makanan segar dalam tiga hari?",
     "2026-10-22-siang": "Bagaimana jika Manusia terpaksa bermigrasi massal ke wilayah kutub?"
   },
-  "seri": {
-    "nama": "Runtuhnya Rantai Dingin Dunia",
-    "kategori": "Masa Depan Peradaban",
-    "cakupan": "kota, energi, pangan, dan cara manusia hidup bersama",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Semua mesin pendingin di Bumi mendadak mati total?",
-      "Bagaimana jika Kota megapolitan kehabisan makanan segar dalam tiga hari?",
-      "Bagaimana jika Manusia terpaksa bermigrasi massal ke wilayah kutub?"
-    ]
-  }
+  "seri": {}
 }
