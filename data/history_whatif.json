@@ -155,6 +155,18 @@
       "status": "terunggah",
       "run_id": "890613-f7eaecb8",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-22-malam-890613-f7eaecb8"
+    },
+    {
+      "tanggal": "2026-10-22",
+      "slot": "larut",
+      "kategori": "Masa Depan Peradaban",
+      "topik": "Bagaimana jika Gedung masa depan dibangun dari kayu olahan?",
+      "judul": "Bagaimana jika Gedung masa depan dibangun dari kayu olahan?",
+      "inti": "pencakar langit kayu",
+      "youtube_id": "EJ3GaDDqVf8",
+      "status": "terunggah",
+      "run_id": "964062-fa32378c",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-22-larut-964062-fa32378c"
     }
   ],
   "rencana": {
@@ -165,13 +177,14 @@
     "2026-10-21-malam": "Bagaimana jika Pompa karbon laut berhenti berfungsi selamanya?",
     "2026-10-22-pagi": "Bagaimana jika Kota megapolitan kehabisan makanan segar dalam tiga hari?",
     "2026-10-22-siang": "Bagaimana jika Manusia terpaksa bermigrasi massal ke wilayah kutub?",
-    "2026-10-22-larut": "Bagaimana jika Gedung masa depan dibangun dari kayu olahan?"
+    "2026-10-22-larut": "Bagaimana jika Gedung masa depan dibangun dari kayu olahan?",
+    "2026-10-23-pagi": "Bagaimana jika Manusia terpaksa menambang puing kota tua?"
   },
   "seri": {
     "nama": "Krisis Bahan Bangunan Peradaban",
     "kategori": "Masa Depan Peradaban",
     "cakupan": "kota, energi, pangan, dan cara manusia hidup bersama",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Seluruh pasir konstruksi di Bumi mendadak habis?",
       "Bagaimana jika Gedung masa depan dibangun dari kayu olahan?",
