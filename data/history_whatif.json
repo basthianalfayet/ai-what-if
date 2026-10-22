@@ -119,6 +119,18 @@
       "status": "terunggah",
       "run_id": "988971-cf77c236",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-21-larut-988971-cf77c236"
+    },
+    {
+      "tanggal": "2026-10-22",
+      "slot": "pagi",
+      "kategori": "Masa Depan Peradaban",
+      "topik": "Bagaimana jika Kota megapolitan kehabisan makanan segar dalam tiga hari?",
+      "judul": "Bagaimana jika Kota megapolitan kehabisan makanan segar dalam tiga hari?",
+      "inti": "makanan segar habis",
+      "youtube_id": "WrnBHg2tl_0",
+      "status": "terunggah",
+      "run_id": "011593-85afd568",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-22-pagi-011593-85afd568"
     }
   ],
   "rencana": {
@@ -127,13 +139,14 @@
     "2026-10-20-larut": "Bagaimana jika Tanah mengeras dan hutan dunia mulai mati?",
     "2026-10-21-sore": "Bagaimana jika Paus balin punah dari seluruh samudra?",
     "2026-10-21-malam": "Bagaimana jika Pompa karbon laut berhenti berfungsi selamanya?",
-    "2026-10-22-pagi": "Bagaimana jika Kota megapolitan kehabisan makanan segar dalam tiga hari?"
+    "2026-10-22-pagi": "Bagaimana jika Kota megapolitan kehabisan makanan segar dalam tiga hari?",
+    "2026-10-22-siang": "Bagaimana jika Manusia terpaksa bermigrasi massal ke wilayah kutub?"
   },
   "seri": {
     "nama": "Runtuhnya Rantai Dingin Dunia",
     "kategori": "Masa Depan Peradaban",
     "cakupan": "kota, energi, pangan, dan cara manusia hidup bersama",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Semua mesin pendingin di Bumi mendadak mati total?",
       "Bagaimana jika Kota megapolitan kehabisan makanan segar dalam tiga hari?",
