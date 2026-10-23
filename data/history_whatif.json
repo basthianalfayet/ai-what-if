@@ -179,6 +179,18 @@
       "status": "terunggah",
       "run_id": "425160-e8bc8c39",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-23-pagi-425160-e8bc8c39"
+    },
+    {
+      "tanggal": "2026-10-23",
+      "slot": "siang",
+      "kategori": "Teknologi dan AI",
+      "topik": "Desinkronisasi satu detik pada jam atom satelit navigasi global",
+      "judul": "Bagaimana jika Jam satelit GPS meleset satu detik?",
+      "inti": "desinkronisasi waktu satelit",
+      "youtube_id": "P8BjPtvF1nM",
+      "status": "terunggah",
+      "run_id": "363062-a71fd3ee",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-23-siang-363062-a71fd3ee"
     }
   ],
   "rencana": {
@@ -190,7 +202,18 @@
     "2026-10-22-pagi": "Bagaimana jika Kota megapolitan kehabisan makanan segar dalam tiga hari?",
     "2026-10-22-siang": "Bagaimana jika Manusia terpaksa bermigrasi massal ke wilayah kutub?",
     "2026-10-22-larut": "Bagaimana jika Gedung masa depan dibangun dari kayu olahan?",
-    "2026-10-23-pagi": "Bagaimana jika Manusia terpaksa menambang puing kota tua?"
+    "2026-10-23-pagi": "Bagaimana jika Manusia terpaksa menambang puing kota tua?",
+    "2026-10-23-sore": "Bagaimana jika Jaringan listrik benua padam akibat desinkronisasi satelit?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Kekacauan Waktu Satelit Global",
+    "kategori": "Teknologi dan AI",
+    "cakupan": "sistem otomatis, internet, dan kecerdasan buatan dalam kehidupan sehari-hari",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Jam satelit GPS meleset satu detik?",
+      "Bagaimana jika Jaringan listrik benua padam akibat desinkronisasi satelit?",
+      "Bagaimana jika Sistem perbankan global kembali memakai pencatatan fisik manual?"
+    ]
+  }
 }
