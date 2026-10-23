@@ -167,6 +167,18 @@
       "status": "terunggah",
       "run_id": "964062-fa32378c",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-22-larut-964062-fa32378c"
+    },
+    {
+      "tanggal": "2026-10-23",
+      "slot": "pagi",
+      "kategori": "Masa Depan Peradaban",
+      "topik": "Bagaimana jika Manusia terpaksa menambang puing kota tua?",
+      "judul": "Bagaimana jika Manusia terpaksa menambang puing kota tua?",
+      "inti": "menambang puing kota",
+      "youtube_id": "8tFpAzUsZZQ",
+      "status": "terunggah",
+      "run_id": "425160-e8bc8c39",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-23-pagi-425160-e8bc8c39"
     }
   ],
   "rencana": {
@@ -180,15 +192,5 @@
     "2026-10-22-larut": "Bagaimana jika Gedung masa depan dibangun dari kayu olahan?",
     "2026-10-23-pagi": "Bagaimana jika Manusia terpaksa menambang puing kota tua?"
   },
-  "seri": {
-    "nama": "Krisis Bahan Bangunan Peradaban",
-    "kategori": "Masa Depan Peradaban",
-    "cakupan": "kota, energi, pangan, dan cara manusia hidup bersama",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh pasir konstruksi di Bumi mendadak habis?",
-      "Bagaimana jika Gedung masa depan dibangun dari kayu olahan?",
-      "Bagaimana jika Manusia terpaksa menambang puing kota tua?"
-    ]
-  }
+  "seri": {}
 }
