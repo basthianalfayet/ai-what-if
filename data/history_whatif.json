@@ -203,6 +203,18 @@
       "status": "terunggah",
       "run_id": "710929-f65b8065",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-23-sore-710929-f65b8065"
+    },
+    {
+      "tanggal": "2026-10-23",
+      "slot": "malam",
+      "kategori": "Teknologi dan AI",
+      "topik": "Bagaimana jika Sistem perbankan global kembali memakai pencatatan fisik manual?",
+      "judul": "Bagaimana jika Sistem perbankan global kembali memakai pencatatan fisik manual?",
+      "inti": "pencatatan manual perbankan",
+      "youtube_id": "ZVeBqrTQ6_U",
+      "status": "terunggah",
+      "run_id": "122027-802b93b5",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-23-malam-122027-802b93b5"
     }
   ],
   "rencana": {
@@ -218,15 +230,5 @@
     "2026-10-23-sore": "Bagaimana jika Jaringan listrik benua padam akibat desinkronisasi satelit?",
     "2026-10-23-malam": "Bagaimana jika Sistem perbankan global kembali memakai pencatatan fisik manual?"
   },
-  "seri": {
-    "nama": "Kekacauan Waktu Satelit Global",
-    "kategori": "Teknologi dan AI",
-    "cakupan": "sistem otomatis, internet, dan kecerdasan buatan dalam kehidupan sehari-hari",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Jam satelit GPS meleset satu detik?",
-      "Bagaimana jika Jaringan listrik benua padam akibat desinkronisasi satelit?",
-      "Bagaimana jika Sistem perbankan global kembali memakai pencatatan fisik manual?"
-    ]
-  }
+  "seri": {}
 }
