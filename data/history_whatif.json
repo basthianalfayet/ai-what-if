@@ -239,6 +239,18 @@
       "status": "review",
       "run_id": "759849-f36c88a0",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-24-pagi-759849-f36c88a0"
+    },
+    {
+      "tanggal": "2026-10-24",
+      "slot": "siang",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Tanah kehilangan pasokan nitrogen dari petir?",
+      "judul": "Bagaimana jika Tanah kehilangan pasokan nitrogen dari petir?",
+      "inti": "nitrogen petir tanah",
+      "youtube_id": "LPNqPjWD2c8",
+      "status": "terunggah",
+      "run_id": "556532-4eceb5aa",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-24-siang-556532-4eceb5aa"
     }
   ],
   "rencana": {
@@ -256,15 +268,5 @@
     "2026-10-24-pagi": "Bagaimana jika Sirkuit listrik atmosfer Bumi padam selamanya?",
     "2026-10-24-siang": "Bagaimana jika Tanah kehilangan pasokan nitrogen dari petir?"
   },
-  "seri": {
-    "nama": "Bumi Tanpa Petir",
-    "kategori": "Bumi dan Alam",
-    "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Petir berhenti menyambar di seluruh Bumi?",
-      "Bagaimana jika Sirkuit listrik atmosfer Bumi padam selamanya?",
-      "Bagaimana jika Tanah kehilangan pasokan nitrogen dari petir?"
-    ]
-  }
+  "seri": {}
 }
