@@ -263,6 +263,18 @@
       "status": "terunggah",
       "run_id": "236236-d923b3c7",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-24-sore-236236-d923b3c7"
+    },
+    {
+      "tanggal": "2026-10-24",
+      "slot": "malam",
+      "kategori": "Luar Angkasa",
+      "topik": "Bagaimana jika Pasang surut ekstrem menenggelamkan seluruh kota pesisir?",
+      "judul": "Bagaimana jika Pasang surut ekstrem menenggelamkan seluruh kota pesisir?",
+      "inti": "pasang surut ekstrem",
+      "youtube_id": "RJZu2R-pVr0",
+      "status": "terunggah",
+      "run_id": "152689-5e1c3032",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-24-malam-152689-5e1c3032"
     }
   ],
   "rencana": {
@@ -279,13 +291,14 @@
     "2026-10-23-malam": "Bagaimana jika Sistem perbankan global kembali memakai pencatatan fisik manual?",
     "2026-10-24-pagi": "Bagaimana jika Sirkuit listrik atmosfer Bumi padam selamanya?",
     "2026-10-24-siang": "Bagaimana jika Tanah kehilangan pasokan nitrogen dari petir?",
-    "2026-10-24-malam": "Bagaimana jika Pasang surut ekstrem menenggelamkan seluruh kota pesisir?"
+    "2026-10-24-malam": "Bagaimana jika Pasang surut ekstrem menenggelamkan seluruh kota pesisir?",
+    "2026-10-24-larut": "Bagaimana jika Tarikan gravitasi Bulan memicu letusan gunung berapi global?"
   },
   "seri": {
     "nama": "Bulan Mendekat ke Bumi",
     "kategori": "Luar Angkasa",
     "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Orbit Bulan mendadak mendekat 50.000 kilometer ke Bumi?",
       "Bagaimana jika Pasang surut ekstrem menenggelamkan seluruh kota pesisir?",
