@@ -227,6 +227,18 @@
       "status": "terunggah",
       "run_id": "949658-6bbc36b2",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-23-larut-949658-6bbc36b2"
+    },
+    {
+      "tanggal": "2026-10-24",
+      "slot": "pagi",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Sirkuit listrik atmosfer Bumi padam selamanya?",
+      "judul": "Bagaimana jika Sirkuit listrik atmosfer Bumi padam selamanya?",
+      "inti": "sirkuit listrik atmosfer",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "759849-f36c88a0",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-24-pagi-759849-f36c88a0"
     }
   ],
   "rencana": {
@@ -241,13 +253,14 @@
     "2026-10-23-pagi": "Bagaimana jika Manusia terpaksa menambang puing kota tua?",
     "2026-10-23-sore": "Bagaimana jika Jaringan listrik benua padam akibat desinkronisasi satelit?",
     "2026-10-23-malam": "Bagaimana jika Sistem perbankan global kembali memakai pencatatan fisik manual?",
-    "2026-10-24-pagi": "Bagaimana jika Sirkuit listrik atmosfer Bumi padam selamanya?"
+    "2026-10-24-pagi": "Bagaimana jika Sirkuit listrik atmosfer Bumi padam selamanya?",
+    "2026-10-24-siang": "Bagaimana jika Tanah kehilangan pasokan nitrogen dari petir?"
   },
   "seri": {
     "nama": "Bumi Tanpa Petir",
     "kategori": "Bumi dan Alam",
     "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Petir berhenti menyambar di seluruh Bumi?",
       "Bagaimana jika Sirkuit listrik atmosfer Bumi padam selamanya?",
