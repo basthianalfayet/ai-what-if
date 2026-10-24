@@ -275,6 +275,18 @@
       "status": "terunggah",
       "run_id": "152689-5e1c3032",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-24-malam-152689-5e1c3032"
+    },
+    {
+      "tanggal": "2026-10-24",
+      "slot": "larut",
+      "kategori": "Luar Angkasa",
+      "topik": "Bagaimana jika Tarikan gravitasi Bulan memicu letusan gunung berapi global?",
+      "judul": "Bagaimana jika Tarikan gravitasi Bulan memicu letusan gunung berapi global?",
+      "inti": "gravitasi bulan letusan global",
+      "youtube_id": "nBqMHGc0TwM",
+      "status": "terunggah",
+      "run_id": "579540-3344e762",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-24-larut-579540-3344e762"
     }
   ],
   "rencana": {
@@ -294,15 +306,5 @@
     "2026-10-24-malam": "Bagaimana jika Pasang surut ekstrem menenggelamkan seluruh kota pesisir?",
     "2026-10-24-larut": "Bagaimana jika Tarikan gravitasi Bulan memicu letusan gunung berapi global?"
   },
-  "seri": {
-    "nama": "Bulan Mendekat ke Bumi",
-    "kategori": "Luar Angkasa",
-    "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Orbit Bulan mendadak mendekat 50.000 kilometer ke Bumi?",
-      "Bagaimana jika Pasang surut ekstrem menenggelamkan seluruh kota pesisir?",
-      "Bagaimana jika Tarikan gravitasi Bulan memicu letusan gunung berapi global?"
-    ]
-  }
+  "seri": {}
 }
