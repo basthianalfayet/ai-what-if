@@ -287,6 +287,18 @@
       "status": "terunggah",
       "run_id": "579540-3344e762",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-24-larut-579540-3344e762"
+    },
+    {
+      "tanggal": "2026-10-25",
+      "slot": "pagi",
+      "kategori": "Masa Depan Peradaban",
+      "topik": "Pabrik desalinasi dunia berhenti beroperasi seketika",
+      "judul": "Bagaimana jika Seluruh pabrik desalinasi dunia mendadak mati?",
+      "inti": "pabrik desalinasi mati",
+      "youtube_id": "xeqroyQHA38",
+      "status": "terunggah",
+      "run_id": "993024-84242404",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-25-pagi-993024-84242404"
     }
   ],
   "rencana": {
@@ -304,7 +316,18 @@
     "2026-10-24-pagi": "Bagaimana jika Sirkuit listrik atmosfer Bumi padam selamanya?",
     "2026-10-24-siang": "Bagaimana jika Tanah kehilangan pasokan nitrogen dari petir?",
     "2026-10-24-malam": "Bagaimana jika Pasang surut ekstrem menenggelamkan seluruh kota pesisir?",
-    "2026-10-24-larut": "Bagaimana jika Tarikan gravitasi Bulan memicu letusan gunung berapi global?"
+    "2026-10-24-larut": "Bagaimana jika Tarikan gravitasi Bulan memicu letusan gunung berapi global?",
+    "2026-10-25-siang": "Bagaimana jika Kota metropolitan gurun ditinggalkan penghuninya?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Krisis Air Megakota Dunia",
+    "kategori": "Masa Depan Peradaban",
+    "cakupan": "kota, energi, pangan, dan cara manusia hidup bersama",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Seluruh pabrik desalinasi dunia mendadak mati?",
+      "Bagaimana jika Kota metropolitan gurun ditinggalkan penghuninya?",
+      "Bagaimana jika Air tawar menjadi mata uang global baru?"
+    ]
+  }
 }
