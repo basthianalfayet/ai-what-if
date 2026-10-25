@@ -311,6 +311,18 @@
       "status": "terunggah",
       "run_id": "945421-3f61542e",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-25-siang-945421-3f61542e"
+    },
+    {
+      "tanggal": "2026-10-25",
+      "slot": "sore",
+      "kategori": "Masa Depan Peradaban",
+      "topik": "Bagaimana jika Air tawar menjadi mata uang global baru?",
+      "judul": "Bagaimana jika Air tawar menjadi mata uang global baru?",
+      "inti": "air tawar mata uang",
+      "youtube_id": "PKjcJ6LfZpk",
+      "status": "terunggah",
+      "run_id": "868161-7a512d88",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-25-sore-868161-7a512d88"
     }
   ],
   "rencana": {
@@ -332,15 +344,5 @@
     "2026-10-25-siang": "Bagaimana jika Kota metropolitan gurun ditinggalkan penghuninya?",
     "2026-10-25-sore": "Bagaimana jika Air tawar menjadi mata uang global baru?"
   },
-  "seri": {
-    "nama": "Krisis Air Megakota Dunia",
-    "kategori": "Masa Depan Peradaban",
-    "cakupan": "kota, energi, pangan, dan cara manusia hidup bersama",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh pabrik desalinasi dunia mendadak mati?",
-      "Bagaimana jika Kota metropolitan gurun ditinggalkan penghuninya?",
-      "Bagaimana jika Air tawar menjadi mata uang global baru?"
-    ]
-  }
+  "seri": {}
 }
