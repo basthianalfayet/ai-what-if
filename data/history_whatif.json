@@ -335,6 +335,18 @@
       "status": "review",
       "run_id": "234616-5ec44d4e",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-25-malam-234616-5ec44d4e"
+    },
+    {
+      "tanggal": "2026-10-25",
+      "slot": "larut",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika Tubuh manusia rusak tanpa peringatan rasa sakit?",
+      "judul": "Bagaimana jika Tubuh manusia rusak tanpa peringatan rasa sakit?",
+      "inti": "kerusakan tubuh senyap",
+      "youtube_id": "KagWvIl5214",
+      "status": "terunggah",
+      "run_id": "205852-9aaafe73",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-25-larut-205852-9aaafe73"
     }
   ],
   "rencana": {
@@ -355,13 +367,14 @@
     "2026-10-24-larut": "Bagaimana jika Tarikan gravitasi Bulan memicu letusan gunung berapi global?",
     "2026-10-25-siang": "Bagaimana jika Kota metropolitan gurun ditinggalkan penghuninya?",
     "2026-10-25-sore": "Bagaimana jika Air tawar menjadi mata uang global baru?",
-    "2026-10-25-larut": "Bagaimana jika Tubuh manusia rusak tanpa peringatan rasa sakit?"
+    "2026-10-25-larut": "Bagaimana jika Tubuh manusia rusak tanpa peringatan rasa sakit?",
+    "2026-10-26-pagi": "Bagaimana jika Sensor implan menggantikan rasa sakit manusia?"
   },
   "seri": {
     "nama": "Dunia Tanpa Rasa Sakit",
     "kategori": "Tubuh Manusia",
     "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Manusia tidak bisa merasakan rasa sakit fisik?",
       "Bagaimana jika Tubuh manusia rusak tanpa peringatan rasa sakit?",
