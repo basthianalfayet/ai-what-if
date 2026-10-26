@@ -347,6 +347,18 @@
       "status": "terunggah",
       "run_id": "205852-9aaafe73",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-25-larut-205852-9aaafe73"
+    },
+    {
+      "tanggal": "2026-10-26",
+      "slot": "pagi",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika Sensor implan menggantikan rasa sakit manusia?",
+      "judul": "Bagaimana jika Sensor implan menggantikan rasa sakit manusia?",
+      "inti": "sensor implan nyeri",
+      "youtube_id": "Ry-G5li3fkQ",
+      "status": "terunggah",
+      "run_id": "260786-4a983b5e",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-26-pagi-260786-4a983b5e"
     }
   ],
   "rencana": {
@@ -370,15 +382,5 @@
     "2026-10-25-larut": "Bagaimana jika Tubuh manusia rusak tanpa peringatan rasa sakit?",
     "2026-10-26-pagi": "Bagaimana jika Sensor implan menggantikan rasa sakit manusia?"
   },
-  "seri": {
-    "nama": "Dunia Tanpa Rasa Sakit",
-    "kategori": "Tubuh Manusia",
-    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Manusia tidak bisa merasakan rasa sakit fisik?",
-      "Bagaimana jika Tubuh manusia rusak tanpa peringatan rasa sakit?",
-      "Bagaimana jika Sensor implan menggantikan rasa sakit manusia?"
-    ]
-  }
+  "seri": {}
 }
