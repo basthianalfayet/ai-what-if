@@ -371,6 +371,18 @@
       "status": "terunggah",
       "run_id": "955921-26fbe67d",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-26-siang-955921-26fbe67d"
+    },
+    {
+      "tanggal": "2026-10-26",
+      "slot": "malam",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Musim dingin ekstrem membekukan seluruh Eropa Utara?",
+      "judul": "Bagaimana jika Musim dingin ekstrem membekukan seluruh Eropa Utara?",
+      "inti": "eropa utara membeku",
+      "youtube_id": "HuQEjtmMjhc",
+      "status": "terunggah",
+      "run_id": "259656-842913bd",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-26-malam-259656-842913bd"
     }
   ],
   "rencana": {
@@ -393,13 +405,14 @@
     "2026-10-25-sore": "Bagaimana jika Air tawar menjadi mata uang global baru?",
     "2026-10-25-larut": "Bagaimana jika Tubuh manusia rusak tanpa peringatan rasa sakit?",
     "2026-10-26-pagi": "Bagaimana jika Sensor implan menggantikan rasa sakit manusia?",
-    "2026-10-26-sore": "Bagaimana jika Musim dingin ekstrem membekukan seluruh Eropa Utara?"
+    "2026-10-26-sore": "Bagaimana jika Musim dingin ekstrem membekukan seluruh Eropa Utara?",
+    "2026-10-26-larut": "Bagaimana jika Sabuk hujan tropis bergeser permanen ke belahan selatan?"
   },
   "seri": {
     "nama": "Runtuhnya Arus Laut Atlantik",
     "kategori": "Bumi dan Alam",
     "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Arus laut Atlantik mendadak berhenti mengalir?",
       "Bagaimana jika Musim dingin ekstrem membekukan seluruh Eropa Utara?",
