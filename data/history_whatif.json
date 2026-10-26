@@ -359,6 +359,18 @@
       "status": "terunggah",
       "run_id": "260786-4a983b5e",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-26-pagi-260786-4a983b5e"
+    },
+    {
+      "tanggal": "2026-10-26",
+      "slot": "siang",
+      "kategori": "Bumi dan Alam",
+      "topik": "Arus laut Atlantik mendadak berhenti mengalir",
+      "judul": "Bagaimana jika Arus laut Atlantik mendadak berhenti mengalir?",
+      "inti": "arus atlantik berhenti",
+      "youtube_id": "AGC1BF2KOGc",
+      "status": "terunggah",
+      "run_id": "955921-26fbe67d",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-26-siang-955921-26fbe67d"
     }
   ],
   "rencana": {
@@ -380,7 +392,18 @@
     "2026-10-25-siang": "Bagaimana jika Kota metropolitan gurun ditinggalkan penghuninya?",
     "2026-10-25-sore": "Bagaimana jika Air tawar menjadi mata uang global baru?",
     "2026-10-25-larut": "Bagaimana jika Tubuh manusia rusak tanpa peringatan rasa sakit?",
-    "2026-10-26-pagi": "Bagaimana jika Sensor implan menggantikan rasa sakit manusia?"
+    "2026-10-26-pagi": "Bagaimana jika Sensor implan menggantikan rasa sakit manusia?",
+    "2026-10-26-sore": "Bagaimana jika Musim dingin ekstrem membekukan seluruh Eropa Utara?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Runtuhnya Arus Laut Atlantik",
+    "kategori": "Bumi dan Alam",
+    "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Arus laut Atlantik mendadak berhenti mengalir?",
+      "Bagaimana jika Musim dingin ekstrem membekukan seluruh Eropa Utara?",
+      "Bagaimana jika Sabuk hujan tropis bergeser permanen ke belahan selatan?"
+    ]
+  }
 }
