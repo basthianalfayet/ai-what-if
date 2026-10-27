@@ -383,6 +383,18 @@
       "status": "terunggah",
       "run_id": "259656-842913bd",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-26-malam-259656-842913bd"
+    },
+    {
+      "tanggal": "2026-10-27",
+      "slot": "pagi",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Sabuk hujan tropis bergeser permanen ke belahan selatan?",
+      "judul": "Bagaimana jika Sabuk hujan tropis bergeser permanen ke belahan selatan?",
+      "inti": "sabuk hujan tropis bergeser",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "551144-18270fac",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-27-pagi-551144-18270fac"
     }
   ],
   "rencana": {
@@ -408,15 +420,5 @@
     "2026-10-26-sore": "Bagaimana jika Musim dingin ekstrem membekukan seluruh Eropa Utara?",
     "2026-10-26-larut": "Bagaimana jika Sabuk hujan tropis bergeser permanen ke belahan selatan?"
   },
-  "seri": {
-    "nama": "Runtuhnya Arus Laut Atlantik",
-    "kategori": "Bumi dan Alam",
-    "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Arus laut Atlantik mendadak berhenti mengalir?",
-      "Bagaimana jika Musim dingin ekstrem membekukan seluruh Eropa Utara?",
-      "Bagaimana jika Sabuk hujan tropis bergeser permanen ke belahan selatan?"
-    ]
-  }
+  "seri": {}
 }
