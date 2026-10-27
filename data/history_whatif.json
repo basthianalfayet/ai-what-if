@@ -395,6 +395,18 @@
       "status": "selesai",
       "run_id": "551144-18270fac",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-27-pagi-551144-18270fac"
+    },
+    {
+      "tanggal": "2026-10-27",
+      "slot": "siang",
+      "kategori": "Tubuh Manusia",
+      "topik": "Refleks bernapas otomatis manusia mendadak hilang",
+      "judul": "Bagaimana jika Refleks napas otomatis manusia mendadak hilang?",
+      "inti": "refleks napas hilang",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "848147-7f708d55",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-27-siang-848147-7f708d55"
     }
   ],
   "rencana": {
@@ -418,7 +430,18 @@
     "2026-10-25-larut": "Bagaimana jika Tubuh manusia rusak tanpa peringatan rasa sakit?",
     "2026-10-26-pagi": "Bagaimana jika Sensor implan menggantikan rasa sakit manusia?",
     "2026-10-26-sore": "Bagaimana jika Musim dingin ekstrem membekukan seluruh Eropa Utara?",
-    "2026-10-26-larut": "Bagaimana jika Sabuk hujan tropis bergeser permanen ke belahan selatan?"
+    "2026-10-26-larut": "Bagaimana jika Sabuk hujan tropis bergeser permanen ke belahan selatan?",
+    "2026-10-27-sore": "Bagaimana jika Manusia tidak bisa tidur tanpa alat bantu napas?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Ketika Bernapas Harus Diingat",
+    "kategori": "Tubuh Manusia",
+    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Refleks napas otomatis manusia mendadak hilang?",
+      "Bagaimana jika Manusia tidak bisa tidur tanpa alat bantu napas?",
+      "Bagaimana jika Masyarakat harus bergantian tidur demi menjaga napas?"
+    ]
+  }
 }
