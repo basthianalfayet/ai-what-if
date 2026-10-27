@@ -419,6 +419,18 @@
       "status": "selesai",
       "run_id": "399416-ca5e622c",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-27-malam-399416-ca5e622c"
+    },
+    {
+      "tanggal": "2026-10-27",
+      "slot": "larut",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika Masyarakat harus bergantian tidur demi menjaga napas?",
+      "judul": "Bagaimana jika Masyarakat harus bergantian tidur demi menjaga napas?",
+      "inti": "bergantian tidur napas",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "095083-f7c6a502",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-27-larut-095083-f7c6a502"
     }
   ],
   "rencana": {
@@ -446,15 +458,5 @@
     "2026-10-27-sore": "Bagaimana jika Manusia tidak bisa tidur tanpa alat bantu napas?",
     "2026-10-27-larut": "Bagaimana jika Masyarakat harus bergantian tidur demi menjaga napas?"
   },
-  "seri": {
-    "nama": "Ketika Bernapas Harus Diingat",
-    "kategori": "Tubuh Manusia",
-    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Refleks napas otomatis manusia mendadak hilang?",
-      "Bagaimana jika Manusia tidak bisa tidur tanpa alat bantu napas?",
-      "Bagaimana jika Masyarakat harus bergantian tidur demi menjaga napas?"
-    ]
-  }
+  "seri": {}
 }
