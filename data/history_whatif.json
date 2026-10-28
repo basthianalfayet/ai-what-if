@@ -455,6 +455,18 @@
       "status": "terunggah",
       "run_id": "466186-bfa144e5",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-28-siang-466186-bfa144e5"
+    },
+    {
+      "tanggal": "2026-10-28",
+      "slot": "malam",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika Otot kelopak mata manusia lumpuh total?",
+      "judul": "Bagaimana jika Otot kelopak mata manusia lumpuh total?",
+      "inti": "otot kelopak mata lumpuh",
+      "youtube_id": "KcJAYNXhvq8",
+      "status": "terunggah",
+      "run_id": "336981-374a0288",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-28-malam-336981-374a0288"
     }
   ],
   "rencana": {
@@ -484,15 +496,5 @@
     "2026-10-28-siang": "Bagaimana jika Produksi air mata manusia berhenti selamanya?",
     "2026-10-28-sore": "Bagaimana jika Otot kelopak mata manusia lumpuh total?"
   },
-  "seri": {
-    "nama": "Misteri Tubuh Manusia",
-    "kategori": "Tubuh Manusia",
-    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Semua kedipan mata manusia berhenti terjadi seketika?",
-      "Bagaimana jika Produksi air mata manusia berhenti selamanya?",
-      "Bagaimana jika Otot kelopak mata manusia lumpuh total?"
-    ]
-  }
+  "seri": {}
 }
