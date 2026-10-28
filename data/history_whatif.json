@@ -467,6 +467,18 @@
       "status": "terunggah",
       "run_id": "336981-374a0288",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-28-malam-336981-374a0288"
+    },
+    {
+      "tanggal": "2026-10-28",
+      "slot": "larut",
+      "kategori": "Masa Depan Peradaban",
+      "topik": "Bagaimana jika seluruh internet nirkabel di bumi mendadak lenyap?",
+      "judul": "Bagaimana jika Seluruh internet nirkabel di bumi mendadak lenyap?",
+      "inti": "internet nirkabel lenyap",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "725774-9daaddf9",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-28-larut-725774-9daaddf9"
     }
   ],
   "rencana": {
@@ -494,7 +506,18 @@
     "2026-10-27-sore": "Bagaimana jika Manusia tidak bisa tidur tanpa alat bantu napas?",
     "2026-10-27-larut": "Bagaimana jika Masyarakat harus bergantian tidur demi menjaga napas?",
     "2026-10-28-siang": "Bagaimana jika Produksi air mata manusia berhenti selamanya?",
-    "2026-10-28-sore": "Bagaimana jika Otot kelopak mata manusia lumpuh total?"
+    "2026-10-28-sore": "Bagaimana jika Otot kelopak mata manusia lumpuh total?",
+    "2026-10-29-pagi": "Bagaimana jika Seluruh kabel bawah laut putus secara bersamaan?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Runtuhnya Jaringan Global",
+    "kategori": "Masa Depan Peradaban",
+    "cakupan": "kota, energi, pangan, dan cara manusia hidup bersama",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Seluruh internet nirkabel di bumi mendadak lenyap?",
+      "Bagaimana jika Seluruh kabel bawah laut putus secara bersamaan?",
+      "Bagaimana jika Satelit komunikasi jatuh serentak dari orbit?"
+    ]
+  }
 }
