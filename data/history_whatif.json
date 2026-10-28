@@ -431,6 +431,18 @@
       "status": "review",
       "run_id": "095083-f7c6a502",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-27-larut-095083-f7c6a502"
+    },
+    {
+      "tanggal": "2026-10-28",
+      "slot": "pagi",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika semua kedipan mata manusia berhenti terjadi seketika?",
+      "judul": "Bagaimana jika Semua kedipan mata manusia berhenti terjadi seketika?",
+      "inti": "kedipan mata berhenti",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "929102-05864b8c",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-28-pagi-929102-05864b8c"
     }
   ],
   "rencana": {
@@ -456,7 +468,18 @@
     "2026-10-26-sore": "Bagaimana jika Musim dingin ekstrem membekukan seluruh Eropa Utara?",
     "2026-10-26-larut": "Bagaimana jika Sabuk hujan tropis bergeser permanen ke belahan selatan?",
     "2026-10-27-sore": "Bagaimana jika Manusia tidak bisa tidur tanpa alat bantu napas?",
-    "2026-10-27-larut": "Bagaimana jika Masyarakat harus bergantian tidur demi menjaga napas?"
+    "2026-10-27-larut": "Bagaimana jika Masyarakat harus bergantian tidur demi menjaga napas?",
+    "2026-10-28-siang": "Bagaimana jika Produksi air mata manusia berhenti selamanya?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Misteri Tubuh Manusia",
+    "kategori": "Tubuh Manusia",
+    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Semua kedipan mata manusia berhenti terjadi seketika?",
+      "Bagaimana jika Produksi air mata manusia berhenti selamanya?",
+      "Bagaimana jika Otot kelopak mata manusia lumpuh total?"
+    ]
+  }
 }
