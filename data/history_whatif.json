@@ -515,6 +515,18 @@
       "status": "terunggah",
       "run_id": "267657-08095542",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-29-sore-267657-08095542"
+    },
+    {
+      "tanggal": "2026-10-29",
+      "slot": "malam",
+      "kategori": "Teknologi dan AI",
+      "topik": "Bagaimana jika Rantai pasok makanan perkotaan runtuh dalam tiga hari?",
+      "judul": "Bagaimana jika Rantai pasok makanan perkotaan runtuh dalam tiga hari?",
+      "inti": "rantai makanan perkotaan",
+      "youtube_id": "jy6McM_WjV4",
+      "status": "terunggah",
+      "run_id": "766676-21ac5c16",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-29-malam-766676-21ac5c16"
     }
   ],
   "rencana": {
@@ -545,13 +557,14 @@
     "2026-10-28-sore": "Bagaimana jika Otot kelopak mata manusia lumpuh total?",
     "2026-10-29-pagi": "Bagaimana jika Seluruh kabel bawah laut putus secara bersamaan?",
     "2026-10-29-siang": "Bagaimana jika Satelit komunikasi jatuh serentak dari orbit?",
-    "2026-10-29-malam": "Bagaimana jika Rantai pasok makanan perkotaan runtuh dalam tiga hari?"
+    "2026-10-29-malam": "Bagaimana jika Rantai pasok makanan perkotaan runtuh dalam tiga hari?",
+    "2026-10-29-larut": "Bagaimana jika Warga kota terpaksa kembali ke sistem jatah manual?"
   },
   "seri": {
     "nama": "Runtuhnya Logistik Otomatis Global",
     "kategori": "Teknologi dan AI",
     "cakupan": "sistem otomatis, internet, dan kecerdasan buatan dalam kehidupan sehari-hari",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Semua robot gudang logistik otomatis berhenti bekerja?",
       "Bagaimana jika Rantai pasok makanan perkotaan runtuh dalam tiga hari?",
