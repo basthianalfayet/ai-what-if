@@ -491,6 +491,18 @@
       "status": "terunggah",
       "run_id": "175205-b562a51a",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-29-pagi-175205-b562a51a"
+    },
+    {
+      "tanggal": "2026-10-29",
+      "slot": "siang",
+      "kategori": "Masa Depan Peradaban",
+      "topik": "Bagaimana jika Satelit komunikasi jatuh serentak dari orbit?",
+      "judul": "Bagaimana jika Satelit komunikasi jatuh serentak dari orbit?",
+      "inti": "satelit jatuh serentak",
+      "youtube_id": "pkMTui8ZCSc",
+      "status": "terunggah",
+      "run_id": "883726-adbe22c4",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-29-siang-883726-adbe22c4"
     }
   ],
   "rencana": {
@@ -522,15 +534,5 @@
     "2026-10-29-pagi": "Bagaimana jika Seluruh kabel bawah laut putus secara bersamaan?",
     "2026-10-29-siang": "Bagaimana jika Satelit komunikasi jatuh serentak dari orbit?"
   },
-  "seri": {
-    "nama": "Runtuhnya Jaringan Global",
-    "kategori": "Masa Depan Peradaban",
-    "cakupan": "kota, energi, pangan, dan cara manusia hidup bersama",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh internet nirkabel di bumi mendadak lenyap?",
-      "Bagaimana jika Seluruh kabel bawah laut putus secara bersamaan?",
-      "Bagaimana jika Satelit komunikasi jatuh serentak dari orbit?"
-    ]
-  }
+  "seri": {}
 }
