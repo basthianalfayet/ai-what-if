@@ -527,6 +527,18 @@
       "status": "terunggah",
       "run_id": "766676-21ac5c16",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-29-malam-766676-21ac5c16"
+    },
+    {
+      "tanggal": "2026-10-29",
+      "slot": "larut",
+      "kategori": "Teknologi dan AI",
+      "topik": "Bagaimana jika Warga kota terpaksa kembali ke sistem jatah manual?",
+      "judul": "Bagaimana jika Warga kota terpaksa kembali ke sistem jatah manual?",
+      "inti": "sistem jatah manual",
+      "youtube_id": "MaobZPp5KAo",
+      "status": "terunggah",
+      "run_id": "235892-0bf7cb66",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-29-larut-235892-0bf7cb66"
     }
   ],
   "rencana": {
@@ -560,15 +572,5 @@
     "2026-10-29-malam": "Bagaimana jika Rantai pasok makanan perkotaan runtuh dalam tiga hari?",
     "2026-10-29-larut": "Bagaimana jika Warga kota terpaksa kembali ke sistem jatah manual?"
   },
-  "seri": {
-    "nama": "Runtuhnya Logistik Otomatis Global",
-    "kategori": "Teknologi dan AI",
-    "cakupan": "sistem otomatis, internet, dan kecerdasan buatan dalam kehidupan sehari-hari",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Semua robot gudang logistik otomatis berhenti bekerja?",
-      "Bagaimana jika Rantai pasok makanan perkotaan runtuh dalam tiga hari?",
-      "Bagaimana jika Warga kota terpaksa kembali ke sistem jatah manual?"
-    ]
-  }
+  "seri": {}
 }
