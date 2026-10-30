@@ -575,6 +575,18 @@
       "status": "terunggah",
       "run_id": "282162-9c2f53a7",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-30-sore-282162-9c2f53a7"
+    },
+    {
+      "tanggal": "2026-10-30",
+      "slot": "malam",
+      "kategori": "Luar Angkasa",
+      "topik": "Bagaimana jika Cincin Saturnus jatuh menghujani permukaan planetnya?",
+      "judul": "Bagaimana jika Cincin Saturnus jatuh menghujani permukaannya?",
+      "inti": "cincin saturnus jatuh",
+      "youtube_id": "Q13ecndxhms",
+      "status": "terunggah",
+      "run_id": "139834-1fb93318",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-30-malam-139834-1fb93318"
     }
   ],
   "rencana": {
@@ -608,7 +620,18 @@
     "2026-10-29-malam": "Bagaimana jika Rantai pasok makanan perkotaan runtuh dalam tiga hari?",
     "2026-10-29-larut": "Bagaimana jika Warga kota terpaksa kembali ke sistem jatah manual?",
     "2026-10-30-siang": "Bagaimana jika Atmosfer bumi memuai dan lepas ke angkasa?",
-    "2026-10-30-sore": "Bagaimana jika Manusia harus bertahan di kubah bawah tanah bertekanan?"
+    "2026-10-30-sore": "Bagaimana jika Manusia harus bertahan di kubah bawah tanah bertekanan?",
+    "2026-10-30-larut": "Bagaimana jika Bulan-bulan Saturnus saling bertabrakan setelah kehilangan cincin?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Nasib Ekstrem Saturnus",
+    "kategori": "Luar Angkasa",
+    "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Cincin Saturnus jatuh menghujani permukaannya?",
+      "Bagaimana jika Bulan-bulan Saturnus saling bertabrakan setelah kehilangan cincin?",
+      "Bagaimana jika Sisa debu cincin Saturnus membentuk awan kosmik baru?"
+    ]
+  }
 }
