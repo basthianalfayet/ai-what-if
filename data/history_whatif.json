@@ -563,6 +563,18 @@
       "status": "terunggah",
       "run_id": "988816-c327aef8",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-30-siang-988816-c327aef8"
+    },
+    {
+      "tanggal": "2026-10-30",
+      "slot": "sore",
+      "kategori": "Fisika",
+      "topik": "Bagaimana jika Manusia harus bertahan di kubah bawah tanah bertekanan?",
+      "judul": "Bagaimana jika Manusia harus bertahan di kubah bawah tanah bertekanan?",
+      "inti": "kubah bawah tanah bertekanan",
+      "youtube_id": "7cJvuIoG64g",
+      "status": "terunggah",
+      "run_id": "282162-9c2f53a7",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-30-sore-282162-9c2f53a7"
     }
   ],
   "rencana": {
@@ -598,15 +610,5 @@
     "2026-10-30-siang": "Bagaimana jika Atmosfer bumi memuai dan lepas ke angkasa?",
     "2026-10-30-sore": "Bagaimana jika Manusia harus bertahan di kubah bawah tanah bertekanan?"
   },
-  "seri": {
-    "nama": "Dunia Setengah Gravitasi",
-    "kategori": "Fisika",
-    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Gravitasi bumi mendadak berkurang separuh?",
-      "Bagaimana jika Atmosfer bumi memuai dan lepas ke angkasa?",
-      "Bagaimana jika Manusia harus bertahan di kubah bawah tanah bertekanan?"
-    ]
-  }
+  "seri": {}
 }
