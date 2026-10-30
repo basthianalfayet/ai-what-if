@@ -539,6 +539,18 @@
       "status": "terunggah",
       "run_id": "235892-0bf7cb66",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-29-larut-235892-0bf7cb66"
+    },
+    {
+      "tanggal": "2026-10-30",
+      "slot": "pagi",
+      "kategori": "Fisika",
+      "topik": "Bagaimana jika gravitasi bumi mendadak berkurang separuh?",
+      "judul": "Bagaimana jika Gravitasi bumi mendadak berkurang separuh?",
+      "inti": "gravitasi bumi separuh",
+      "youtube_id": "RkyxUnh_HWk",
+      "status": "terunggah",
+      "run_id": "883453-679e9430",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-30-pagi-883453-679e9430"
     }
   ],
   "rencana": {
@@ -570,7 +582,18 @@
     "2026-10-29-pagi": "Bagaimana jika Seluruh kabel bawah laut putus secara bersamaan?",
     "2026-10-29-siang": "Bagaimana jika Satelit komunikasi jatuh serentak dari orbit?",
     "2026-10-29-malam": "Bagaimana jika Rantai pasok makanan perkotaan runtuh dalam tiga hari?",
-    "2026-10-29-larut": "Bagaimana jika Warga kota terpaksa kembali ke sistem jatah manual?"
+    "2026-10-29-larut": "Bagaimana jika Warga kota terpaksa kembali ke sistem jatah manual?",
+    "2026-10-30-siang": "Bagaimana jika Atmosfer bumi memuai dan lepas ke angkasa?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Dunia Setengah Gravitasi",
+    "kategori": "Fisika",
+    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Gravitasi bumi mendadak berkurang separuh?",
+      "Bagaimana jika Atmosfer bumi memuai dan lepas ke angkasa?",
+      "Bagaimana jika Manusia harus bertahan di kubah bawah tanah bertekanan?"
+    ]
+  }
 }
