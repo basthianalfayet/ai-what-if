@@ -647,6 +647,18 @@
       "status": "terunggah",
       "run_id": "185131-015fa55e",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-31-malam-185131-015fa55e"
+    },
+    {
+      "tanggal": "2026-10-31",
+      "slot": "larut",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika indera pengecap manusia kehilangan kepekaan rasa manis selamanya?",
+      "judul": "Bagaimana jika Indera pengecap manusia kehilangan kepekaan rasa manis selamanya?",
+      "inti": "indera pengecap rasa manis",
+      "youtube_id": "WsQPl3Tew84",
+      "status": "terunggah",
+      "run_id": "108551-7fb9ac86",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-31-larut-108551-7fb9ac86"
     }
   ],
   "rencana": {
@@ -684,7 +696,18 @@
     "2026-10-30-larut": "Bagaimana jika Bulan-bulan Saturnus saling bertabrakan setelah kehilangan cincin?",
     "2026-10-31-pagi": "Bagaimana jika Sisa debu cincin Saturnus membentuk awan kosmik baru?",
     "2026-10-31-sore": "Bagaimana jika Air laut mentah dipompa ke pipa pemukiman warga?",
-    "2026-10-31-malam": "Bagaimana jika Warga kota pesisir terpaksa memanen embun udara secara massal?"
+    "2026-10-31-malam": "Bagaimana jika Warga kota pesisir terpaksa memanen embun udara secara massal?",
+    "2026-11-01-pagi": "Bagaimana jika Seluruh kelenjar ludah manusia mendadak berhenti memproduksi air liur?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Misteri Batas Tubuh Manusia",
+    "kategori": "Tubuh Manusia",
+    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Indera pengecap manusia kehilangan kepekaan rasa manis selamanya?",
+      "Bagaimana jika Seluruh kelenjar ludah manusia mendadak berhenti memproduksi air liur?",
+      "Bagaimana jika Lambung manusia kehilangan kemampuan memproduksi asam lambung?"
+    ]
+  }
 }
