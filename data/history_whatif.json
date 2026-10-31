@@ -599,6 +599,18 @@
       "status": "terunggah",
       "run_id": "025452-8d76ab98",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-30-larut-025452-8d76ab98"
+    },
+    {
+      "tanggal": "2026-10-31",
+      "slot": "pagi",
+      "kategori": "Luar Angkasa",
+      "topik": "Bagaimana jika Sisa debu cincin Saturnus membentuk awan kosmik baru?",
+      "judul": "Bagaimana jika Sisa debu cincin Saturnus membentuk awan kosmik baru?",
+      "inti": "debu cincin saturnus awan kosmik",
+      "youtube_id": "WeKCxfzFrOA",
+      "status": "terunggah",
+      "run_id": "741180-9b74dda6",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-31-pagi-741180-9b74dda6"
     }
   ],
   "rencana": {
@@ -636,15 +648,5 @@
     "2026-10-30-larut": "Bagaimana jika Bulan-bulan Saturnus saling bertabrakan setelah kehilangan cincin?",
     "2026-10-31-pagi": "Bagaimana jika Sisa debu cincin Saturnus membentuk awan kosmik baru?"
   },
-  "seri": {
-    "nama": "Nasib Ekstrem Saturnus",
-    "kategori": "Luar Angkasa",
-    "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Cincin Saturnus jatuh menghujani permukaannya?",
-      "Bagaimana jika Bulan-bulan Saturnus saling bertabrakan setelah kehilangan cincin?",
-      "Bagaimana jika Sisa debu cincin Saturnus membentuk awan kosmik baru?"
-    ]
-  }
+  "seri": {}
 }
