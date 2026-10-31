@@ -611,6 +611,18 @@
       "status": "terunggah",
       "run_id": "741180-9b74dda6",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-31-pagi-741180-9b74dda6"
+    },
+    {
+      "tanggal": "2026-10-31",
+      "slot": "siang",
+      "kategori": "Masa Depan Peradaban",
+      "topik": "Filter membran desalinasi air laut kota mendadak tersumbat total",
+      "judul": "Bagaimana jika Membran desalinasi air kota mendadak tersumbat total?",
+      "inti": "membran desalinasi tersumbat",
+      "youtube_id": "WrYTHw-Nav0",
+      "status": "terunggah",
+      "run_id": "817449-79f36eef",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-10-31-siang-817449-79f36eef"
     }
   ],
   "rencana": {
@@ -646,7 +658,18 @@
     "2026-10-30-siang": "Bagaimana jika Atmosfer bumi memuai dan lepas ke angkasa?",
     "2026-10-30-sore": "Bagaimana jika Manusia harus bertahan di kubah bawah tanah bertekanan?",
     "2026-10-30-larut": "Bagaimana jika Bulan-bulan Saturnus saling bertabrakan setelah kehilangan cincin?",
-    "2026-10-31-pagi": "Bagaimana jika Sisa debu cincin Saturnus membentuk awan kosmik baru?"
+    "2026-10-31-pagi": "Bagaimana jika Sisa debu cincin Saturnus membentuk awan kosmik baru?",
+    "2026-10-31-sore": "Bagaimana jika Air laut mentah dipompa ke pipa pemukiman warga?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Krisis Air Megakota Masa Depan",
+    "kategori": "Masa Depan Peradaban",
+    "cakupan": "kota, energi, pangan, dan cara manusia hidup bersama",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Membran desalinasi air kota mendadak tersumbat total?",
+      "Bagaimana jika Air laut mentah dipompa ke pipa pemukiman warga?",
+      "Bagaimana jika Warga kota pesisir terpaksa memanen embun udara secara massal?"
+    ]
+  }
 }
