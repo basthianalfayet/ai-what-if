@@ -695,6 +695,18 @@
       "status": "terunggah",
       "run_id": "197843-669ecf66",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-01-sore-197843-669ecf66"
+    },
+    {
+      "tanggal": "2026-11-01",
+      "slot": "malam",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika indera peraba di ujung jari manusia hilang total dalam satu detik?",
+      "judul": "Bagaimana jika Indera peraba di ujung jari manusia hilang total?",
+      "inti": "indera peraba hilang",
+      "youtube_id": "6FpCeSVZ5Bs",
+      "status": "terunggah",
+      "run_id": "399591-fd98bdb8",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-01-malam-399591-fd98bdb8"
     }
   ],
   "rencana": {
@@ -734,7 +746,18 @@
     "2026-10-31-sore": "Bagaimana jika Air laut mentah dipompa ke pipa pemukiman warga?",
     "2026-10-31-malam": "Bagaimana jika Warga kota pesisir terpaksa memanen embun udara secara massal?",
     "2026-11-01-pagi": "Bagaimana jika Seluruh kelenjar ludah manusia mendadak berhenti memproduksi air liur?",
-    "2026-11-01-sore": "Bagaimana jika Lambung manusia kehilangan kemampuan memproduksi asam lambung?"
+    "2026-11-01-sore": "Bagaimana jika Lambung manusia kehilangan kemampuan memproduksi asam lambung?",
+    "2026-11-01-larut": "Bagaimana jika Seluruh reseptor rasa sakit di kulit manusia berhenti berfungsi total?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Misteri Batas Tubuh Manusia",
+    "kategori": "Tubuh Manusia",
+    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Indera peraba di ujung jari manusia hilang total?",
+      "Bagaimana jika Seluruh reseptor rasa sakit di kulit manusia berhenti berfungsi total?",
+      "Bagaimana jika Kemampuan propriosepsi otot manusia lenyap seketika?"
+    ]
+  }
 }
