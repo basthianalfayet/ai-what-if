@@ -683,6 +683,18 @@
       "status": "terunggah",
       "run_id": "220232-3fb42940",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-01-siang-220232-3fb42940"
+    },
+    {
+      "tanggal": "2026-11-01",
+      "slot": "sore",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika Lambung manusia kehilangan kemampuan memproduksi asam lambung?",
+      "judul": "Bagaimana jika Lambung manusia kehilangan kemampuan memproduksi asam lambung?",
+      "inti": "asam lambung lenyap",
+      "youtube_id": "b4XxFkOy7Yc",
+      "status": "terunggah",
+      "run_id": "197843-669ecf66",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-01-sore-197843-669ecf66"
     }
   ],
   "rencana": {
@@ -724,15 +736,5 @@
     "2026-11-01-pagi": "Bagaimana jika Seluruh kelenjar ludah manusia mendadak berhenti memproduksi air liur?",
     "2026-11-01-sore": "Bagaimana jika Lambung manusia kehilangan kemampuan memproduksi asam lambung?"
   },
-  "seri": {
-    "nama": "Misteri Batas Tubuh Manusia",
-    "kategori": "Tubuh Manusia",
-    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Indera pengecap manusia kehilangan kepekaan rasa manis selamanya?",
-      "Bagaimana jika Seluruh kelenjar ludah manusia mendadak berhenti memproduksi air liur?",
-      "Bagaimana jika Lambung manusia kehilangan kemampuan memproduksi asam lambung?"
-    ]
-  }
+  "seri": {}
 }
