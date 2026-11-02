@@ -719,6 +719,18 @@
       "status": "terunggah",
       "run_id": "996214-61f0f2e5",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-01-larut-996214-61f0f2e5"
+    },
+    {
+      "tanggal": "2026-11-02",
+      "slot": "pagi",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika Kemampuan propriosepsi otot manusia lenyap seketika?",
+      "judul": "Bagaimana jika Kemampuan propriosepsi otot manusia lenyap seketika?",
+      "inti": "propriosepsi otot lenyap",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "838993-5db9518c",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-02-pagi-838993-5db9518c"
     }
   ],
   "rencana": {
@@ -762,15 +774,5 @@
     "2026-11-01-larut": "Bagaimana jika Seluruh reseptor rasa sakit di kulit manusia berhenti berfungsi total?",
     "2026-11-02-pagi": "Bagaimana jika Kemampuan propriosepsi otot manusia lenyap seketika?"
   },
-  "seri": {
-    "nama": "Misteri Batas Tubuh Manusia",
-    "kategori": "Tubuh Manusia",
-    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Indera peraba di ujung jari manusia hilang total?",
-      "Bagaimana jika Seluruh reseptor rasa sakit di kulit manusia berhenti berfungsi total?",
-      "Bagaimana jika Kemampuan propriosepsi otot manusia lenyap seketika?"
-    ]
-  }
+  "seri": {}
 }
