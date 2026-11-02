@@ -743,6 +743,18 @@
       "status": "terunggah",
       "run_id": "519324-282538cf",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-02-siang-519324-282538cf"
+    },
+    {
+      "tanggal": "2026-11-02",
+      "slot": "sore",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Fenomena El Nino permanen melanda bumi?",
+      "judul": "Bagaimana jika Fenomena El Nino permanen melanda bumi?",
+      "inti": "el nino permanen",
+      "youtube_id": "fm7jsJuvHeM",
+      "status": "terunggah",
+      "run_id": "201545-b8755c93",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-02-sore-201545-b8755c93"
     }
   ],
   "rencana": {
@@ -785,13 +797,14 @@
     "2026-11-01-sore": "Bagaimana jika Lambung manusia kehilangan kemampuan memproduksi asam lambung?",
     "2026-11-01-larut": "Bagaimana jika Seluruh reseptor rasa sakit di kulit manusia berhenti berfungsi total?",
     "2026-11-02-pagi": "Bagaimana jika Kemampuan propriosepsi otot manusia lenyap seketika?",
-    "2026-11-02-sore": "Bagaimana jika Fenomena El Nino permanen melanda bumi?"
+    "2026-11-02-sore": "Bagaimana jika Fenomena El Nino permanen melanda bumi?",
+    "2026-11-02-malam": "Bagaimana jika Hutan hujan tropis mengering total?"
   },
   "seri": {
     "nama": "Ketika Angin Pasat Berhenti",
     "kategori": "Bumi dan Alam",
     "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Angin pasat khatulistiwa berhenti bertiup?",
       "Bagaimana jika Fenomena El Nino permanen melanda bumi?",
