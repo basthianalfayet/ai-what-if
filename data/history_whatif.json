@@ -755,6 +755,18 @@
       "status": "terunggah",
       "run_id": "201545-b8755c93",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-02-sore-201545-b8755c93"
+    },
+    {
+      "tanggal": "2026-11-02",
+      "slot": "malam",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Hutan hujan tropis mengering total?",
+      "judul": "Bagaimana jika Hutan hujan tropis mengering total?",
+      "inti": "hutan hujan mengering",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "209763-0334a8e2",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-02-malam-209763-0334a8e2"
     }
   ],
   "rencana": {
@@ -800,15 +812,5 @@
     "2026-11-02-sore": "Bagaimana jika Fenomena El Nino permanen melanda bumi?",
     "2026-11-02-malam": "Bagaimana jika Hutan hujan tropis mengering total?"
   },
-  "seri": {
-    "nama": "Ketika Angin Pasat Berhenti",
-    "kategori": "Bumi dan Alam",
-    "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Angin pasat khatulistiwa berhenti bertiup?",
-      "Bagaimana jika Fenomena El Nino permanen melanda bumi?",
-      "Bagaimana jika Hutan hujan tropis mengering total?"
-    ]
-  }
+  "seri": {}
 }
