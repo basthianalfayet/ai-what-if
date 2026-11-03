@@ -779,6 +779,18 @@
       "status": "terunggah",
       "run_id": "909730-686e8fbf",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-02-larut-909730-686e8fbf"
+    },
+    {
+      "tanggal": "2026-11-03",
+      "slot": "pagi",
+      "kategori": "Fisika",
+      "topik": "Bagaimana jika Bayangan manusia tertinggal beberapa detik dari gerakan tubuhnya?",
+      "judul": "Bagaimana jika Bayangan manusia tertinggal beberapa detik dari gerakan tubuhnya?",
+      "inti": "bayangan tertinggal",
+      "youtube_id": "VSoyt-TJbhQ",
+      "status": "terunggah",
+      "run_id": "663680-f86dff04",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-03-pagi-663680-f86dff04"
     }
   ],
   "rencana": {
@@ -823,13 +835,14 @@
     "2026-11-02-pagi": "Bagaimana jika Kemampuan propriosepsi otot manusia lenyap seketika?",
     "2026-11-02-sore": "Bagaimana jika Fenomena El Nino permanen melanda bumi?",
     "2026-11-02-malam": "Bagaimana jika Hutan hujan tropis mengering total?",
-    "2026-11-03-pagi": "Bagaimana jika Bayangan manusia tertinggal beberapa detik dari gerakan tubuhnya?"
+    "2026-11-03-pagi": "Bagaimana jika Bayangan manusia tertinggal beberapa detik dari gerakan tubuhnya?",
+    "2026-11-03-siang": "Bagaimana jika Pantulan cermin membutuhkan waktu nyata untuk merespons?"
   },
   "seri": {
     "nama": "Misteri Perubahan Kecepatan Cahaya",
     "kategori": "Fisika",
     "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Kecepatan cahaya melambat menjadi 100 kilometer per jam?",
       "Bagaimana jika Bayangan manusia tertinggal beberapa detik dari gerakan tubuhnya?",
