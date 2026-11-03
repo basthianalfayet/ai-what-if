@@ -803,6 +803,18 @@
       "status": "terunggah",
       "run_id": "333763-1b0f961e",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-03-siang-333763-1b0f961e"
+    },
+    {
+      "tanggal": "2026-11-03",
+      "slot": "sore",
+      "kategori": "Hewan",
+      "topik": "Bagaimana jika seluruh koloni semut di bumi berhenti berbagi makanan dalam satu hari?",
+      "judul": "Bagaimana jika Seluruh koloni semut di bumi berhenti berbagi makanan?",
+      "inti": "semut berhenti berbagi",
+      "youtube_id": "YQde5YvlKGw",
+      "status": "terunggah",
+      "run_id": "525802-4694e76a",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-03-sore-525802-4694e76a"
     }
   ],
   "rencana": {
@@ -848,7 +860,18 @@
     "2026-11-02-sore": "Bagaimana jika Fenomena El Nino permanen melanda bumi?",
     "2026-11-02-malam": "Bagaimana jika Hutan hujan tropis mengering total?",
     "2026-11-03-pagi": "Bagaimana jika Bayangan manusia tertinggal beberapa detik dari gerakan tubuhnya?",
-    "2026-11-03-siang": "Bagaimana jika Pantulan cermin membutuhkan waktu nyata untuk merespons?"
+    "2026-11-03-siang": "Bagaimana jika Pantulan cermin membutuhkan waktu nyata untuk merespons?",
+    "2026-11-03-malam": "Bagaimana jika Seluruh ratu semut di bumi mendadak mati bersamaan?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Krisis Dunia Serangga",
+    "kategori": "Hewan",
+    "cakupan": "serangga, laut, rantai makanan, dan perilaku hewan",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Seluruh koloni semut di bumi berhenti berbagi makanan?",
+      "Bagaimana jika Seluruh ratu semut di bumi mendadak mati bersamaan?",
+      "Bagaimana jika Seluruh jalur aroma semut lenyap dari permukaan bumi?"
+    ]
+  }
 }
