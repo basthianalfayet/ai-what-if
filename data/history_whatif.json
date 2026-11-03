@@ -827,6 +827,18 @@
       "status": "terunggah",
       "run_id": "095382-5c5d640a",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-03-malam-095382-5c5d640a"
+    },
+    {
+      "tanggal": "2026-11-03",
+      "slot": "larut",
+      "kategori": "Hewan",
+      "topik": "Bagaimana jika Seluruh jalur aroma semut lenyap dari permukaan bumi?",
+      "judul": "Bagaimana jika Seluruh jalur aroma semut lenyap dari permukaan bumi?",
+      "inti": "jalur aroma semut",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "480516-00b8581a",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-03-larut-480516-00b8581a"
     }
   ],
   "rencana": {
@@ -876,15 +888,5 @@
     "2026-11-03-malam": "Bagaimana jika Seluruh ratu semut di bumi mendadak mati bersamaan?",
     "2026-11-03-larut": "Bagaimana jika Seluruh jalur aroma semut lenyap dari permukaan bumi?"
   },
-  "seri": {
-    "nama": "Krisis Dunia Serangga",
-    "kategori": "Hewan",
-    "cakupan": "serangga, laut, rantai makanan, dan perilaku hewan",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh koloni semut di bumi berhenti berbagi makanan?",
-      "Bagaimana jika Seluruh ratu semut di bumi mendadak mati bersamaan?",
-      "Bagaimana jika Seluruh jalur aroma semut lenyap dari permukaan bumi?"
-    ]
-  }
+  "seri": {}
 }
