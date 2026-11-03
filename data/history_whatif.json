@@ -791,6 +791,18 @@
       "status": "terunggah",
       "run_id": "663680-f86dff04",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-03-pagi-663680-f86dff04"
+    },
+    {
+      "tanggal": "2026-11-03",
+      "slot": "siang",
+      "kategori": "Fisika",
+      "topik": "Bagaimana jika Pantulan cermin membutuhkan waktu nyata untuk merespons?",
+      "judul": "Bagaimana jika Pantulan cermin membutuhkan waktu nyata untuk merespons?",
+      "inti": "pantulan cermin lambat",
+      "youtube_id": "0DGDsVkjlxQ",
+      "status": "terunggah",
+      "run_id": "333763-1b0f961e",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-03-siang-333763-1b0f961e"
     }
   ],
   "rencana": {
@@ -838,15 +850,5 @@
     "2026-11-03-pagi": "Bagaimana jika Bayangan manusia tertinggal beberapa detik dari gerakan tubuhnya?",
     "2026-11-03-siang": "Bagaimana jika Pantulan cermin membutuhkan waktu nyata untuk merespons?"
   },
-  "seri": {
-    "nama": "Misteri Perubahan Kecepatan Cahaya",
-    "kategori": "Fisika",
-    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Kecepatan cahaya melambat menjadi 100 kilometer per jam?",
-      "Bagaimana jika Bayangan manusia tertinggal beberapa detik dari gerakan tubuhnya?",
-      "Bagaimana jika Pantulan cermin membutuhkan waktu nyata untuk merespons?"
-    ]
-  }
+  "seri": {}
 }
