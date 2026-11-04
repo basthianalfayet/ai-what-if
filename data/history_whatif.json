@@ -863,6 +863,18 @@
       "status": "selesai",
       "run_id": "569352-313583aa",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-04-siang-569352-313583aa"
+    },
+    {
+      "tanggal": "2026-11-04",
+      "slot": "sore",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika Cairan sinovial di seluruh sendi tubuh manusia menguap?",
+      "judul": "Bagaimana jika Cairan sinovial di seluruh sendi tubuh manusia menguap?",
+      "inti": "cairan sinovial menguap",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "901014-e952ec6d",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-04-sore-901014-e952ec6d"
     }
   ],
   "rencana": {
@@ -914,15 +926,5 @@
     "2026-11-04-siang": "Bagaimana jika Seluruh saluran kelenjar lakrimal di mata berhenti total?",
     "2026-11-04-sore": "Bagaimana jika Cairan sinovial di seluruh sendi tubuh manusia menguap?"
   },
-  "seri": {
-    "nama": "Kisah Tubuh Tanpa Cairan",
-    "kategori": "Tubuh Manusia",
-    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Kornea mata manusia kehilangan kelembapan total?",
-      "Bagaimana jika Seluruh saluran kelenjar lakrimal di mata berhenti total?",
-      "Bagaimana jika Cairan sinovial di seluruh sendi tubuh manusia menguap?"
-    ]
-  }
+  "seri": {}
 }
