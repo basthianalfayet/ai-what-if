@@ -875,6 +875,18 @@
       "status": "selesai",
       "run_id": "901014-e952ec6d",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-04-sore-901014-e952ec6d"
+    },
+    {
+      "tanggal": "2026-11-04",
+      "slot": "malam",
+      "kategori": "Teknologi dan AI",
+      "topik": "Bagaimana jika seluruh lampu lalu lintas dikendalikan satu kecerdasan buatan pusat?",
+      "judul": "Bagaimana jika Seluruh lampu lalu lintas dikendalikan satu kecerdasan buatan pusat?",
+      "inti": "lampu lalu lintas AI",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "552301-17059716",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-04-malam-552301-17059716"
     }
   ],
   "rencana": {
@@ -924,7 +936,18 @@
     "2026-11-03-malam": "Bagaimana jika Seluruh ratu semut di bumi mendadak mati bersamaan?",
     "2026-11-03-larut": "Bagaimana jika Seluruh jalur aroma semut lenyap dari permukaan bumi?",
     "2026-11-04-siang": "Bagaimana jika Seluruh saluran kelenjar lakrimal di mata berhenti total?",
-    "2026-11-04-sore": "Bagaimana jika Cairan sinovial di seluruh sendi tubuh manusia menguap?"
+    "2026-11-04-sore": "Bagaimana jika Cairan sinovial di seluruh sendi tubuh manusia menguap?",
+    "2026-11-04-larut": "Bagaimana jika Seluruh kendaraan otonom berhenti merespons perintah manusia?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Kekuasaan AI di Jalan Raya",
+    "kategori": "Teknologi dan AI",
+    "cakupan": "sistem otomatis, internet, dan kecerdasan buatan dalam kehidupan sehari-hari",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Seluruh lampu lalu lintas dikendalikan satu kecerdasan buatan pusat?",
+      "Bagaimana jika Seluruh kendaraan otonom berhenti merespons perintah manusia?",
+      "Bagaimana jika Peta digital satelit menghapus seluruh jalan raya?"
+    ]
+  }
 }
