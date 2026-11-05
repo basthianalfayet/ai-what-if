@@ -947,6 +947,18 @@
       "status": "review",
       "run_id": "506930-d9cdfbbc",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-05-malam-506930-d9cdfbbc"
+    },
+    {
+      "tanggal": "2026-11-05",
+      "slot": "larut",
+      "kategori": "Luar Angkasa",
+      "topik": "Matahari tiba-tiba menghilang",
+      "judul": "Bagaimana jika Matahari tiba-tiba menghilang?",
+      "inti": "matahari hilang",
+      "youtube_id": "vDDcbxSaiqk",
+      "status": "terunggah",
+      "run_id": "845386-dd33a7fa",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-05-larut-845386-dd33a7fa"
     }
   ],
   "rencana": {
@@ -1000,7 +1012,18 @@
     "2026-11-04-larut": "Bagaimana jika Seluruh kendaraan otonom berhenti merespons perintah manusia?",
     "2026-11-05-pagi": "Bagaimana jika Peta digital satelit menghapus seluruh jalan raya?",
     "2026-11-05-sore": "Bagaimana jika Inti bumi mendingin sepuluh kali lebih cepat dari normal?",
-    "2026-11-05-malam": "Bagaimana jika Rotasi bumi berhenti total selama dua puluh empat jam?"
+    "2026-11-05-malam": "Bagaimana jika Rotasi bumi berhenti total selama dua puluh empat jam?",
+    "2026-11-06-pagi": "Bagaimana jika Bulan pergi menjauh?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Tata surya yang goyah",
+    "kategori": "Luar Angkasa",
+    "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Matahari tiba-tiba menghilang?",
+      "Bagaimana jika Bulan pergi menjauh?",
+      "Bagaimana jika Bumi tidak lagi mengalami malam?"
+    ]
+  }
 }
