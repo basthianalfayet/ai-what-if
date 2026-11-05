@@ -935,6 +935,18 @@
       "status": "review",
       "run_id": "835651-17153533",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-05-sore-835651-17153533"
+    },
+    {
+      "tanggal": "2026-11-05",
+      "slot": "malam",
+      "kategori": "Fisika",
+      "topik": "Bagaimana jika Rotasi bumi berhenti total selama dua puluh empat jam?",
+      "judul": "Bagaimana jika Rotasi bumi berhenti total selama dua puluh empat jam?",
+      "inti": "gravitasi dua kali",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "506930-d9cdfbbc",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-05-malam-506930-d9cdfbbc"
     }
   ],
   "rencana": {
@@ -990,15 +1002,5 @@
     "2026-11-05-sore": "Bagaimana jika Inti bumi mendingin sepuluh kali lebih cepat dari normal?",
     "2026-11-05-malam": "Bagaimana jika Rotasi bumi berhenti total selama dua puluh empat jam?"
   },
-  "seri": {
-    "nama": "Misteri Fisika Bumi",
-    "kategori": "Fisika",
-    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh medan magnet bumi mendadak hilang total selama satu jam?",
-      "Bagaimana jika Inti bumi mendingin sepuluh kali lebih cepat dari normal?",
-      "Bagaimana jika Rotasi bumi berhenti total selama dua puluh empat jam?"
-    ]
-  }
+  "seri": {}
 }
