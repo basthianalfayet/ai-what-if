@@ -923,6 +923,18 @@
       "status": "terunggah",
       "run_id": "247405-580b1a5a",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-05-siang-247405-580b1a5a"
+    },
+    {
+      "tanggal": "2026-11-05",
+      "slot": "sore",
+      "kategori": "Fisika",
+      "topik": "Bagaimana jika Inti bumi mendingin sepuluh kali lebih cepat dari normal?",
+      "judul": "Bagaimana jika Inti bumi mendingin sepuluh kali lebih cepat dari normal?",
+      "inti": "gravitasi dua kali",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "835651-17153533",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-05-sore-835651-17153533"
     }
   ],
   "rencana": {
@@ -975,13 +987,14 @@
     "2026-11-04-sore": "Bagaimana jika Cairan sinovial di seluruh sendi tubuh manusia menguap?",
     "2026-11-04-larut": "Bagaimana jika Seluruh kendaraan otonom berhenti merespons perintah manusia?",
     "2026-11-05-pagi": "Bagaimana jika Peta digital satelit menghapus seluruh jalan raya?",
-    "2026-11-05-sore": "Bagaimana jika Inti bumi mendingin sepuluh kali lebih cepat dari normal?"
+    "2026-11-05-sore": "Bagaimana jika Inti bumi mendingin sepuluh kali lebih cepat dari normal?",
+    "2026-11-05-malam": "Bagaimana jika Rotasi bumi berhenti total selama dua puluh empat jam?"
   },
   "seri": {
     "nama": "Misteri Fisika Bumi",
     "kategori": "Fisika",
     "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Seluruh medan magnet bumi mendadak hilang total selama satu jam?",
       "Bagaimana jika Inti bumi mendingin sepuluh kali lebih cepat dari normal?",
