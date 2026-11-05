@@ -899,6 +899,18 @@
       "status": "terunggah",
       "run_id": "313722-3e27a3f6",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-04-larut-313722-3e27a3f6"
+    },
+    {
+      "tanggal": "2026-11-05",
+      "slot": "pagi",
+      "kategori": "Teknologi dan AI",
+      "topik": "Bagaimana jika Peta digital satelit menghapus seluruh jalan raya?",
+      "judul": "Bagaimana jika Peta digital satelit menghapus seluruh jalan raya?",
+      "inti": "peta digital satelit menghapus jalan raya",
+      "youtube_id": "_z8DynxRrW0",
+      "status": "terunggah",
+      "run_id": "058762-165825f6",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-05-pagi-058762-165825f6"
     }
   ],
   "rencana": {
@@ -952,15 +964,5 @@
     "2026-11-04-larut": "Bagaimana jika Seluruh kendaraan otonom berhenti merespons perintah manusia?",
     "2026-11-05-pagi": "Bagaimana jika Peta digital satelit menghapus seluruh jalan raya?"
   },
-  "seri": {
-    "nama": "Kekuasaan AI di Jalan Raya",
-    "kategori": "Teknologi dan AI",
-    "cakupan": "sistem otomatis, internet, dan kecerdasan buatan dalam kehidupan sehari-hari",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh lampu lalu lintas dikendalikan satu kecerdasan buatan pusat?",
-      "Bagaimana jika Seluruh kendaraan otonom berhenti merespons perintah manusia?",
-      "Bagaimana jika Peta digital satelit menghapus seluruh jalan raya?"
-    ]
-  }
+  "seri": {}
 }
