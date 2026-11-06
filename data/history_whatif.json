@@ -1007,6 +1007,18 @@
       "status": "terunggah",
       "run_id": "371530-9d8ac5a6",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-06-malam-371530-9d8ac5a6"
+    },
+    {
+      "tanggal": "2026-11-06",
+      "slot": "larut",
+      "kategori": "Masa Depan Peradaban",
+      "topik": "Bagaimana jika Seluruh migrasi hewan terganggu oleh kota yang melayang di udara?",
+      "judul": "Bagaimana jika Seluruh migrasi hewan terganggu oleh kota yang melayang di udara?",
+      "inti": "migrasi hewan kota melayang",
+      "youtube_id": "Z7WXO0jV0ko",
+      "status": "terunggah",
+      "run_id": "098741-273b6fbc",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-06-larut-098741-273b6fbc"
     }
   ],
   "rencana": {
@@ -1066,15 +1078,5 @@
     "2026-11-06-malam": "Bagaimana jika Sistem akar tanaman pangan gagal menyerap nutrisi karena kota melayang?",
     "2026-11-06-larut": "Bagaimana jika Seluruh migrasi hewan terganggu oleh kota yang melayang di udara?"
   },
-  "seri": {
-    "nama": "Kisah Kota Melayang Bumi",
-    "kategori": "Masa Depan Peradaban",
-    "cakupan": "kota, energi, pangan, dan cara manusia hidup bersama",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh kota di bumi otomatis melayang satu meter di atas tanah?",
-      "Bagaimana jika Sistem akar tanaman pangan gagal menyerap nutrisi karena kota melayang?",
-      "Bagaimana jika Seluruh migrasi hewan terganggu oleh kota yang melayang di udara?"
-    ]
-  }
+  "seri": {}
 }
