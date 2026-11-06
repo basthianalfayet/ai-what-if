@@ -983,6 +983,18 @@
       "status": "terunggah",
       "run_id": "790504-d3276344",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-06-siang-790504-d3276344"
+    },
+    {
+      "tanggal": "2026-11-06",
+      "slot": "sore",
+      "kategori": "Masa Depan Peradaban",
+      "topik": "Bagaimana jika seluruh kota di bumi otomatis melayang satu meter di atas tanah?",
+      "judul": "Bagaimana jika Seluruh kota di bumi otomatis melayang satu meter di atas tanah?",
+      "inti": "kota melayang gravitasi",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "746453-9deb8e28",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-06-sore-746453-9deb8e28"
     }
   ],
   "rencana": {
@@ -1038,7 +1050,18 @@
     "2026-11-05-sore": "Bagaimana jika Inti bumi mendingin sepuluh kali lebih cepat dari normal?",
     "2026-11-05-malam": "Bagaimana jika Rotasi bumi berhenti total selama dua puluh empat jam?",
     "2026-11-06-pagi": "Bagaimana jika Bulan pergi menjauh?",
-    "2026-11-06-siang": "Bagaimana jika Bumi tidak lagi mengalami malam?"
+    "2026-11-06-siang": "Bagaimana jika Bumi tidak lagi mengalami malam?",
+    "2026-11-06-malam": "Bagaimana jika Sistem akar tanaman pangan gagal menyerap nutrisi karena kota melayang?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Kisah Kota Melayang Bumi",
+    "kategori": "Masa Depan Peradaban",
+    "cakupan": "kota, energi, pangan, dan cara manusia hidup bersama",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Seluruh kota di bumi otomatis melayang satu meter di atas tanah?",
+      "Bagaimana jika Sistem akar tanaman pangan gagal menyerap nutrisi karena kota melayang?",
+      "Bagaimana jika Seluruh migrasi hewan terganggu oleh kota yang melayang di udara?"
+    ]
+  }
 }
