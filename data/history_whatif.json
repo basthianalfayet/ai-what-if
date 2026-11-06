@@ -971,6 +971,18 @@
       "status": "terunggah",
       "run_id": "605753-f83787eb",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-06-pagi-605753-f83787eb"
+    },
+    {
+      "tanggal": "2026-11-06",
+      "slot": "siang",
+      "kategori": "Luar Angkasa",
+      "topik": "Bagaimana jika Bumi tidak lagi mengalami malam?",
+      "judul": "Bagaimana jika Bumi tidak lagi mengalami malam?",
+      "inti": "bumi tanpa malam",
+      "youtube_id": "Z8ddG0BSZBo",
+      "status": "terunggah",
+      "run_id": "790504-d3276344",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-06-siang-790504-d3276344"
     }
   ],
   "rencana": {
@@ -1028,15 +1040,5 @@
     "2026-11-06-pagi": "Bagaimana jika Bulan pergi menjauh?",
     "2026-11-06-siang": "Bagaimana jika Bumi tidak lagi mengalami malam?"
   },
-  "seri": {
-    "nama": "Tata surya yang goyah",
-    "kategori": "Luar Angkasa",
-    "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Matahari tiba-tiba menghilang?",
-      "Bagaimana jika Bulan pergi menjauh?",
-      "Bagaimana jika Bumi tidak lagi mengalami malam?"
-    ]
-  }
+  "seri": {}
 }
