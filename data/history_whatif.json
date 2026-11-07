@@ -1043,6 +1043,18 @@
       "status": "terunggah",
       "run_id": "843483-d6ee7512",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-07-siang-843483-d6ee7512"
+    },
+    {
+      "tanggal": "2026-11-07",
+      "slot": "sore",
+      "kategori": "Teknologi dan AI",
+      "topik": "Bagaimana jika Seluruh server internet global mendadak terkunci dengan satu kata sandi ya?",
+      "judul": "Bagaimana jika Seluruh server internet global mendadak terkunci dengan satu kata sandi ya?",
+      "inti": "server internet terkunci sandi",
+      "youtube_id": "obtZCo2vgso",
+      "status": "terunggah",
+      "run_id": "842785-f9359cfa",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-07-sore-842785-f9359cfa"
     }
   ],
   "rencana": {
@@ -1104,15 +1116,5 @@
     "2026-11-07-siang": "Bagaimana jika Seluruh algoritma rekomendasi media sosial mulai menampilkan rahasia penca?",
     "2026-11-07-sore": "Bagaimana jika Seluruh server internet global mendadak terkunci dengan satu kata sandi ya?"
   },
-  "seri": {
-    "nama": "Kiamat Privasi Digital",
-    "kategori": "Teknologi dan AI",
-    "cakupan": "sistem otomatis, internet, dan kecerdasan buatan dalam kehidupan sehari-hari",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh asisten suara pintar mendadak membisikkan rahasia?",
-      "Bagaimana jika Seluruh algoritma rekomendasi media sosial mulai menampilkan rahasia penca?",
-      "Bagaimana jika Seluruh server internet global mendadak terkunci dengan satu kata sandi ya?"
-    ]
-  }
+  "seri": {}
 }
