@@ -1067,6 +1067,18 @@
       "status": "terunggah",
       "run_id": "553665-9efd49fa",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-07-malam-553665-9efd49fa"
+    },
+    {
+      "tanggal": "2026-11-07",
+      "slot": "larut",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Seluruh lapisan es kutub mencair dalam waktu semalam?",
+      "judul": "Bagaimana jika Seluruh lapisan es kutub mencair dalam waktu semalam?",
+      "inti": "es kutub mencair semalam",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "529559-3ae1f6b4",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-07-larut-529559-3ae1f6b4"
     }
   ],
   "rencana": {
@@ -1127,13 +1139,14 @@
     "2026-11-06-larut": "Bagaimana jika Seluruh migrasi hewan terganggu oleh kota yang melayang di udara?",
     "2026-11-07-siang": "Bagaimana jika Seluruh algoritma rekomendasi media sosial mulai menampilkan rahasia penca?",
     "2026-11-07-sore": "Bagaimana jika Seluruh server internet global mendadak terkunci dengan satu kata sandi ya?",
-    "2026-11-07-larut": "Bagaimana jika Seluruh lapisan es kutub mencair dalam waktu semalam?"
+    "2026-11-07-larut": "Bagaimana jika Seluruh lapisan es kutub mencair dalam waktu semalam?",
+    "2026-11-08-pagi": "Bagaimana jika Seluruh air tawar di daratan mendadak membeku?"
   },
   "seri": {
     "nama": "Misteri Perubahan Air Bumi",
     "kategori": "Bumi dan Alam",
     "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Seluruh samudera di bumi mendadak berubah menjadi tawar?",
       "Bagaimana jika Seluruh lapisan es kutub mencair dalam waktu semalam?",
