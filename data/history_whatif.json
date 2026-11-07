@@ -1019,6 +1019,18 @@
       "status": "terunggah",
       "run_id": "098741-273b6fbc",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-06-larut-098741-273b6fbc"
+    },
+    {
+      "tanggal": "2026-11-07",
+      "slot": "pagi",
+      "kategori": "Teknologi dan AI",
+      "topik": "Bagaimana jika seluruh asisten suara pintar di bumi mendadak mulai membisikkan rahasia pemiliknya ke publik?",
+      "judul": "Bagaimana jika Seluruh asisten suara pintar mendadak membisikkan rahasia?",
+      "inti": "asisten suara membisikkan rahasia",
+      "youtube_id": "UY5A5-EcoDQ",
+      "status": "terunggah",
+      "run_id": "505432-2e026e36",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-07-pagi-505432-2e026e36"
     }
   ],
   "rencana": {
@@ -1076,7 +1088,18 @@
     "2026-11-06-pagi": "Bagaimana jika Bulan pergi menjauh?",
     "2026-11-06-siang": "Bagaimana jika Bumi tidak lagi mengalami malam?",
     "2026-11-06-malam": "Bagaimana jika Sistem akar tanaman pangan gagal menyerap nutrisi karena kota melayang?",
-    "2026-11-06-larut": "Bagaimana jika Seluruh migrasi hewan terganggu oleh kota yang melayang di udara?"
+    "2026-11-06-larut": "Bagaimana jika Seluruh migrasi hewan terganggu oleh kota yang melayang di udara?",
+    "2026-11-07-siang": "Bagaimana jika Seluruh algoritma rekomendasi media sosial mulai menampilkan rahasia penca?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Kiamat Privasi Digital",
+    "kategori": "Teknologi dan AI",
+    "cakupan": "sistem otomatis, internet, dan kecerdasan buatan dalam kehidupan sehari-hari",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Seluruh asisten suara pintar mendadak membisikkan rahasia?",
+      "Bagaimana jika Seluruh algoritma rekomendasi media sosial mulai menampilkan rahasia penca?",
+      "Bagaimana jika Seluruh server internet global mendadak terkunci dengan satu kata sandi ya?"
+    ]
+  }
 }
