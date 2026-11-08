@@ -1103,6 +1103,18 @@
       "status": "terunggah",
       "run_id": "025580-0df91203",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-08-siang-025580-0df91203"
+    },
+    {
+      "tanggal": "2026-11-08",
+      "slot": "sore",
+      "kategori": "Luar Angkasa",
+      "topik": "Bagaimana jika Bayangan cincin es Bumi memicu zaman es khatulistiwa?",
+      "judul": "Bagaimana jika Bayangan cincin es Bumi memicu zaman es khatulistiwa?",
+      "inti": "bayangan cincin es khatulistiwa",
+      "youtube_id": "uekimV8yXos",
+      "status": "terunggah",
+      "run_id": "295187-e14df99b",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-08-sore-295187-e14df99b"
     }
   ],
   "rencana": {
@@ -1165,13 +1177,14 @@
     "2026-11-07-sore": "Bagaimana jika Seluruh server internet global mendadak terkunci dengan satu kata sandi ya?",
     "2026-11-07-larut": "Bagaimana jika Seluruh lapisan es kutub mencair dalam waktu semalam?",
     "2026-11-08-pagi": "Bagaimana jika Seluruh air tawar di daratan mendadak membeku?",
-    "2026-11-08-sore": "Bagaimana jika Bayangan cincin es Bumi memicu zaman es khatulistiwa?"
+    "2026-11-08-sore": "Bagaimana jika Bayangan cincin es Bumi memicu zaman es khatulistiwa?",
+    "2026-11-08-malam": "Bagaimana jika Hujan pecahan es cincin Bumi menghujani daratan?"
   },
   "seri": {
     "nama": "Teror Cincin Es Bumi",
     "kategori": "Luar Angkasa",
     "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Cincin es raksasa mendadak terbentuk mengelilingi Bumi?",
       "Bagaimana jika Bayangan cincin es Bumi memicu zaman es khatulistiwa?",
