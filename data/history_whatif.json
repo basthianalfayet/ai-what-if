@@ -1115,6 +1115,18 @@
       "status": "terunggah",
       "run_id": "295187-e14df99b",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-08-sore-295187-e14df99b"
+    },
+    {
+      "tanggal": "2026-11-08",
+      "slot": "malam",
+      "kategori": "Luar Angkasa",
+      "topik": "Bagaimana jika Hujan pecahan es cincin Bumi menghujani daratan?",
+      "judul": "Bagaimana jika Hujan pecahan es cincin Bumi menghujani daratan?",
+      "inti": "hujan pecahan es cincin",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "208460-626ab2a9",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-08-malam-208460-626ab2a9"
     }
   ],
   "rencana": {
@@ -1180,15 +1192,5 @@
     "2026-11-08-sore": "Bagaimana jika Bayangan cincin es Bumi memicu zaman es khatulistiwa?",
     "2026-11-08-malam": "Bagaimana jika Hujan pecahan es cincin Bumi menghujani daratan?"
   },
-  "seri": {
-    "nama": "Teror Cincin Es Bumi",
-    "kategori": "Luar Angkasa",
-    "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Cincin es raksasa mendadak terbentuk mengelilingi Bumi?",
-      "Bagaimana jika Bayangan cincin es Bumi memicu zaman es khatulistiwa?",
-      "Bagaimana jika Hujan pecahan es cincin Bumi menghujani daratan?"
-    ]
-  }
+  "seri": {}
 }
