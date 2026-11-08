@@ -1079,6 +1079,18 @@
       "status": "review",
       "run_id": "529559-3ae1f6b4",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-07-larut-529559-3ae1f6b4"
+    },
+    {
+      "tanggal": "2026-11-08",
+      "slot": "pagi",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Seluruh air tawar di daratan mendadak membeku?",
+      "judul": "Bagaimana jika Seluruh air tawar di daratan mendadak membeku?",
+      "inti": "air tawar membeku",
+      "youtube_id": "0ZOLBEgBIdc",
+      "status": "terunggah",
+      "run_id": "762343-abe2c505",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-08-pagi-762343-abe2c505"
     }
   ],
   "rencana": {
@@ -1142,15 +1154,5 @@
     "2026-11-07-larut": "Bagaimana jika Seluruh lapisan es kutub mencair dalam waktu semalam?",
     "2026-11-08-pagi": "Bagaimana jika Seluruh air tawar di daratan mendadak membeku?"
   },
-  "seri": {
-    "nama": "Misteri Perubahan Air Bumi",
-    "kategori": "Bumi dan Alam",
-    "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh samudera di bumi mendadak berubah menjadi tawar?",
-      "Bagaimana jika Seluruh lapisan es kutub mencair dalam waktu semalam?",
-      "Bagaimana jika Seluruh air tawar di daratan mendadak membeku?"
-    ]
-  }
+  "seri": {}
 }
