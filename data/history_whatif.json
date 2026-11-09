@@ -1163,6 +1163,18 @@
       "status": "review",
       "run_id": "812947-d88117fe",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-09-siang-812947-d88117fe"
+    },
+    {
+      "tanggal": "2026-11-09",
+      "slot": "sore",
+      "kategori": "Tubuh Manusia",
+      "topik": "Dampak biologis jika tubuh manusia mendadak kehilangan mekanisme rasa kantuk",
+      "judul": "Bagaimana jika Manusia kehilangan rasa kantuk selamanya?",
+      "inti": "hilang rasa kantuk",
+      "youtube_id": "o5_EAfP_5Ug",
+      "status": "terunggah",
+      "run_id": "060621-a3408eed",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-09-sore-060621-a3408eed"
     }
   ],
   "rencana": {
@@ -1228,7 +1240,18 @@
     "2026-11-08-sore": "Bagaimana jika Bayangan cincin es Bumi memicu zaman es khatulistiwa?",
     "2026-11-08-malam": "Bagaimana jika Hujan pecahan es cincin Bumi menghujani daratan?",
     "2026-11-09-pagi": "Bagaimana jika Bangkai cumi-cumi raksasa mencemari pesisir dunia?",
-    "2026-11-09-siang": "Bagaimana jika Ekosistem laut dalam runtuh tanpa cumi-cumi raksasa?"
+    "2026-11-09-siang": "Bagaimana jika Ekosistem laut dalam runtuh tanpa cumi-cumi raksasa?",
+    "2026-11-09-malam": "Bagaimana jika Kota tanpa tidur menghancurkan navigasi hewan malam?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Dunia Tanpa Rasa Kantuk",
+    "kategori": "Tubuh Manusia",
+    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Manusia kehilangan rasa kantuk selamanya?",
+      "Bagaimana jika Kota tanpa tidur menghancurkan navigasi hewan malam?",
+      "Bagaimana jika Ekosistem runtuh akibat kepunahan predator malam?"
+    ]
+  }
 }
