@@ -1175,6 +1175,18 @@
       "status": "terunggah",
       "run_id": "060621-a3408eed",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-09-sore-060621-a3408eed"
+    },
+    {
+      "tanggal": "2026-11-09",
+      "slot": "malam",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika Kota tanpa tidur menghancurkan navigasi hewan malam?",
+      "judul": "Bagaimana jika Kota tanpa tidur menghancurkan navigasi hewan malam?",
+      "inti": "navigasi hewan polusi cahaya",
+      "youtube_id": "SVYcGc7IeI8",
+      "status": "terunggah",
+      "run_id": "436704-321f9942",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-09-malam-436704-321f9942"
     }
   ],
   "rencana": {
@@ -1241,13 +1253,14 @@
     "2026-11-08-malam": "Bagaimana jika Hujan pecahan es cincin Bumi menghujani daratan?",
     "2026-11-09-pagi": "Bagaimana jika Bangkai cumi-cumi raksasa mencemari pesisir dunia?",
     "2026-11-09-siang": "Bagaimana jika Ekosistem laut dalam runtuh tanpa cumi-cumi raksasa?",
-    "2026-11-09-malam": "Bagaimana jika Kota tanpa tidur menghancurkan navigasi hewan malam?"
+    "2026-11-09-malam": "Bagaimana jika Kota tanpa tidur menghancurkan navigasi hewan malam?",
+    "2026-11-09-larut": "Bagaimana jika Ekosistem runtuh akibat kepunahan predator malam?"
   },
   "seri": {
     "nama": "Dunia Tanpa Rasa Kantuk",
     "kategori": "Tubuh Manusia",
     "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Manusia kehilangan rasa kantuk selamanya?",
       "Bagaimana jika Kota tanpa tidur menghancurkan navigasi hewan malam?",
