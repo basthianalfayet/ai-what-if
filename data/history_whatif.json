@@ -1151,6 +1151,18 @@
       "status": "terunggah",
       "run_id": "862958-6480db62",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-09-pagi-862958-6480db62"
+    },
+    {
+      "tanggal": "2026-11-09",
+      "slot": "siang",
+      "kategori": "Hewan",
+      "topik": "Bagaimana jika Ekosistem laut dalam runtuh tanpa cumi-cumi raksasa?",
+      "judul": "Bagaimana jika Ekosistem laut dalam runtuh tanpa cumi-cumi raksasa?",
+      "inti": "ekosistem laut dalam cumi-cumi raksasa",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "812947-d88117fe",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-09-siang-812947-d88117fe"
     }
   ],
   "rencana": {
@@ -1218,15 +1230,5 @@
     "2026-11-09-pagi": "Bagaimana jika Bangkai cumi-cumi raksasa mencemari pesisir dunia?",
     "2026-11-09-siang": "Bagaimana jika Ekosistem laut dalam runtuh tanpa cumi-cumi raksasa?"
   },
-  "seri": {
-    "nama": "Invasi Cumi Raksasa Laut Dangkal",
-    "kategori": "Hewan",
-    "cakupan": "serangga, laut, rantai makanan, dan perilaku hewan",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh cumi-cumi raksasa naik ke pesisir dangkal?",
-      "Bagaimana jika Bangkai cumi-cumi raksasa mencemari pesisir dunia?",
-      "Bagaimana jika Ekosistem laut dalam runtuh tanpa cumi-cumi raksasa?"
-    ]
-  }
+  "seri": {}
 }
