@@ -1139,6 +1139,18 @@
       "status": "terunggah",
       "run_id": "630539-25932f96",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-08-larut-630539-25932f96"
+    },
+    {
+      "tanggal": "2026-11-09",
+      "slot": "pagi",
+      "kategori": "Hewan",
+      "topik": "Bagaimana jika Bangkai cumi-cumi raksasa mencemari pesisir dunia?",
+      "judul": "Bagaimana jika Bangkai cumi-cumi raksasa mencemari pesisir dunia?",
+      "inti": "bangkai cumi raksasa pesisir",
+      "youtube_id": "ZZwNfk0KlI8",
+      "status": "terunggah",
+      "run_id": "862958-6480db62",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-09-pagi-862958-6480db62"
     }
   ],
   "rencana": {
@@ -1203,13 +1215,14 @@
     "2026-11-08-pagi": "Bagaimana jika Seluruh air tawar di daratan mendadak membeku?",
     "2026-11-08-sore": "Bagaimana jika Bayangan cincin es Bumi memicu zaman es khatulistiwa?",
     "2026-11-08-malam": "Bagaimana jika Hujan pecahan es cincin Bumi menghujani daratan?",
-    "2026-11-09-pagi": "Bagaimana jika Bangkai cumi-cumi raksasa mencemari pesisir dunia?"
+    "2026-11-09-pagi": "Bagaimana jika Bangkai cumi-cumi raksasa mencemari pesisir dunia?",
+    "2026-11-09-siang": "Bagaimana jika Ekosistem laut dalam runtuh tanpa cumi-cumi raksasa?"
   },
   "seri": {
     "nama": "Invasi Cumi Raksasa Laut Dangkal",
     "kategori": "Hewan",
     "cakupan": "serangga, laut, rantai makanan, dan perilaku hewan",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Seluruh cumi-cumi raksasa naik ke pesisir dangkal?",
       "Bagaimana jika Bangkai cumi-cumi raksasa mencemari pesisir dunia?",
