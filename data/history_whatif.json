@@ -1187,6 +1187,18 @@
       "status": "terunggah",
       "run_id": "436704-321f9942",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-09-malam-436704-321f9942"
+    },
+    {
+      "tanggal": "2026-11-09",
+      "slot": "larut",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika Ekosistem runtuh akibat kepunahan predator malam?",
+      "judul": "Bagaimana jika Ekosistem runtuh akibat kepunahan predator malam?",
+      "inti": "ekosistem runtuh predator malam",
+      "youtube_id": "nVFeazkm83s",
+      "status": "terunggah",
+      "run_id": "475957-7238aea0",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-09-larut-475957-7238aea0"
     }
   ],
   "rencana": {
@@ -1256,15 +1268,5 @@
     "2026-11-09-malam": "Bagaimana jika Kota tanpa tidur menghancurkan navigasi hewan malam?",
     "2026-11-09-larut": "Bagaimana jika Ekosistem runtuh akibat kepunahan predator malam?"
   },
-  "seri": {
-    "nama": "Dunia Tanpa Rasa Kantuk",
-    "kategori": "Tubuh Manusia",
-    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Manusia kehilangan rasa kantuk selamanya?",
-      "Bagaimana jika Kota tanpa tidur menghancurkan navigasi hewan malam?",
-      "Bagaimana jika Ekosistem runtuh akibat kepunahan predator malam?"
-    ]
-  }
+  "seri": {}
 }
