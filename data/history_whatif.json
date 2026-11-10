@@ -1235,6 +1235,18 @@
       "status": "terunggah",
       "run_id": "072764-fc07938c",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-10-sore-072764-fc07938c"
+    },
+    {
+      "tanggal": "2026-11-10",
+      "slot": "malam",
+      "kategori": "Fisika",
+      "topik": "Bagaimana jika gravitasi bumi hilang selama satu detik penuh?",
+      "judul": "Bagaimana jika Gravitasi bumi hilang selama satu detik penuh?",
+      "inti": "gravitasi bumi hilang",
+      "youtube_id": "qajhU6ZvPF4",
+      "status": "terunggah",
+      "run_id": "081632-c7f4d25c",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-10-malam-081632-c7f4d25c"
     }
   ],
   "rencana": {
@@ -1304,7 +1316,18 @@
     "2026-11-09-malam": "Bagaimana jika Kota tanpa tidur menghancurkan navigasi hewan malam?",
     "2026-11-09-larut": "Bagaimana jika Ekosistem runtuh akibat kepunahan predator malam?",
     "2026-11-10-siang": "Bagaimana jika Abu vulkanik memicu musim dingin vulkanik abadi?",
-    "2026-11-10-sore": "Bagaimana jika Manusia harus hidup di bawah tanah selamanya akibat abu vulkanik?"
+    "2026-11-10-sore": "Bagaimana jika Manusia harus hidup di bawah tanah selamanya akibat abu vulkanik?",
+    "2026-11-10-larut": "Bagaimana jika Gravitasi bumi kembali aktif dengan kekuatan ganda setelah sempat hilang?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Misteri Hilangnya Gravitasi Bumi",
+    "kategori": "Fisika",
+    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Gravitasi bumi hilang selama satu detik penuh?",
+      "Bagaimana jika Gravitasi bumi kembali aktif dengan kekuatan ganda setelah sempat hilang?",
+      "Bagaimana jika Inti bumi berhenti berputar akibat gangguan gravitasi mendadak?"
+    ]
+  }
 }
