@@ -1223,6 +1223,18 @@
       "status": "review",
       "run_id": "363779-8e295293",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-10-siang-363779-8e295293"
+    },
+    {
+      "tanggal": "2026-11-10",
+      "slot": "sore",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Manusia harus hidup di bawah tanah selamanya akibat abu vulkanik?",
+      "judul": "Bagaimana jika Manusia harus hidup di bawah tanah selamanya akibat abu vulkanik?",
+      "inti": "hidup bawah tanah abu vulkanik",
+      "youtube_id": "90cKFndi46k",
+      "status": "terunggah",
+      "run_id": "072764-fc07938c",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-10-sore-072764-fc07938c"
     }
   ],
   "rencana": {
@@ -1294,15 +1306,5 @@
     "2026-11-10-siang": "Bagaimana jika Abu vulkanik memicu musim dingin vulkanik abadi?",
     "2026-11-10-sore": "Bagaimana jika Manusia harus hidup di bawah tanah selamanya akibat abu vulkanik?"
   },
-  "seri": {
-    "nama": "Letusan Serentak Bumi",
-    "kategori": "Bumi dan Alam",
-    "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh gunung berapi di bumi meletus bersamaan?",
-      "Bagaimana jika Abu vulkanik memicu musim dingin vulkanik abadi?",
-      "Bagaimana jika Manusia harus hidup di bawah tanah selamanya akibat abu vulkanik?"
-    ]
-  }
+  "seri": {}
 }
