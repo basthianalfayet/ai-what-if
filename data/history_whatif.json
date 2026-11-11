@@ -1295,6 +1295,18 @@
       "status": "terunggah",
       "run_id": "529538-482f69e0",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-11-sore-529538-482f69e0"
+    },
+    {
+      "tanggal": "2026-11-11",
+      "slot": "malam",
+      "kategori": "Hewan",
+      "topik": "Bagaimana jika Kota manusia harus dievakuasi akibat gelombang semut global?",
+      "judul": "Bagaimana jika Kota manusia harus dievakuasi akibat gelombang semut global?",
+      "inti": "evakuasi kota semut",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "615643-a1449211",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-11-malam-615643-a1449211"
     }
   ],
   "rencana": {
@@ -1370,15 +1382,5 @@
     "2026-11-11-sore": "Bagaimana jika Koloni semut global memangsa seluruh serangga penyerbuk?",
     "2026-11-11-malam": "Bagaimana jika Kota manusia harus dievakuasi akibat gelombang semut global?"
   },
-  "seri": {
-    "nama": "Invasi Koloni Super Semut Global",
-    "kategori": "Hewan",
-    "cakupan": "serangga, laut, rantai makanan, dan perilaku hewan",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh spesies semut di bumi membentuk satu koloni raksasa?",
-      "Bagaimana jika Koloni semut global memangsa seluruh serangga penyerbuk?",
-      "Bagaimana jika Kota manusia harus dievakuasi akibat gelombang semut global?"
-    ]
-  }
+  "seri": {}
 }
