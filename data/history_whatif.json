@@ -1259,6 +1259,18 @@
       "status": "terunggah",
       "run_id": "773853-95f17fbf",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-10-larut-773853-95f17fbf"
+    },
+    {
+      "tanggal": "2026-11-11",
+      "slot": "pagi",
+      "kategori": "Fisika",
+      "topik": "Bagaimana jika Inti bumi berhenti berputar akibat gangguan gravitasi mendadak?",
+      "judul": "Bagaimana jika Inti bumi berhenti berputar akibat gangguan gravitasi mendadak?",
+      "inti": "inti bumi berhenti berputar",
+      "youtube_id": "YRpy4fTVVps",
+      "status": "terunggah",
+      "run_id": "898646-302fa2c7",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-11-pagi-898646-302fa2c7"
     }
   ],
   "rencana": {
@@ -1332,15 +1344,5 @@
     "2026-11-10-larut": "Bagaimana jika Gravitasi bumi kembali aktif dengan kekuatan ganda setelah sempat hilang?",
     "2026-11-11-pagi": "Bagaimana jika Inti bumi berhenti berputar akibat gangguan gravitasi mendadak?"
   },
-  "seri": {
-    "nama": "Misteri Hilangnya Gravitasi Bumi",
-    "kategori": "Fisika",
-    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Gravitasi bumi hilang selama satu detik penuh?",
-      "Bagaimana jika Gravitasi bumi kembali aktif dengan kekuatan ganda setelah sempat hilang?",
-      "Bagaimana jika Inti bumi berhenti berputar akibat gangguan gravitasi mendadak?"
-    ]
-  }
+  "seri": {}
 }
