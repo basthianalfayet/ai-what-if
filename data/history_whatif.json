@@ -1271,6 +1271,18 @@
       "status": "terunggah",
       "run_id": "898646-302fa2c7",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-11-pagi-898646-302fa2c7"
+    },
+    {
+      "tanggal": "2026-11-11",
+      "slot": "siang",
+      "kategori": "Hewan",
+      "topik": "Seluruh spesies semut bersatu membentuk satu koloni global",
+      "judul": "Bagaimana jika Seluruh spesies semut di bumi membentuk satu koloni raksasa?",
+      "inti": "superkoloni semut global",
+      "youtube_id": "OdSX0o1eBYw",
+      "status": "terunggah",
+      "run_id": "857024-7f99019a",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-11-siang-857024-7f99019a"
     }
   ],
   "rencana": {
@@ -1342,7 +1354,18 @@
     "2026-11-10-siang": "Bagaimana jika Abu vulkanik memicu musim dingin vulkanik abadi?",
     "2026-11-10-sore": "Bagaimana jika Manusia harus hidup di bawah tanah selamanya akibat abu vulkanik?",
     "2026-11-10-larut": "Bagaimana jika Gravitasi bumi kembali aktif dengan kekuatan ganda setelah sempat hilang?",
-    "2026-11-11-pagi": "Bagaimana jika Inti bumi berhenti berputar akibat gangguan gravitasi mendadak?"
+    "2026-11-11-pagi": "Bagaimana jika Inti bumi berhenti berputar akibat gangguan gravitasi mendadak?",
+    "2026-11-11-sore": "Bagaimana jika Koloni semut global memangsa seluruh serangga penyerbuk?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Invasi Koloni Super Semut Global",
+    "kategori": "Hewan",
+    "cakupan": "serangga, laut, rantai makanan, dan perilaku hewan",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Seluruh spesies semut di bumi membentuk satu koloni raksasa?",
+      "Bagaimana jika Koloni semut global memangsa seluruh serangga penyerbuk?",
+      "Bagaimana jika Kota manusia harus dievakuasi akibat gelombang semut global?"
+    ]
+  }
 }
