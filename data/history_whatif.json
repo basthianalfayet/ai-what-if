@@ -1343,6 +1343,18 @@
       "status": "review",
       "run_id": "006598-9fe0413b",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-12-malam-006598-9fe0413b"
+    },
+    {
+      "tanggal": "2026-11-12",
+      "slot": "larut",
+      "kategori": "Luar Angkasa",
+      "topik": "Jarak Bulan ke Bumi mendadak berkurang setengahnya",
+      "judul": "Bagaimana jika Jarak Bulan ke Bumi mendadak berkurang setengahnya?",
+      "inti": "orbit bulan mendekat",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "760571-59f0e5ed",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-12-larut-760571-59f0e5ed"
     }
   ],
   "rencana": {
@@ -1418,7 +1430,18 @@
     "2026-11-11-sore": "Bagaimana jika Koloni semut global memangsa seluruh serangga penyerbuk?",
     "2026-11-11-malam": "Bagaimana jika Kota manusia harus dievakuasi akibat gelombang semut global?",
     "2026-11-12-siang": "Bagaimana jika Lendir ubur-ubur menyumbat sistem pendingin pembangkit listrik pesisir?",
-    "2026-11-12-sore": "Bagaimana jika Ubur-ubur mengubah seluruh lautan menjadi gurun beracun?"
+    "2026-11-12-sore": "Bagaimana jika Ubur-ubur mengubah seluruh lautan menjadi gurun beracun?",
+    "2026-11-13-pagi": "Bagaimana jika Pasang air laut raksasa akibat Bulan menenggelamkan kota pesisir?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Orbit Bulan Mendekat ke Bumi",
+    "kategori": "Luar Angkasa",
+    "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Jarak Bulan ke Bumi mendadak berkurang setengahnya?",
+      "Bagaimana jika Pasang air laut raksasa akibat Bulan menenggelamkan kota pesisir?",
+      "Bagaimana jika Tarikan pasang surut Bulan memicu letusan gunung berapi global?"
+    ]
+  }
 }
