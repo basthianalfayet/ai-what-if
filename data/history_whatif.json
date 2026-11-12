@@ -1319,6 +1319,18 @@
       "status": "selesai",
       "run_id": "059423-a9c9944f",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-12-pagi-059423-a9c9944f"
+    },
+    {
+      "tanggal": "2026-11-12",
+      "slot": "siang",
+      "kategori": "Hewan",
+      "topik": "Bagaimana jika Lendir ubur-ubur menyumbat sistem pendingin pembangkit listrik pesisir?",
+      "judul": "Bagaimana jika Lendir ubur-ubur menyumbat sistem pendingin pembangkit listrik pesisir?",
+      "inti": "lendir ubur-ubur pembangkit listrik",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "444976-c31c42ca",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-12-siang-444976-c31c42ca"
     }
   ],
   "rencana": {
@@ -1393,13 +1405,14 @@
     "2026-11-11-pagi": "Bagaimana jika Inti bumi berhenti berputar akibat gangguan gravitasi mendadak?",
     "2026-11-11-sore": "Bagaimana jika Koloni semut global memangsa seluruh serangga penyerbuk?",
     "2026-11-11-malam": "Bagaimana jika Kota manusia harus dievakuasi akibat gelombang semut global?",
-    "2026-11-12-siang": "Bagaimana jika Lendir ubur-ubur menyumbat sistem pendingin pembangkit listrik pesisir?"
+    "2026-11-12-siang": "Bagaimana jika Lendir ubur-ubur menyumbat sistem pendingin pembangkit listrik pesisir?",
+    "2026-11-12-sore": "Bagaimana jika Ubur-ubur mengubah seluruh lautan menjadi gurun beracun?"
   },
   "seri": {
     "nama": "Ledakan Ubur-Ubur Global",
     "kategori": "Hewan",
     "cakupan": "serangga, laut, rantai makanan, dan perilaku hewan",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Ubur-ubur mendominasi seluruh lautan dunia?",
       "Bagaimana jika Lendir ubur-ubur menyumbat sistem pendingin pembangkit listrik pesisir?",
