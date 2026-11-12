@@ -1331,6 +1331,18 @@
       "status": "selesai",
       "run_id": "444976-c31c42ca",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-12-siang-444976-c31c42ca"
+    },
+    {
+      "tanggal": "2026-11-12",
+      "slot": "malam",
+      "kategori": "Hewan",
+      "topik": "Bagaimana jika Ubur-ubur mengubah seluruh lautan menjadi gurun beracun?",
+      "judul": "Bagaimana jika Ubur-ubur mengubah seluruh lautan menjadi gurun beracun?",
+      "inti": "ubur-ubur gurun beracun",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "006598-9fe0413b",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-12-malam-006598-9fe0413b"
     }
   ],
   "rencana": {
@@ -1408,15 +1420,5 @@
     "2026-11-12-siang": "Bagaimana jika Lendir ubur-ubur menyumbat sistem pendingin pembangkit listrik pesisir?",
     "2026-11-12-sore": "Bagaimana jika Ubur-ubur mengubah seluruh lautan menjadi gurun beracun?"
   },
-  "seri": {
-    "nama": "Ledakan Ubur-Ubur Global",
-    "kategori": "Hewan",
-    "cakupan": "serangga, laut, rantai makanan, dan perilaku hewan",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Ubur-ubur mendominasi seluruh lautan dunia?",
-      "Bagaimana jika Lendir ubur-ubur menyumbat sistem pendingin pembangkit listrik pesisir?",
-      "Bagaimana jika Ubur-ubur mengubah seluruh lautan menjadi gurun beracun?"
-    ]
-  }
+  "seri": {}
 }
