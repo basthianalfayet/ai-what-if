@@ -1391,6 +1391,18 @@
       "status": "review",
       "run_id": "553885-9aeb2fcf",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-13-malam-553885-9aeb2fcf"
+    },
+    {
+      "tanggal": "2026-11-13",
+      "slot": "larut",
+      "kategori": "Bumi dan Alam",
+      "topik": "Oksigen di udara menjadi dua kali lipat",
+      "judul": "Bagaimana jika Oksigen di udara berlipat dua?",
+      "inti": "oksigen dua kali",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "660889-a4304450",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-13-larut-660889-a4304450"
     }
   ],
   "rencana": {
@@ -1468,7 +1480,18 @@
     "2026-11-12-siang": "Bagaimana jika Lendir ubur-ubur menyumbat sistem pendingin pembangkit listrik pesisir?",
     "2026-11-12-sore": "Bagaimana jika Ubur-ubur mengubah seluruh lautan menjadi gurun beracun?",
     "2026-11-13-pagi": "Bagaimana jika Pasang air laut raksasa akibat Bulan menenggelamkan kota pesisir?",
-    "2026-11-13-siang": "Bagaimana jika Tarikan pasang surut Bulan memicu letusan gunung berapi global?"
+    "2026-11-13-siang": "Bagaimana jika Tarikan pasang surut Bulan memicu letusan gunung berapi global?",
+    "2026-11-14-pagi": "Bagaimana jika Bumi berhenti berputar lima detik?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Bumi kehilangan penopangnya",
+    "kategori": "Bumi dan Alam",
+    "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Oksigen di udara berlipat dua?",
+      "Bagaimana jika Bumi berhenti berputar lima detik?",
+      "Bagaimana jika Laut di Bumi mengering?"
+    ]
+  }
 }
