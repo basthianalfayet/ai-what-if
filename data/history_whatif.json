@@ -1379,6 +1379,18 @@
       "status": "selesai",
       "run_id": "705438-dc3a8b86",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-13-sore-705438-dc3a8b86"
+    },
+    {
+      "tanggal": "2026-11-13",
+      "slot": "malam",
+      "kategori": "Luar Angkasa",
+      "topik": "Matahari tiba-tiba menghilang",
+      "judul": "Bagaimana jika Matahari tiba-tiba menghilang?",
+      "inti": "matahari hilang",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "553885-9aeb2fcf",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-13-malam-553885-9aeb2fcf"
     }
   ],
   "rencana": {
