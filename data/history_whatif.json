@@ -1367,6 +1367,18 @@
       "status": "selesai",
       "run_id": "520868-ffb6fa3a",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-13-pagi-520868-ffb6fa3a"
+    },
+    {
+      "tanggal": "2026-11-13",
+      "slot": "sore",
+      "kategori": "Luar Angkasa",
+      "topik": "Bagaimana jika Tarikan pasang surut Bulan memicu letusan gunung berapi global?",
+      "judul": "Bagaimana jika Tarikan pasang surut Bulan memicu letusan gunung berapi global?",
+      "inti": "tarikan pasang surut letusan gunung berapi global",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "705438-dc3a8b86",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-13-sore-705438-dc3a8b86"
     }
   ],
   "rencana": {
@@ -1446,15 +1458,5 @@
     "2026-11-13-pagi": "Bagaimana jika Pasang air laut raksasa akibat Bulan menenggelamkan kota pesisir?",
     "2026-11-13-siang": "Bagaimana jika Tarikan pasang surut Bulan memicu letusan gunung berapi global?"
   },
-  "seri": {
-    "nama": "Orbit Bulan Mendekat ke Bumi",
-    "kategori": "Luar Angkasa",
-    "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Jarak Bulan ke Bumi mendadak berkurang setengahnya?",
-      "Bagaimana jika Pasang air laut raksasa akibat Bulan menenggelamkan kota pesisir?",
-      "Bagaimana jika Tarikan pasang surut Bulan memicu letusan gunung berapi global?"
-    ]
-  }
+  "seri": {}
 }
