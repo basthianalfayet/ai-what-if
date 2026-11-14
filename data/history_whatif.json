@@ -1415,6 +1415,18 @@
       "status": "selesai",
       "run_id": "190276-234d4a76",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-14-pagi-190276-234d4a76"
+    },
+    {
+      "tanggal": "2026-11-14",
+      "slot": "siang",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Laut di Bumi mengering?",
+      "judul": "Bagaimana jika Laut di Bumi mengering?",
+      "inti": "laut bumi mengering",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "381852-f85ab4ae",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-14-siang-381852-f85ab4ae"
     }
   ],
   "rencana": {
@@ -1496,15 +1508,5 @@
     "2026-11-14-pagi": "Bagaimana jika Bumi berhenti berputar lima detik?",
     "2026-11-14-siang": "Bagaimana jika Laut di Bumi mengering?"
   },
-  "seri": {
-    "nama": "Bumi kehilangan penopangnya",
-    "kategori": "Bumi dan Alam",
-    "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Oksigen di udara berlipat dua?",
-      "Bagaimana jika Bumi berhenti berputar lima detik?",
-      "Bagaimana jika Laut di Bumi mengering?"
-    ]
-  }
+  "seri": {}
 }
