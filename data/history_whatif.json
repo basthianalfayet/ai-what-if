@@ -1403,6 +1403,18 @@
       "status": "selesai",
       "run_id": "660889-a4304450",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-13-larut-660889-a4304450"
+    },
+    {
+      "tanggal": "2026-11-14",
+      "slot": "pagi",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Bumi berhenti berputar lima detik?",
+      "judul": "Bagaimana jika Bumi berhenti berputar lima detik?",
+      "inti": "bumi berhenti berputar",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "190276-234d4a76",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-14-pagi-190276-234d4a76"
     }
   ],
   "rencana": {
@@ -1481,13 +1493,14 @@
     "2026-11-12-sore": "Bagaimana jika Ubur-ubur mengubah seluruh lautan menjadi gurun beracun?",
     "2026-11-13-pagi": "Bagaimana jika Pasang air laut raksasa akibat Bulan menenggelamkan kota pesisir?",
     "2026-11-13-siang": "Bagaimana jika Tarikan pasang surut Bulan memicu letusan gunung berapi global?",
-    "2026-11-14-pagi": "Bagaimana jika Bumi berhenti berputar lima detik?"
+    "2026-11-14-pagi": "Bagaimana jika Bumi berhenti berputar lima detik?",
+    "2026-11-14-siang": "Bagaimana jika Laut di Bumi mengering?"
   },
   "seri": {
     "nama": "Bumi kehilangan penopangnya",
     "kategori": "Bumi dan Alam",
     "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Oksigen di udara berlipat dua?",
       "Bagaimana jika Bumi berhenti berputar lima detik?",
