@@ -1439,6 +1439,18 @@
       "status": "review",
       "run_id": "667658-ec90602d",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-14-malam-667658-ec90602d"
+    },
+    {
+      "tanggal": "2026-11-14",
+      "slot": "larut",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika paru-paru manusia berhenti memproses oksigen selama satu menit?",
+      "judul": "Bagaimana jika Paru-paru manusia berhenti memproses oksigen selama satu menit?",
+      "inti": "paru-paru berhenti memproses oksigen",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "581309-e024f1cb",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-14-larut-581309-e024f1cb"
     }
   ],
   "rencana": {
@@ -1518,7 +1530,18 @@
     "2026-11-13-pagi": "Bagaimana jika Pasang air laut raksasa akibat Bulan menenggelamkan kota pesisir?",
     "2026-11-13-siang": "Bagaimana jika Tarikan pasang surut Bulan memicu letusan gunung berapi global?",
     "2026-11-14-pagi": "Bagaimana jika Bumi berhenti berputar lima detik?",
-    "2026-11-14-siang": "Bagaimana jika Laut di Bumi mengering?"
+    "2026-11-14-siang": "Bagaimana jika Laut di Bumi mengering?",
+    "2026-11-15-pagi": "Bagaimana jika Seluruh pembuluh darah manusia berubah menjadi transparan?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Batas Ekstrem Tubuh Manusia",
+    "kategori": "Tubuh Manusia",
+    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Paru-paru manusia berhenti memproses oksigen selama satu menit?",
+      "Bagaimana jika Seluruh pembuluh darah manusia berubah menjadi transparan?",
+      "Bagaimana jika Jantung manusia berdetak dua kali lebih cepat selamanya?"
+    ]
+  }
 }
