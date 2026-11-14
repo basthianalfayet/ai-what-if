@@ -1427,6 +1427,18 @@
       "status": "selesai",
       "run_id": "381852-f85ab4ae",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-14-siang-381852-f85ab4ae"
+    },
+    {
+      "tanggal": "2026-11-14",
+      "slot": "malam",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bumi berhenti berputar lima detik",
+      "judul": "Bagaimana jika Bumi berhenti berputar lima detik?",
+      "inti": "bumi berhenti putar",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "667658-ec90602d",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-14-malam-667658-ec90602d"
     }
   ],
   "rencana": {
