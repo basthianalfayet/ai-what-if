@@ -1463,6 +1463,18 @@
       "status": "review",
       "run_id": "111948-ec04886d",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-15-sore-111948-ec04886d"
+    },
+    {
+      "tanggal": "2026-11-15",
+      "slot": "malam",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika Seluruh pembuluh darah manusia berubah menjadi transparan?",
+      "judul": "Bagaimana jika Seluruh pembuluh darah manusia berubah menjadi transparan?",
+      "inti": "vaskular tembus pandang",
+      "youtube_id": "ZBcA4wGOgEs",
+      "status": "terunggah",
+      "run_id": "635708-b8574b1a",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-15-malam-635708-b8574b1a"
     }
   ],
   "rencana": {
@@ -1543,13 +1555,14 @@
     "2026-11-13-siang": "Bagaimana jika Tarikan pasang surut Bulan memicu letusan gunung berapi global?",
     "2026-11-14-pagi": "Bagaimana jika Bumi berhenti berputar lima detik?",
     "2026-11-14-siang": "Bagaimana jika Laut di Bumi mengering?",
-    "2026-11-15-pagi": "Bagaimana jika Seluruh pembuluh darah manusia berubah menjadi transparan?"
+    "2026-11-15-pagi": "Bagaimana jika Seluruh pembuluh darah manusia berubah menjadi transparan?",
+    "2026-11-15-larut": "Bagaimana jika Jantung manusia berdetak dua kali lebih cepat selamanya?"
   },
   "seri": {
     "nama": "Batas Ekstrem Tubuh Manusia",
     "kategori": "Tubuh Manusia",
     "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Paru-paru manusia berhenti memproses oksigen selama satu menit?",
       "Bagaimana jika Seluruh pembuluh darah manusia berubah menjadi transparan?",
