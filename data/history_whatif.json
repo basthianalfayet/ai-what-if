@@ -1475,6 +1475,18 @@
       "status": "terunggah",
       "run_id": "635708-b8574b1a",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-15-malam-635708-b8574b1a"
+    },
+    {
+      "tanggal": "2026-11-15",
+      "slot": "larut",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika Jantung manusia berdetak dua kali lebih cepat selamanya?",
+      "judul": "Bagaimana jika Jantung manusia berdetak dua kali lebih cepat selamanya?",
+      "inti": "detak jantung ganda",
+      "youtube_id": "IpU1xAXJpqk",
+      "status": "terunggah",
+      "run_id": "959380-8ed3796f",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-15-larut-959380-8ed3796f"
     }
   ],
   "rencana": {
@@ -1558,15 +1570,5 @@
     "2026-11-15-pagi": "Bagaimana jika Seluruh pembuluh darah manusia berubah menjadi transparan?",
     "2026-11-15-larut": "Bagaimana jika Jantung manusia berdetak dua kali lebih cepat selamanya?"
   },
-  "seri": {
-    "nama": "Batas Ekstrem Tubuh Manusia",
-    "kategori": "Tubuh Manusia",
-    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Paru-paru manusia berhenti memproses oksigen selama satu menit?",
-      "Bagaimana jika Seluruh pembuluh darah manusia berubah menjadi transparan?",
-      "Bagaimana jika Jantung manusia berdetak dua kali lebih cepat selamanya?"
-    ]
-  }
+  "seri": {}
 }
