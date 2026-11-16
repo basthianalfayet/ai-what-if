@@ -1511,6 +1511,18 @@
       "status": "terunggah",
       "run_id": "450040-be652c27",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-16-siang-450040-be652c27"
+    },
+    {
+      "tanggal": "2026-11-16",
+      "slot": "sore",
+      "kategori": "Luar Angkasa",
+      "topik": "Bagaimana jika Bumi tanpa Bulan kehilangan kestabilan iklim?",
+      "judul": "Bagaimana jika Bumi tanpa Bulan kehilangan kestabilan iklim?",
+      "inti": "iklim tanpa bulan",
+      "youtube_id": "IuQlkEul1OI",
+      "status": "terunggah",
+      "run_id": "903667-c2bddd07",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-16-sore-903667-c2bddd07"
     }
   ],
   "rencana": {
@@ -1596,15 +1608,5 @@
     "2026-11-16-siang": "Bagaimana jika Gravitasi planet pengembara mencuri Bulan kita?",
     "2026-11-16-sore": "Bagaimana jika Bumi tanpa Bulan kehilangan kestabilan iklim?"
   },
-  "seri": {
-    "nama": "Invasi Planet Pengembara",
-    "kategori": "Luar Angkasa",
-    "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Planet pengembara melintasi dekat Bumi?",
-      "Bagaimana jika Gravitasi planet pengembara mencuri Bulan kita?",
-      "Bagaimana jika Bumi tanpa Bulan kehilangan kestabilan iklim?"
-    ]
-  }
+  "seri": {}
 }
