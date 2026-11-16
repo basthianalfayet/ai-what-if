@@ -1523,6 +1523,18 @@
       "status": "terunggah",
       "run_id": "903667-c2bddd07",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-16-sore-903667-c2bddd07"
+    },
+    {
+      "tanggal": "2026-11-16",
+      "slot": "larut",
+      "kategori": "Fisika",
+      "topik": "Kecepatan cahaya menjadi setengahnya",
+      "judul": "Bagaimana jika Kecepatan cahaya menjadi setengah?",
+      "inti": "cahaya setengah",
+      "youtube_id": "0RRM7saDbDg",
+      "status": "terunggah",
+      "run_id": "296060-90972d44",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-16-larut-296060-90972d44"
     }
   ],
   "rencana": {
@@ -1606,7 +1618,18 @@
     "2026-11-15-pagi": "Bagaimana jika Seluruh pembuluh darah manusia berubah menjadi transparan?",
     "2026-11-15-larut": "Bagaimana jika Jantung manusia berdetak dua kali lebih cepat selamanya?",
     "2026-11-16-siang": "Bagaimana jika Gravitasi planet pengembara mencuri Bulan kita?",
-    "2026-11-16-sore": "Bagaimana jika Bumi tanpa Bulan kehilangan kestabilan iklim?"
+    "2026-11-16-sore": "Bagaimana jika Bumi tanpa Bulan kehilangan kestabilan iklim?",
+    "2026-11-17-pagi": "Bagaimana jika Gravitasi menjadi dua kali lebih kuat?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Aturan yang berubah",
+    "kategori": "Fisika",
+    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Kecepatan cahaya menjadi setengah?",
+      "Bagaimana jika Gravitasi menjadi dua kali lebih kuat?",
+      "Bagaimana jika Gesekan tiba-tiba menghilang?"
+    ]
+  }
 }
