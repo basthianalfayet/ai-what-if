@@ -1487,6 +1487,18 @@
       "status": "terunggah",
       "run_id": "959380-8ed3796f",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-15-larut-959380-8ed3796f"
+    },
+    {
+      "tanggal": "2026-11-16",
+      "slot": "pagi",
+      "kategori": "Luar Angkasa",
+      "topik": "Dampak lintasan planet pengembara di dekat orbit Bumi",
+      "judul": "Bagaimana jika Planet pengembara melintasi dekat Bumi?",
+      "inti": "planet pengembara melintas",
+      "youtube_id": "boB7f7NCJ20",
+      "status": "terunggah",
+      "run_id": "827641-4a7b093c",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-16-pagi-827641-4a7b093c"
     }
   ],
   "rencana": {
@@ -1568,7 +1580,18 @@
     "2026-11-14-pagi": "Bagaimana jika Bumi berhenti berputar lima detik?",
     "2026-11-14-siang": "Bagaimana jika Laut di Bumi mengering?",
     "2026-11-15-pagi": "Bagaimana jika Seluruh pembuluh darah manusia berubah menjadi transparan?",
-    "2026-11-15-larut": "Bagaimana jika Jantung manusia berdetak dua kali lebih cepat selamanya?"
+    "2026-11-15-larut": "Bagaimana jika Jantung manusia berdetak dua kali lebih cepat selamanya?",
+    "2026-11-16-siang": "Bagaimana jika Gravitasi planet pengembara mencuri Bulan kita?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Invasi Planet Pengembara",
+    "kategori": "Luar Angkasa",
+    "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Planet pengembara melintasi dekat Bumi?",
+      "Bagaimana jika Gravitasi planet pengembara mencuri Bulan kita?",
+      "Bagaimana jika Bumi tanpa Bulan kehilangan kestabilan iklim?"
+    ]
+  }
 }
