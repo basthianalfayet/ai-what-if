@@ -1547,6 +1547,18 @@
       "status": "terunggah",
       "run_id": "056165-7b20e577",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-17-pagi-056165-7b20e577"
+    },
+    {
+      "tanggal": "2026-11-17",
+      "slot": "siang",
+      "kategori": "Fisika",
+      "topik": "Bagaimana jika Gesekan tiba-tiba menghilang?",
+      "judul": "Bagaimana jika Gesekan tiba-tiba menghilang?",
+      "inti": "gesekan mendadak hilang",
+      "youtube_id": "_wq5_IaeU2c",
+      "status": "terunggah",
+      "run_id": "015477-ae2b2af0",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-17-siang-015477-ae2b2af0"
     }
   ],
   "rencana": {
@@ -1634,15 +1646,5 @@
     "2026-11-17-pagi": "Bagaimana jika Gravitasi menjadi dua kali lebih kuat?",
     "2026-11-17-siang": "Bagaimana jika Gesekan tiba-tiba menghilang?"
   },
-  "seri": {
-    "nama": "Aturan yang berubah",
-    "kategori": "Fisika",
-    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Kecepatan cahaya menjadi setengah?",
-      "Bagaimana jika Gravitasi menjadi dua kali lebih kuat?",
-      "Bagaimana jika Gesekan tiba-tiba menghilang?"
-    ]
-  }
+  "seri": {}
 }
