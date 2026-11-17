@@ -1583,6 +1583,18 @@
       "status": "terunggah",
       "run_id": "094951-c215d9d9",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-17-malam-094951-c215d9d9"
+    },
+    {
+      "tanggal": "2026-11-17",
+      "slot": "larut",
+      "kategori": "Hewan",
+      "topik": "Bagaimana jika Seluruh lautan di bumi berubah menjadi padang pasir kering dalam semalam?",
+      "judul": "Bagaimana jika Seluruh lautan di bumi berubah menjadi padang pasir kering dalam semalam?",
+      "inti": "lautan padang pasir kering",
+      "youtube_id": "_o6qOVs3cXc",
+      "status": "terunggah",
+      "run_id": "437642-f6f55b20",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-17-larut-437642-f6f55b20"
     }
   ],
   "rencana": {
@@ -1672,15 +1684,5 @@
     "2026-11-17-malam": "Bagaimana jika Seluruh tumbuhan di bumi mendadak berhenti memproduksi oksigen selama satu?",
     "2026-11-17-larut": "Bagaimana jika Seluruh lautan di bumi berubah menjadi padang pasir kering dalam semalam?"
   },
-  "seri": {
-    "nama": "Dunia Hewan Raksasa",
-    "kategori": "Hewan",
-    "cakupan": "serangga, laut, rantai makanan, dan perilaku hewan",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh semut di bumi mendadak memiliki ukuran sebesar kucing rumah?",
-      "Bagaimana jika Seluruh tumbuhan di bumi mendadak berhenti memproduksi oksigen selama satu?",
-      "Bagaimana jika Seluruh lautan di bumi berubah menjadi padang pasir kering dalam semalam?"
-    ]
-  }
+  "seri": {}
 }
