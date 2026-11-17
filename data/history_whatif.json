@@ -1571,6 +1571,18 @@
       "status": "terunggah",
       "run_id": "589703-bc1e6a33",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-17-sore-589703-bc1e6a33"
+    },
+    {
+      "tanggal": "2026-11-17",
+      "slot": "malam",
+      "kategori": "Hewan",
+      "topik": "Bagaimana jika Seluruh tumbuhan di bumi mendadak berhenti memproduksi oksigen selama satu?",
+      "judul": "Bagaimana jika Seluruh tumbuhan di bumi mendadak berhenti memproduksi oksigen selama satu?",
+      "inti": "tumbuhan berhenti oksigen",
+      "youtube_id": "Rg_wUiAza8E",
+      "status": "terunggah",
+      "run_id": "094951-c215d9d9",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-17-malam-094951-c215d9d9"
     }
   ],
   "rencana": {
@@ -1657,13 +1669,14 @@
     "2026-11-16-sore": "Bagaimana jika Bumi tanpa Bulan kehilangan kestabilan iklim?",
     "2026-11-17-pagi": "Bagaimana jika Gravitasi menjadi dua kali lebih kuat?",
     "2026-11-17-siang": "Bagaimana jika Gesekan tiba-tiba menghilang?",
-    "2026-11-17-malam": "Bagaimana jika Seluruh tumbuhan di bumi mendadak berhenti memproduksi oksigen selama satu?"
+    "2026-11-17-malam": "Bagaimana jika Seluruh tumbuhan di bumi mendadak berhenti memproduksi oksigen selama satu?",
+    "2026-11-17-larut": "Bagaimana jika Seluruh lautan di bumi berubah menjadi padang pasir kering dalam semalam?"
   },
   "seri": {
     "nama": "Dunia Hewan Raksasa",
     "kategori": "Hewan",
     "cakupan": "serangga, laut, rantai makanan, dan perilaku hewan",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Seluruh semut di bumi mendadak memiliki ukuran sebesar kucing rumah?",
       "Bagaimana jika Seluruh tumbuhan di bumi mendadak berhenti memproduksi oksigen selama satu?",
