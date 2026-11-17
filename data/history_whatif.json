@@ -1535,6 +1535,18 @@
       "status": "terunggah",
       "run_id": "296060-90972d44",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-16-larut-296060-90972d44"
+    },
+    {
+      "tanggal": "2026-11-17",
+      "slot": "pagi",
+      "kategori": "Fisika",
+      "topik": "Bagaimana jika Gravitasi menjadi dua kali lebih kuat?",
+      "judul": "Bagaimana jika Gravitasi menjadi dua kali lebih kuat?",
+      "inti": "gravitasi berlipat ganda",
+      "youtube_id": "w_bcaHGkb4s",
+      "status": "terunggah",
+      "run_id": "056165-7b20e577",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-17-pagi-056165-7b20e577"
     }
   ],
   "rencana": {
@@ -1619,13 +1631,14 @@
     "2026-11-15-larut": "Bagaimana jika Jantung manusia berdetak dua kali lebih cepat selamanya?",
     "2026-11-16-siang": "Bagaimana jika Gravitasi planet pengembara mencuri Bulan kita?",
     "2026-11-16-sore": "Bagaimana jika Bumi tanpa Bulan kehilangan kestabilan iklim?",
-    "2026-11-17-pagi": "Bagaimana jika Gravitasi menjadi dua kali lebih kuat?"
+    "2026-11-17-pagi": "Bagaimana jika Gravitasi menjadi dua kali lebih kuat?",
+    "2026-11-17-siang": "Bagaimana jika Gesekan tiba-tiba menghilang?"
   },
   "seri": {
     "nama": "Aturan yang berubah",
     "kategori": "Fisika",
     "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Kecepatan cahaya menjadi setengah?",
       "Bagaimana jika Gravitasi menjadi dua kali lebih kuat?",
