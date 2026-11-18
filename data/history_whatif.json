@@ -1619,6 +1619,18 @@
       "status": "terunggah",
       "run_id": "176449-f6c2f739",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-18-siang-176449-f6c2f739"
+    },
+    {
+      "tanggal": "2026-11-18",
+      "slot": "sore",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika Darah berhenti mengalir semenit?",
+      "judul": "Bagaimana jika Darah berhenti mengalir semenit?",
+      "inti": "darah berhenti mengalir",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "874744-d00fc611",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-18-sore-874744-d00fc611"
     }
   ],
   "rencana": {
@@ -1710,15 +1722,5 @@
     "2026-11-18-siang": "Bagaimana jika Manusia tidak perlu tidur?",
     "2026-11-18-sore": "Bagaimana jika Darah berhenti mengalir semenit?"
   },
-  "seri": {
-    "nama": "Batas tubuh manusia",
-    "kategori": "Tubuh Manusia",
-    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Manusia bisa bernapas di dalam air?",
-      "Bagaimana jika Manusia tidak perlu tidur?",
-      "Bagaimana jika Darah berhenti mengalir semenit?"
-    ]
-  }
+  "seri": {}
 }
