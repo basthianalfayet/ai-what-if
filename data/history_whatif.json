@@ -1631,6 +1631,18 @@
       "status": "review",
       "run_id": "874744-d00fc611",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-18-sore-874744-d00fc611"
+    },
+    {
+      "tanggal": "2026-11-18",
+      "slot": "malam",
+      "kategori": "Teknologi dan AI",
+      "topik": "Bagaimana jika seluruh kata sandi internet di dunia mendadak lenyap?",
+      "judul": "Bagaimana jika Seluruh kata sandi internet di dunia mendadak lenyap?",
+      "inti": "kata sandi lenyap",
+      "youtube_id": "G23MXqac7lA",
+      "status": "terunggah",
+      "run_id": "806861-eb1c1a31",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-18-malam-806861-eb1c1a31"
     }
   ],
   "rencana": {
@@ -1720,7 +1732,18 @@
     "2026-11-17-malam": "Bagaimana jika Seluruh tumbuhan di bumi mendadak berhenti memproduksi oksigen selama satu?",
     "2026-11-17-larut": "Bagaimana jika Seluruh lautan di bumi berubah menjadi padang pasir kering dalam semalam?",
     "2026-11-18-siang": "Bagaimana jika Manusia tidak perlu tidur?",
-    "2026-11-18-sore": "Bagaimana jika Darah berhenti mengalir semenit?"
+    "2026-11-18-sore": "Bagaimana jika Darah berhenti mengalir semenit?",
+    "2026-11-18-larut": "Bagaimana jika Kecerdasan buatan menolak memproses semua perintah manusia?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Kiamat Teknologi Digital",
+    "kategori": "Teknologi dan AI",
+    "cakupan": "sistem otomatis, internet, dan kecerdasan buatan dalam kehidupan sehari-hari",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Seluruh kata sandi internet di dunia mendadak lenyap?",
+      "Bagaimana jika Kecerdasan buatan menolak memproses semua perintah manusia?",
+      "Bagaimana jika Seluruh satelit komunikasi jatuh dalam waktu bersamaan?"
+    ]
+  }
 }
