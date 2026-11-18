@@ -1595,6 +1595,18 @@
       "status": "terunggah",
       "run_id": "437642-f6f55b20",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-17-larut-437642-f6f55b20"
+    },
+    {
+      "tanggal": "2026-11-18",
+      "slot": "pagi",
+      "kategori": "Tubuh Manusia",
+      "topik": "Manusia bisa bernapas di dalam air",
+      "judul": "Bagaimana jika Manusia bisa bernapas di dalam air?",
+      "inti": "napas dalam air",
+      "youtube_id": "Bx-ZiINTPq0",
+      "status": "terunggah",
+      "run_id": "195087-e0909608",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-18-pagi-195087-e0909608"
     }
   ],
   "rencana": {
@@ -1682,7 +1694,18 @@
     "2026-11-17-pagi": "Bagaimana jika Gravitasi menjadi dua kali lebih kuat?",
     "2026-11-17-siang": "Bagaimana jika Gesekan tiba-tiba menghilang?",
     "2026-11-17-malam": "Bagaimana jika Seluruh tumbuhan di bumi mendadak berhenti memproduksi oksigen selama satu?",
-    "2026-11-17-larut": "Bagaimana jika Seluruh lautan di bumi berubah menjadi padang pasir kering dalam semalam?"
+    "2026-11-17-larut": "Bagaimana jika Seluruh lautan di bumi berubah menjadi padang pasir kering dalam semalam?",
+    "2026-11-18-siang": "Bagaimana jika Manusia tidak perlu tidur?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Batas tubuh manusia",
+    "kategori": "Tubuh Manusia",
+    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Manusia bisa bernapas di dalam air?",
+      "Bagaimana jika Manusia tidak perlu tidur?",
+      "Bagaimana jika Darah berhenti mengalir semenit?"
+    ]
+  }
 }
