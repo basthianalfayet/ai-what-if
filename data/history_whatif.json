@@ -1691,6 +1691,18 @@
       "status": "terunggah",
       "run_id": "453918-d676c3af",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-19-sore-453918-d676c3af"
+    },
+    {
+      "tanggal": "2026-11-19",
+      "slot": "larut",
+      "kategori": "Fisika",
+      "topik": "Bagaimana jika Manusia mengungsi ke bawah tanah setelah Matahari padam?",
+      "judul": "Bagaimana jika Manusia mengungsi ke bawah tanah setelah Matahari padam?",
+      "inti": "bawah tanah, matahari padam, evakuasi manusia",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "111490-6a46b5d0",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-19-larut-111490-6a46b5d0"
     }
   ],
   "rencana": {
@@ -1786,15 +1798,5 @@
     "2026-11-19-sore": "Bagaimana jika Seluruh lautan membeku setelah Matahari padam?",
     "2026-11-19-malam": "Bagaimana jika Manusia mengungsi ke bawah tanah setelah Matahari padam?"
   },
-  "seri": {
-    "nama": "Ketika Matahari Padam Total",
-    "kategori": "Fisika",
-    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Cahaya Matahari mendadak padam seketika?",
-      "Bagaimana jika Seluruh lautan membeku setelah Matahari padam?",
-      "Bagaimana jika Manusia mengungsi ke bawah tanah setelah Matahari padam?"
-    ]
-  }
+  "seri": {}
 }
