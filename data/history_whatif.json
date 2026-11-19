@@ -1667,6 +1667,18 @@
       "status": "terunggah",
       "run_id": "452415-308c3d58",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-19-pagi-452415-308c3d58"
+    },
+    {
+      "tanggal": "2026-11-19",
+      "slot": "siang",
+      "kategori": "Fisika",
+      "topik": "Bagaimana jika cahaya Matahari mendadak padam seketika?",
+      "judul": "Bagaimana jika Cahaya Matahari mendadak padam seketika?",
+      "inti": "matahari padam seketika",
+      "youtube_id": "JJ4RKgR6w_Y",
+      "status": "terunggah",
+      "run_id": "134738-3dfcf244",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-19-siang-134738-3dfcf244"
     }
   ],
   "rencana": {
@@ -1758,7 +1770,18 @@
     "2026-11-18-siang": "Bagaimana jika Manusia tidak perlu tidur?",
     "2026-11-18-sore": "Bagaimana jika Darah berhenti mengalir semenit?",
     "2026-11-18-larut": "Bagaimana jika Kecerdasan buatan menolak memproses semua perintah manusia?",
-    "2026-11-19-pagi": "Bagaimana jika Seluruh satelit komunikasi jatuh dalam waktu bersamaan?"
+    "2026-11-19-pagi": "Bagaimana jika Seluruh satelit komunikasi jatuh dalam waktu bersamaan?",
+    "2026-11-19-sore": "Bagaimana jika Seluruh lautan membeku setelah Matahari padam?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Ketika Matahari Padam Total",
+    "kategori": "Fisika",
+    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Cahaya Matahari mendadak padam seketika?",
+      "Bagaimana jika Seluruh lautan membeku setelah Matahari padam?",
+      "Bagaimana jika Manusia mengungsi ke bawah tanah setelah Matahari padam?"
+    ]
+  }
 }
