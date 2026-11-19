@@ -1655,6 +1655,18 @@
       "status": "review",
       "run_id": "553520-924c7f75",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-18-larut-553520-924c7f75"
+    },
+    {
+      "tanggal": "2026-11-19",
+      "slot": "pagi",
+      "kategori": "Teknologi dan AI",
+      "topik": "Bagaimana jika Seluruh satelit komunikasi jatuh dalam waktu bersamaan?",
+      "judul": "Bagaimana jika Seluruh satelit komunikasi jatuh dalam waktu bersamaan?",
+      "inti": "satelit komunikasi jatuh",
+      "youtube_id": "oq-UaE7seMI",
+      "status": "terunggah",
+      "run_id": "452415-308c3d58",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-19-pagi-452415-308c3d58"
     }
   ],
   "rencana": {
@@ -1748,15 +1760,5 @@
     "2026-11-18-larut": "Bagaimana jika Kecerdasan buatan menolak memproses semua perintah manusia?",
     "2026-11-19-pagi": "Bagaimana jika Seluruh satelit komunikasi jatuh dalam waktu bersamaan?"
   },
-  "seri": {
-    "nama": "Kiamat Teknologi Digital",
-    "kategori": "Teknologi dan AI",
-    "cakupan": "sistem otomatis, internet, dan kecerdasan buatan dalam kehidupan sehari-hari",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh kata sandi internet di dunia mendadak lenyap?",
-      "Bagaimana jika Kecerdasan buatan menolak memproses semua perintah manusia?",
-      "Bagaimana jika Seluruh satelit komunikasi jatuh dalam waktu bersamaan?"
-    ]
-  }
+  "seri": {}
 }
