@@ -1751,6 +1751,18 @@
       "status": "terunggah",
       "run_id": "178807-8b0aedc8",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-20-malam-178807-8b0aedc8"
+    },
+    {
+      "tanggal": "2026-11-20",
+      "slot": "larut",
+      "kategori": "Luar Angkasa",
+      "topik": "Bagaimana jika Sabuk Asteroid hancur dan menyerang orbit planet dalam?",
+      "judul": "Bagaimana jika Sabuk Asteroid hancur dan menyerang orbit planet dalam?",
+      "inti": "sabuk asteroid hancur",
+      "youtube_id": "Jalrcpu_OSA",
+      "status": "terunggah",
+      "run_id": "339306-4e802a4a",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-20-larut-339306-4e802a4a"
     }
   ],
   "rencana": {
@@ -1847,13 +1859,14 @@
     "2026-11-19-malam": "Bagaimana jika Manusia mengungsi ke bawah tanah setelah Matahari padam?",
     "2026-11-20-siang": "Bagaimana jika Orang berlari memicu ledakan sonik mini akibat suara lambat?",
     "2026-11-20-sore": "Bagaimana jika Seluruh teknologi komunikasi akustik runtuh total?",
-    "2026-11-20-larut": "Bagaimana jika Sabuk Asteroid hancur dan menyerang orbit planet dalam?"
+    "2026-11-20-larut": "Bagaimana jika Sabuk Asteroid hancur dan menyerang orbit planet dalam?",
+    "2026-11-21-pagi": "Bagaimana jika Komet raksasa mengarah langsung ke atmosfer Bumi?"
   },
   "seri": {
     "nama": "Hilangnya Raksasa Pelindung Tata Surya",
     "kategori": "Luar Angkasa",
     "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Jupiter mendadak terlempar keluar dari tata surya?",
       "Bagaimana jika Sabuk Asteroid hancur dan menyerang orbit planet dalam?",
