@@ -1703,6 +1703,18 @@
       "status": "review",
       "run_id": "111490-6a46b5d0",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-19-larut-111490-6a46b5d0"
+    },
+    {
+      "tanggal": "2026-11-20",
+      "slot": "pagi",
+      "kategori": "Fisika",
+      "topik": "Kecepatan suara melambat drastis hingga secepat manusia berjalan kaki",
+      "judul": "Bagaimana jika Kecepatan suara melambat selambat jalan kaki?",
+      "inti": "kecepatan suara melambat",
+      "youtube_id": "fApgfq8k76g",
+      "status": "terunggah",
+      "run_id": "282411-0f59be1f",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-20-pagi-282411-0f59be1f"
     }
   ],
   "rencana": {
@@ -1796,7 +1808,18 @@
     "2026-11-18-larut": "Bagaimana jika Kecerdasan buatan menolak memproses semua perintah manusia?",
     "2026-11-19-pagi": "Bagaimana jika Seluruh satelit komunikasi jatuh dalam waktu bersamaan?",
     "2026-11-19-sore": "Bagaimana jika Seluruh lautan membeku setelah Matahari padam?",
-    "2026-11-19-malam": "Bagaimana jika Manusia mengungsi ke bawah tanah setelah Matahari padam?"
+    "2026-11-19-malam": "Bagaimana jika Manusia mengungsi ke bawah tanah setelah Matahari padam?",
+    "2026-11-20-siang": "Bagaimana jika Orang berlari memicu ledakan sonik mini akibat suara lambat?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Ketika Kecepatan Suara Melambat Drastis",
+    "kategori": "Fisika",
+    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Kecepatan suara melambat selambat jalan kaki?",
+      "Bagaimana jika Orang berlari memicu ledakan sonik mini akibat suara lambat?",
+      "Bagaimana jika Seluruh teknologi komunikasi akustik runtuh total?"
+    ]
+  }
 }
