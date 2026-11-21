@@ -1811,6 +1811,18 @@
       "status": "terunggah",
       "run_id": "748590-8b1d389c",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-21-malam-748590-8b1d389c"
+    },
+    {
+      "tanggal": "2026-11-21",
+      "slot": "larut",
+      "kategori": "Tubuh Manusia",
+      "topik": "Pupil mata manusia melebar maksimal secara permanen",
+      "judul": "Bagaimana jika Pupil mata manusia melebar maksimal selamanya?",
+      "inti": "pupil melebar permanen",
+      "youtube_id": "xKcS2RzZH3w",
+      "status": "terunggah",
+      "run_id": "665025-ab3c3029",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-21-larut-665025-ab3c3029"
     }
   ],
   "rencana": {
@@ -1910,7 +1922,18 @@
     "2026-11-20-larut": "Bagaimana jika Sabuk Asteroid hancur dan menyerang orbit planet dalam?",
     "2026-11-21-pagi": "Bagaimana jika Komet raksasa mengarah langsung ke atmosfer Bumi?",
     "2026-11-21-sore": "Bagaimana jika Lahan pertanian kosong diambil alih hutan liar?",
-    "2026-11-21-malam": "Bagaimana jika Patogen misterius meracuni reaktor alga global?"
+    "2026-11-21-malam": "Bagaimana jika Patogen misterius meracuni reaktor alga global?",
+    "2026-11-22-pagi": "Bagaimana jika Manusia hanya bisa beraktivitas pada malam hari?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Ketika Pupil Mata Terbuka Maksimal",
+    "kategori": "Tubuh Manusia",
+    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Pupil mata manusia melebar maksimal selamanya?",
+      "Bagaimana jika Manusia hanya bisa beraktivitas pada malam hari?",
+      "Bagaimana jika Seluruh peradaban manusia mengikis penggunaan cahaya buatan?"
+    ]
+  }
 }
