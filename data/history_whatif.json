@@ -1763,6 +1763,18 @@
       "status": "terunggah",
       "run_id": "339306-4e802a4a",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-20-larut-339306-4e802a4a"
+    },
+    {
+      "tanggal": "2026-11-21",
+      "slot": "pagi",
+      "kategori": "Luar Angkasa",
+      "topik": "Bagaimana jika Komet raksasa mengarah langsung ke atmosfer Bumi?",
+      "judul": "Bagaimana jika Komet raksasa mengarah langsung ke atmosfer Bumi?",
+      "inti": "tabrakan komet raksasa",
+      "youtube_id": "xQjOoXGA1_Q",
+      "status": "terunggah",
+      "run_id": "840226-512b0bd8",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-21-pagi-840226-512b0bd8"
     }
   ],
   "rencana": {
@@ -1862,15 +1874,5 @@
     "2026-11-20-larut": "Bagaimana jika Sabuk Asteroid hancur dan menyerang orbit planet dalam?",
     "2026-11-21-pagi": "Bagaimana jika Komet raksasa mengarah langsung ke atmosfer Bumi?"
   },
-  "seri": {
-    "nama": "Hilangnya Raksasa Pelindung Tata Surya",
-    "kategori": "Luar Angkasa",
-    "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Jupiter mendadak terlempar keluar dari tata surya?",
-      "Bagaimana jika Sabuk Asteroid hancur dan menyerang orbit planet dalam?",
-      "Bagaimana jika Komet raksasa mengarah langsung ke atmosfer Bumi?"
-    ]
-  }
+  "seri": {}
 }
