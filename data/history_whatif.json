@@ -1775,6 +1775,18 @@
       "status": "terunggah",
       "run_id": "840226-512b0bd8",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-21-pagi-840226-512b0bd8"
+    },
+    {
+      "tanggal": "2026-11-21",
+      "slot": "siang",
+      "kategori": "Masa Depan Peradaban",
+      "topik": "Pertanian darat digantikan reaktor mikroalga",
+      "judul": "Bagaimana jika Seluruh pertanian darat digantikan reaktor mikroalga?",
+      "inti": "reaktor mikroalga pangan",
+      "youtube_id": "pnSIChua9_I",
+      "status": "terunggah",
+      "run_id": "785013-2de56c26",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-21-siang-785013-2de56c26"
     }
   ],
   "rencana": {
@@ -1872,7 +1884,18 @@
     "2026-11-20-siang": "Bagaimana jika Orang berlari memicu ledakan sonik mini akibat suara lambat?",
     "2026-11-20-sore": "Bagaimana jika Seluruh teknologi komunikasi akustik runtuh total?",
     "2026-11-20-larut": "Bagaimana jika Sabuk Asteroid hancur dan menyerang orbit planet dalam?",
-    "2026-11-21-pagi": "Bagaimana jika Komet raksasa mengarah langsung ke atmosfer Bumi?"
+    "2026-11-21-pagi": "Bagaimana jika Komet raksasa mengarah langsung ke atmosfer Bumi?",
+    "2026-11-21-sore": "Bagaimana jika Lahan pertanian kosong diambil alih hutan liar?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Revolusi Pangan Reaktor Hijau",
+    "kategori": "Masa Depan Peradaban",
+    "cakupan": "kota, energi, pangan, dan cara manusia hidup bersama",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Seluruh pertanian darat digantikan reaktor mikroalga?",
+      "Bagaimana jika Lahan pertanian kosong diambil alih hutan liar?",
+      "Bagaimana jika Patogen misterius meracuni reaktor alga global?"
+    ]
+  }
 }
