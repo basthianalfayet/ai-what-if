@@ -1835,6 +1835,18 @@
       "status": "selesai",
       "run_id": "493974-4883c12f",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-22-pagi-493974-4883c12f"
+    },
+    {
+      "tanggal": "2026-11-22",
+      "slot": "siang",
+      "kategori": "Tubuh Manusia",
+      "topik": "Bagaimana jika Seluruh peradaban manusia mengikis penggunaan cahaya buatan?",
+      "judul": "Bagaimana jika Seluruh peradaban manusia mengikis penggunaan cahaya buatan?",
+      "inti": "cahaya buatan dikikis",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "481495-d06be7aa",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-22-siang-481495-d06be7aa"
     }
   ],
   "rencana": {
@@ -1938,15 +1950,5 @@
     "2026-11-22-pagi": "Bagaimana jika Manusia hanya bisa beraktivitas pada malam hari?",
     "2026-11-22-siang": "Bagaimana jika Seluruh peradaban manusia mengikis penggunaan cahaya buatan?"
   },
-  "seri": {
-    "nama": "Ketika Pupil Mata Terbuka Maksimal",
-    "kategori": "Tubuh Manusia",
-    "cakupan": "napas, tidur, darah, indera, dan batas tubuh manusia",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Pupil mata manusia melebar maksimal selamanya?",
-      "Bagaimana jika Manusia hanya bisa beraktivitas pada malam hari?",
-      "Bagaimana jika Seluruh peradaban manusia mengikis penggunaan cahaya buatan?"
-    ]
-  }
+  "seri": {}
 }
