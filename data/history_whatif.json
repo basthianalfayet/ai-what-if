@@ -1859,6 +1859,18 @@
       "status": "selesai",
       "run_id": "418282-b57b2d68",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-22-sore-418282-b57b2d68"
+    },
+    {
+      "tanggal": "2026-11-22",
+      "slot": "malam",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Permukaan laut mendidih akibat penurunan tekanan atmosfer?",
+      "judul": "Bagaimana jika Permukaan laut mendidih akibat penurunan tekanan atmosfer?",
+      "inti": "permukaan laut mendidih",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "055025-80b26a36",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-22-malam-055025-80b26a36"
     }
   ],
   "rencana": {
