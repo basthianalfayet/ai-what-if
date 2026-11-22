@@ -1847,6 +1847,18 @@
       "status": "review",
       "run_id": "481495-d06be7aa",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-22-siang-481495-d06be7aa"
+    },
+    {
+      "tanggal": "2026-11-22",
+      "slot": "sore",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika tekanan atmosfer bumi mendadak turun separuh?",
+      "judul": "Bagaimana jika Tekanan atmosfer bumi mendadak turun separuh?",
+      "inti": "tekanan atmosfer turun",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "418282-b57b2d68",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-22-sore-418282-b57b2d68"
     }
   ],
   "rencana": {
@@ -1948,7 +1960,18 @@
     "2026-11-21-sore": "Bagaimana jika Lahan pertanian kosong diambil alih hutan liar?",
     "2026-11-21-malam": "Bagaimana jika Patogen misterius meracuni reaktor alga global?",
     "2026-11-22-pagi": "Bagaimana jika Manusia hanya bisa beraktivitas pada malam hari?",
-    "2026-11-22-siang": "Bagaimana jika Seluruh peradaban manusia mengikis penggunaan cahaya buatan?"
+    "2026-11-22-siang": "Bagaimana jika Seluruh peradaban manusia mengikis penggunaan cahaya buatan?",
+    "2026-11-22-malam": "Bagaimana jika Permukaan laut mendidih akibat penurunan tekanan atmosfer?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Dinamika Atmosfer Bumi",
+    "kategori": "Bumi dan Alam",
+    "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Tekanan atmosfer bumi mendadak turun separuh?",
+      "Bagaimana jika Permukaan laut mendidih akibat penurunan tekanan atmosfer?",
+      "Bagaimana jika Tumbuhan berhenti memproduksi oksigen setelah perubahan tekanan?"
+    ]
+  }
 }
