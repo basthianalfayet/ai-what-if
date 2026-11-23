@@ -1919,6 +1919,18 @@
       "status": "selesai",
       "run_id": "208902-aa8e954c",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-23-sore-208902-aa8e954c"
+    },
+    {
+      "tanggal": "2026-11-23",
+      "slot": "malam",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Ketiadaan hujan mengeringkan seluruh sungai di dunia?",
+      "judul": "Bagaimana jika Ketiadaan hujan mengeringkan seluruh sungai di dunia?",
+      "inti": "ketiadaan hujan sungai kering",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "245306-ec66e699",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-23-malam-245306-ec66e699"
     }
   ],
   "rencana": {
@@ -2026,15 +2038,5 @@
     "2026-11-23-sore": "Bagaimana jika Hilangnya awan memicu gelombang panas ekstrem global?",
     "2026-11-23-malam": "Bagaimana jika Ketiadaan hujan mengeringkan seluruh sungai di dunia?"
   },
-  "seri": {
-    "nama": "Bumi Tanpa Awan",
-    "kategori": "Bumi dan Alam",
-    "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh awan di Bumi mendadak lenyap?",
-      "Bagaimana jika Hilangnya awan memicu gelombang panas ekstrem global?",
-      "Bagaimana jika Ketiadaan hujan mengeringkan seluruh sungai di dunia?"
-    ]
-  }
+  "seri": {}
 }
