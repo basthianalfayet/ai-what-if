@@ -1907,6 +1907,18 @@
       "status": "selesai",
       "run_id": "110923-6285e2bd",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-23-siang-110923-6285e2bd"
+    },
+    {
+      "tanggal": "2026-11-23",
+      "slot": "sore",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Hilangnya awan memicu gelombang panas ekstrem global?",
+      "judul": "Bagaimana jika Hilangnya awan memicu gelombang panas ekstrem global?",
+      "inti": "awan hilang panas ekstrem",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "208902-aa8e954c",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-23-sore-208902-aa8e954c"
     }
   ],
   "rencana": {
@@ -2011,13 +2023,14 @@
     "2026-11-22-siang": "Bagaimana jika Seluruh peradaban manusia mengikis penggunaan cahaya buatan?",
     "2026-11-22-malam": "Bagaimana jika Permukaan laut mendidih akibat penurunan tekanan atmosfer?",
     "2026-11-23-pagi": "Bagaimana jika Tumbuhan berhenti memproduksi oksigen setelah perubahan tekanan?",
-    "2026-11-23-sore": "Bagaimana jika Hilangnya awan memicu gelombang panas ekstrem global?"
+    "2026-11-23-sore": "Bagaimana jika Hilangnya awan memicu gelombang panas ekstrem global?",
+    "2026-11-23-malam": "Bagaimana jika Ketiadaan hujan mengeringkan seluruh sungai di dunia?"
   },
   "seri": {
     "nama": "Bumi Tanpa Awan",
     "kategori": "Bumi dan Alam",
     "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Seluruh awan di Bumi mendadak lenyap?",
       "Bagaimana jika Hilangnya awan memicu gelombang panas ekstrem global?",
