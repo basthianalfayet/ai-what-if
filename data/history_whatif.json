@@ -1931,6 +1931,18 @@
       "status": "selesai",
       "run_id": "245306-ec66e699",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-23-malam-245306-ec66e699"
+    },
+    {
+      "tanggal": "2026-11-23",
+      "slot": "larut",
+      "kategori": "Fisika",
+      "topik": "Gaya gesek permukaan Bumi mendadak berkurang 90 persen",
+      "judul": "Bagaimana jika Gaya gesek di Bumi mendadak berkurang 90 persen?",
+      "inti": "gaya gesek berkurang",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "581472-abe3327a",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-23-larut-581472-abe3327a"
     }
   ],
   "rencana": {
@@ -2036,7 +2048,18 @@
     "2026-11-22-malam": "Bagaimana jika Permukaan laut mendidih akibat penurunan tekanan atmosfer?",
     "2026-11-23-pagi": "Bagaimana jika Tumbuhan berhenti memproduksi oksigen setelah perubahan tekanan?",
     "2026-11-23-sore": "Bagaimana jika Hilangnya awan memicu gelombang panas ekstrem global?",
-    "2026-11-23-malam": "Bagaimana jika Ketiadaan hujan mengeringkan seluruh sungai di dunia?"
+    "2026-11-23-malam": "Bagaimana jika Ketiadaan hujan mengeringkan seluruh sungai di dunia?",
+    "2026-11-24-pagi": "Bagaimana jika Seluruh lereng gunung runtuh akibat ketiadaan gaya gesek?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Dunia Tanpa Gaya Gesek",
+    "kategori": "Fisika",
+    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Gaya gesek di Bumi mendadak berkurang 90 persen?",
+      "Bagaimana jika Seluruh lereng gunung runtuh akibat ketiadaan gaya gesek?",
+      "Bagaimana jika Peradaban manusia beralih ke kota berbasis bantalan magnet?"
+    ]
+  }
 }
