@@ -1883,6 +1883,18 @@
       "status": "selesai",
       "run_id": "437685-14da77d7",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-22-larut-437685-14da77d7"
+    },
+    {
+      "tanggal": "2026-11-23",
+      "slot": "pagi",
+      "kategori": "Bumi dan Alam",
+      "topik": "Bagaimana jika Tumbuhan berhenti memproduksi oksigen setelah perubahan tekanan?",
+      "judul": "Bagaimana jika Tumbuhan berhenti memproduksi oksigen setelah perubahan tekanan?",
+      "inti": "tumbuhan stop oksigen tekanan",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "248124-dfacdfb9",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-23-pagi-248124-dfacdfb9"
     }
   ],
   "rencana": {
@@ -1988,15 +2000,5 @@
     "2026-11-22-malam": "Bagaimana jika Permukaan laut mendidih akibat penurunan tekanan atmosfer?",
     "2026-11-23-pagi": "Bagaimana jika Tumbuhan berhenti memproduksi oksigen setelah perubahan tekanan?"
   },
-  "seri": {
-    "nama": "Dinamika Atmosfer Bumi",
-    "kategori": "Bumi dan Alam",
-    "cakupan": "rotasi bumi, laut, atmosfer, gunung, dan cuaca sebagai skenario fiksi",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Tekanan atmosfer bumi mendadak turun separuh?",
-      "Bagaimana jika Permukaan laut mendidih akibat penurunan tekanan atmosfer?",
-      "Bagaimana jika Tumbuhan berhenti memproduksi oksigen setelah perubahan tekanan?"
-    ]
-  }
+  "seri": {}
 }
