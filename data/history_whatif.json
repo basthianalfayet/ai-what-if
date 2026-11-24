@@ -1967,6 +1967,18 @@
       "status": "review",
       "run_id": "088284-60eda329",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-24-sore-088284-60eda329"
+    },
+    {
+      "tanggal": "2026-11-24",
+      "slot": "malam",
+      "kategori": "Fisika",
+      "topik": "Gravitasi menjadi dua kali lebih kuat",
+      "judul": "Bagaimana jika Gravitasi menjadi dua kali lebih kuat?",
+      "inti": "gravitasi dua kali",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "372996-f6cc2d25",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-24-malam-372996-f6cc2d25"
     }
   ],
   "rencana": {
