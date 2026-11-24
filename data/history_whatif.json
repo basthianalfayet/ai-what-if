@@ -1955,6 +1955,18 @@
       "status": "review",
       "run_id": "247354-08f09854",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-24-siang-247354-08f09854"
+    },
+    {
+      "tanggal": "2026-11-24",
+      "slot": "sore",
+      "kategori": "Fisika",
+      "topik": "Bagaimana jika Peradaban manusia beralih ke kota berbasis bantalan magnet?",
+      "judul": "Bagaimana jika Peradaban manusia beralih ke kota berbasis bantalan magnet?",
+      "inti": "gravitasi dua kali",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "088284-60eda329",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-24-sore-088284-60eda329"
     }
   ],
   "rencana": {
@@ -2064,15 +2076,5 @@
     "2026-11-24-pagi": "Bagaimana jika Seluruh lereng gunung runtuh akibat ketiadaan gaya gesek?",
     "2026-11-24-sore": "Bagaimana jika Peradaban manusia beralih ke kota berbasis bantalan magnet?"
   },
-  "seri": {
-    "nama": "Dunia Tanpa Gaya Gesek",
-    "kategori": "Fisika",
-    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Gaya gesek di Bumi mendadak berkurang 90 persen?",
-      "Bagaimana jika Seluruh lereng gunung runtuh akibat ketiadaan gaya gesek?",
-      "Bagaimana jika Peradaban manusia beralih ke kota berbasis bantalan magnet?"
-    ]
-  }
+  "seri": {}
 }
