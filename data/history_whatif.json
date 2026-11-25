@@ -1991,6 +1991,18 @@
       "status": "selesai",
       "run_id": "321936-ece6919d",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-24-larut-321936-ece6919d"
+    },
+    {
+      "tanggal": "2026-11-25",
+      "slot": "pagi",
+      "kategori": "Teknologi dan AI",
+      "topik": "Bagaimana jika AI mengatur semua lampu lalu lintas?",
+      "judul": "Bagaimana jika AI mengatur semua lampu lalu lintas?",
+      "inti": "ai lampu lalu lintas",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "609170-68adc85f",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-25-pagi-609170-68adc85f"
     }
   ],
   "rencana": {
@@ -2099,13 +2111,14 @@
     "2026-11-23-malam": "Bagaimana jika Ketiadaan hujan mengeringkan seluruh sungai di dunia?",
     "2026-11-24-pagi": "Bagaimana jika Seluruh lereng gunung runtuh akibat ketiadaan gaya gesek?",
     "2026-11-24-sore": "Bagaimana jika Peradaban manusia beralih ke kota berbasis bantalan magnet?",
-    "2026-11-25-pagi": "Bagaimana jika AI mengatur semua lampu lalu lintas?"
+    "2026-11-25-pagi": "Bagaimana jika AI mengatur semua lampu lalu lintas?",
+    "2026-11-25-siang": "Bagaimana jika Semua baterai habis bersamaan?"
   },
   "seri": {
     "nama": "Sistem yang mati",
     "kategori": "Teknologi dan AI",
     "cakupan": "sistem otomatis, internet, dan kecerdasan buatan dalam kehidupan sehari-hari",
-    "selesai": 1,
+    "selesai": 2,
     "bagian": [
       "Bagaimana jika Internet mati sehari?",
       "Bagaimana jika AI mengatur semua lampu lalu lintas?",
