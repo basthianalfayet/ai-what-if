@@ -2039,6 +2039,18 @@
       "status": "review",
       "run_id": "644927-6b6efdd2",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-25-malam-644927-6b6efdd2"
+    },
+    {
+      "tanggal": "2026-11-25",
+      "slot": "larut",
+      "kategori": "Masa Depan Peradaban",
+      "topik": "Semua satelit mati bersamaan",
+      "judul": "Bagaimana jika Semua satelit mati bersamaan?",
+      "inti": "satelit mati",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "371731-651feabc",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-25-larut-371731-651feabc"
     }
   ],
   "rencana": {
@@ -2148,7 +2160,18 @@
     "2026-11-24-pagi": "Bagaimana jika Seluruh lereng gunung runtuh akibat ketiadaan gaya gesek?",
     "2026-11-24-sore": "Bagaimana jika Peradaban manusia beralih ke kota berbasis bantalan magnet?",
     "2026-11-25-pagi": "Bagaimana jika AI mengatur semua lampu lalu lintas?",
-    "2026-11-25-siang": "Bagaimana jika Semua baterai habis bersamaan?"
+    "2026-11-25-siang": "Bagaimana jika Semua baterai habis bersamaan?",
+    "2026-11-26-pagi": "Bagaimana jika Kota tanpa sampah sebulan?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Kota yang kehilangan",
+    "kategori": "Masa Depan Peradaban",
+    "cakupan": "kota, energi, pangan, dan cara manusia hidup bersama",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Semua satelit mati bersamaan?",
+      "Bagaimana jika Kota tanpa sampah sebulan?",
+      "Bagaimana jika Listrik kota mati seminggu?"
+    ]
+  }
 }
