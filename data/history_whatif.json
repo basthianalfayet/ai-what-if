@@ -2015,6 +2015,18 @@
       "status": "selesai",
       "run_id": "565930-1f31c175",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-25-siang-565930-1f31c175"
+    },
+    {
+      "tanggal": "2026-11-25",
+      "slot": "sore",
+      "kategori": "Fisika",
+      "topik": "Gravitasi menjadi dua kali lebih kuat",
+      "judul": "Bagaimana jika Gravitasi menjadi dua kali lebih kuat?",
+      "inti": "gravitasi dua kali",
+      "youtube_id": null,
+      "status": "review",
+      "run_id": "301998-f9155e80",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-25-sore-301998-f9155e80"
     }
   ],
   "rencana": {
