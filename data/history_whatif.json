@@ -2003,6 +2003,18 @@
       "status": "review",
       "run_id": "609170-68adc85f",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-25-pagi-609170-68adc85f"
+    },
+    {
+      "tanggal": "2026-11-25",
+      "slot": "siang",
+      "kategori": "Teknologi dan AI",
+      "topik": "Bagaimana jika Semua baterai habis bersamaan?",
+      "judul": "Bagaimana jika Semua baterai habis bersamaan?",
+      "inti": "baterai habis bersamaan",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "565930-1f31c175",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-25-siang-565930-1f31c175"
     }
   ],
   "rencana": {
@@ -2114,15 +2126,5 @@
     "2026-11-25-pagi": "Bagaimana jika AI mengatur semua lampu lalu lintas?",
     "2026-11-25-siang": "Bagaimana jika Semua baterai habis bersamaan?"
   },
-  "seri": {
-    "nama": "Sistem yang mati",
-    "kategori": "Teknologi dan AI",
-    "cakupan": "sistem otomatis, internet, dan kecerdasan buatan dalam kehidupan sehari-hari",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Internet mati sehari?",
-      "Bagaimana jika AI mengatur semua lampu lalu lintas?",
-      "Bagaimana jika Semua baterai habis bersamaan?"
-    ]
-  }
+  "seri": {}
 }
