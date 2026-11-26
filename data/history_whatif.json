@@ -2063,6 +2063,18 @@
       "status": "selesai",
       "run_id": "561362-2ffa9c6d",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-26-pagi-561362-2ffa9c6d"
+    },
+    {
+      "tanggal": "2026-11-26",
+      "slot": "siang",
+      "kategori": "Masa Depan Peradaban",
+      "topik": "Bagaimana jika Listrik kota mati seminggu?",
+      "judul": "Bagaimana jika Listrik kota mati seminggu?",
+      "inti": "listrik kota mati",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "745252-c23d8603",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-26-siang-745252-c23d8603"
     }
   ],
   "rencana": {
@@ -2176,15 +2188,5 @@
     "2026-11-26-pagi": "Bagaimana jika Kota tanpa sampah sebulan?",
     "2026-11-26-siang": "Bagaimana jika Listrik kota mati seminggu?"
   },
-  "seri": {
-    "nama": "Kota yang kehilangan",
-    "kategori": "Masa Depan Peradaban",
-    "cakupan": "kota, energi, pangan, dan cara manusia hidup bersama",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Semua satelit mati bersamaan?",
-      "Bagaimana jika Kota tanpa sampah sebulan?",
-      "Bagaimana jika Listrik kota mati seminggu?"
-    ]
-  }
+  "seri": {}
 }
