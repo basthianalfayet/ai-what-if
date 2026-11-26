@@ -2075,6 +2075,18 @@
       "status": "selesai",
       "run_id": "745252-c23d8603",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-26-siang-745252-c23d8603"
+    },
+    {
+      "tanggal": "2026-11-26",
+      "slot": "sore",
+      "kategori": "Teknologi dan AI",
+      "topik": "Bagaimana jika seluruh sandi internet diubah menjadi ekspresi wajah?",
+      "judul": "Bagaimana jika Seluruh sandi internet diubah menjadi ekspresi wajah?",
+      "inti": "sandi internet ekspresi wajah",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "996871-13934991",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-26-sore-996871-13934991"
     }
   ],
   "rencana": {
@@ -2186,7 +2198,18 @@
     "2026-11-25-pagi": "Bagaimana jika AI mengatur semua lampu lalu lintas?",
     "2026-11-25-siang": "Bagaimana jika Semua baterai habis bersamaan?",
     "2026-11-26-pagi": "Bagaimana jika Kota tanpa sampah sebulan?",
-    "2026-11-26-siang": "Bagaimana jika Listrik kota mati seminggu?"
+    "2026-11-26-siang": "Bagaimana jika Listrik kota mati seminggu?",
+    "2026-11-26-malam": "Bagaimana jika Kecerdasan buatan mengunci akses internet saat mendeteksi ekspresi sedih?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Sandi Wajah Masa Depan",
+    "kategori": "Teknologi dan AI",
+    "cakupan": "sistem otomatis, internet, dan kecerdasan buatan dalam kehidupan sehari-hari",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Seluruh sandi internet diubah menjadi ekspresi wajah?",
+      "Bagaimana jika Kecerdasan buatan mengunci akses internet saat mendeteksi ekspresi sedih?",
+      "Bagaimana jika Manusia wajib tersenyum sepanjang hari agar tetap bisa terhubung ke intern?"
+    ]
+  }
 }
