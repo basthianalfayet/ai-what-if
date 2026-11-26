@@ -2099,6 +2099,18 @@
       "status": "selesai",
       "run_id": "629973-0dc41a17",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-26-malam-629973-0dc41a17"
+    },
+    {
+      "tanggal": "2026-11-26",
+      "slot": "larut",
+      "kategori": "Teknologi dan AI",
+      "topik": "Bagaimana jika Manusia wajib tersenyum sepanjang hari agar tetap bisa terhubung ke intern?",
+      "judul": "Bagaimana jika Manusia wajib tersenyum sepanjang hari agar tetap bisa terhubung ke intern?",
+      "inti": "senyum wajib internet",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "663127-4c1cd03d",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-26-larut-663127-4c1cd03d"
     }
   ],
   "rencana": {
@@ -2214,15 +2226,5 @@
     "2026-11-26-malam": "Bagaimana jika Kecerdasan buatan mengunci akses internet saat mendeteksi ekspresi sedih?",
     "2026-11-26-larut": "Bagaimana jika Manusia wajib tersenyum sepanjang hari agar tetap bisa terhubung ke intern?"
   },
-  "seri": {
-    "nama": "Sandi Wajah Masa Depan",
-    "kategori": "Teknologi dan AI",
-    "cakupan": "sistem otomatis, internet, dan kecerdasan buatan dalam kehidupan sehari-hari",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Seluruh sandi internet diubah menjadi ekspresi wajah?",
-      "Bagaimana jika Kecerdasan buatan mengunci akses internet saat mendeteksi ekspresi sedih?",
-      "Bagaimana jika Manusia wajib tersenyum sepanjang hari agar tetap bisa terhubung ke intern?"
-    ]
-  }
+  "seri": {}
 }
