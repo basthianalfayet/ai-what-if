@@ -2111,6 +2111,18 @@
       "status": "selesai",
       "run_id": "663127-4c1cd03d",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-26-larut-663127-4c1cd03d"
+    },
+    {
+      "tanggal": "2026-11-27",
+      "slot": "pagi",
+      "kategori": "Fisika",
+      "topik": "Medan magnet Bumi mendadak menguat seratus kali lipat",
+      "judul": "Bagaimana jika Medan magnet Bumi menguat seratus kali lipat?",
+      "inti": "medan magnet menguat",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "184497-e9e88436",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-27-pagi-184497-e9e88436"
     }
   ],
   "rencana": {
@@ -2224,7 +2236,18 @@
     "2026-11-26-pagi": "Bagaimana jika Kota tanpa sampah sebulan?",
     "2026-11-26-siang": "Bagaimana jika Listrik kota mati seminggu?",
     "2026-11-26-malam": "Bagaimana jika Kecerdasan buatan mengunci akses internet saat mendeteksi ekspresi sedih?",
-    "2026-11-26-larut": "Bagaimana jika Manusia wajib tersenyum sepanjang hari agar tetap bisa terhubung ke intern?"
+    "2026-11-26-larut": "Bagaimana jika Manusia wajib tersenyum sepanjang hari agar tetap bisa terhubung ke intern?",
+    "2026-11-27-siang": "Bagaimana jika Badai induksi geomagnetik melumpuhkan peradaban modern?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Anomali Medan Magnet Raksasa",
+    "kategori": "Fisika",
+    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Medan magnet Bumi menguat seratus kali lipat?",
+      "Bagaimana jika Badai induksi geomagnetik melumpuhkan peradaban modern?",
+      "Bagaimana jika Manusia terpaksa bermukim di gua pelindung antimagnetik?"
+    ]
+  }
 }
