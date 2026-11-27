@@ -2147,6 +2147,18 @@
       "status": "selesai",
       "run_id": "109016-16ed302d",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-27-sore-109016-16ed302d"
+    },
+    {
+      "tanggal": "2026-11-27",
+      "slot": "malam",
+      "kategori": "Luar Angkasa",
+      "topik": "Bagaimana jika Bulan tiba-tiba berhenti mengorbit Bumi?",
+      "judul": "Bagaimana jika Bulan tiba-tiba berhenti mengorbit Bumi?",
+      "inti": "bulan berhenti mengorbit",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "047297-ece84119",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-27-malam-047297-ece84119"
     }
   ],
   "rencana": {
@@ -2262,7 +2274,18 @@
     "2026-11-26-malam": "Bagaimana jika Kecerdasan buatan mengunci akses internet saat mendeteksi ekspresi sedih?",
     "2026-11-26-larut": "Bagaimana jika Manusia wajib tersenyum sepanjang hari agar tetap bisa terhubung ke intern?",
     "2026-11-27-siang": "Bagaimana jika Badai induksi geomagnetik melumpuhkan peradaban modern?",
-    "2026-11-27-sore": "Bagaimana jika Manusia terpaksa bermukim di gua pelindung antimagnetik?"
+    "2026-11-27-sore": "Bagaimana jika Manusia terpaksa bermukim di gua pelindung antimagnetik?",
+    "2026-11-27-larut": "Bagaimana jika Gravitasi Bulan merusak lapisan atmosfer Bumi?"
   },
-  "seri": {}
+  "seri": {
+    "nama": "Dampak Bulan Berhenti",
+    "kategori": "Luar Angkasa",
+    "cakupan": "tata surya, bintang, bulan, planet, dan ruang angkasa",
+    "selesai": 1,
+    "bagian": [
+      "Bagaimana jika Bulan tiba-tiba berhenti mengorbit Bumi?",
+      "Bagaimana jika Gravitasi Bulan merusak lapisan atmosfer Bumi?",
+      "Bagaimana jika Serpihan meteoroid Bulan menghantam satelit komunikasi?"
+    ]
+  }
 }
