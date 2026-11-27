@@ -2135,6 +2135,18 @@
       "status": "selesai",
       "run_id": "188283-f1745b27",
       "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-27-siang-188283-f1745b27"
+    },
+    {
+      "tanggal": "2026-11-27",
+      "slot": "sore",
+      "kategori": "Fisika",
+      "topik": "Bagaimana jika Manusia terpaksa bermukim di gua pelindung antimagnetik?",
+      "judul": "Bagaimana jika Manusia terpaksa bermukim di gua pelindung antimagnetik?",
+      "inti": "gua pelindung antimagnetik",
+      "youtube_id": null,
+      "status": "selesai",
+      "run_id": "109016-16ed302d",
+      "folder": "/home/runner/work/ai-what-if/ai-what-if/output/2026-11-27-sore-109016-16ed302d"
     }
   ],
   "rencana": {
@@ -2252,15 +2264,5 @@
     "2026-11-27-siang": "Bagaimana jika Badai induksi geomagnetik melumpuhkan peradaban modern?",
     "2026-11-27-sore": "Bagaimana jika Manusia terpaksa bermukim di gua pelindung antimagnetik?"
   },
-  "seri": {
-    "nama": "Anomali Medan Magnet Raksasa",
-    "kategori": "Fisika",
-    "cakupan": "gravitasi, cahaya, waktu, dan gaya fundamental",
-    "selesai": 2,
-    "bagian": [
-      "Bagaimana jika Medan magnet Bumi menguat seratus kali lipat?",
-      "Bagaimana jika Badai induksi geomagnetik melumpuhkan peradaban modern?",
-      "Bagaimana jika Manusia terpaksa bermukim di gua pelindung antimagnetik?"
-    ]
-  }
+  "seri": {}
 }
